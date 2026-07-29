@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us — MCL MMIFF Champions League</title>
+  <meta name="description" content="Learn about MCL MMIFF Champions League, where cricket meets a cause."/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body { background-color: #0d0f0c; }
+    h1,h2,h3,h4,h5,h6 { font-weight:900!important; color:#fff!important; letter-spacing:-0.025em!important; }
+    .text-gradient { background:linear-gradient(to right,var(--brand,#b5e823),var(--accent-color,#22d3ee))!important; -webkit-background-clip:text!important; background-clip:text!important; color:transparent!important; }
+    section { background:#0d0f0c!important; }
+    .page-hero { position:relative; overflow:hidden; padding:120px 0 80px; }
+    .page-hero-img { position:absolute; inset:0; z-index:0; }
+    .page-hero-img img { width:100%; height:100%; object-fit:cover; }
+    .page-hero-img::after { content:''; position:absolute; inset:0; background:rgba(13,15,12,0.85); }
+    .page-hero-content { position:relative; z-index:1; text-align:center; }
+    .about-card { background:linear-gradient(to bottom right,#1a1f18,#0d0f0c); border:2px solid #2f372c; border-radius:1rem; padding:2.5rem; transition:border-color 0.3s; margin-bottom: 2rem; }
+    .about-card:hover { border-color:rgba(181,232,35,0.35); }
+
+    /* VISIONARY SECTION */
+    .visionary-grid { display: flex; flex-direction: column; gap: 2rem; max-width: 900px; margin: 0 auto; }
+    .visionary-card {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 2.5rem;
+      background: linear-gradient(to bottom right, #1a1f18, #0d0f0c);
+      border: 2px solid #2f372c;
+      border-radius: 1.25rem;
+      padding: 2.5rem;
+      transition: all 0.3s ease;
+      align-items: center;
+    }
+    .visionary-card:hover {
+      border-color: rgba(181,232,35,0.35);
+      box-shadow: 0 20px 40px rgba(181, 232, 35, 0.08);
+    }
+    .visionary-img-wrap {
+      width: 100%;
+      height: 300px;
+      border-radius: 1rem;
+      overflow: hidden;
+      border: 2px solid #2f372c;
+      transition: border-color 0.3s;
+    }
+    .visionary-card:hover .visionary-img-wrap {
+      border-color: var(--brand, #b5e823);
+    }
+    .visionary-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    .visionary-card:hover .visionary-img-wrap img {
+      transform: scale(1.05);
+    }
+    .visionary-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .visionary-name {
+      font-size: 2.25rem !important;
+      color: #fff !important;
+      margin-bottom: 0.25rem;
+      font-weight: 900 !important;
+    }
+    .visionary-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--brand, #b5e823);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+    .visionary-divider {
+      height: 2px;
+      background: linear-gradient(90deg, var(--brand, #b5e823), transparent);
+      margin-bottom: 1.5rem;
+      width: 150px;
+    }
+    .visionary-bio {
+      color: #c8d8c0;
+      line-height: 1.75;
+      font-size: 1.05rem;
+    }
+    @media (max-width: 768px) {
+      .visionary-card {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+        gap: 1.5rem;
+        text-align: center;
+      }
+      .visionary-img-wrap {
+        max-width: 260px;
+        height: 260px;
+        margin: 0 auto;
+      }
+      .visionary-divider {
+        margin: 0 auto 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="particles"></div>
+
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="logo.jpg" alt="MCL Logo"/>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html" class="active">About Us</a>
+    <a href="teams.html">Teams</a>
+    <a href="matches.html">Schedule</a>
+    <a href="timeline.html">Timeline</a>
+    <a href="registration.html" class="nav-cta">Player Registration</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <a href="about.html" class="active">About Us</a>
+  <a href="teams.html">Teams</a>
+  <a href="matches.html">Schedule</a>
+  <a href="timeline.html">Timeline</a>
+  <a href="registration.html" style="color:var(--brand);border-color:rgba(181,232,35,0.25);background:rgba(181,232,35,0.06);">Player Registration →</a>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-img">
+    <img src="https://images.pexels.com/photos/36230651/pexels-photo-36230651.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Cricket Stadium"/>
+  </div>
+  <div class="page-hero-content">
+    <div class="container">
+      <div class="section-label" style="justify-content:center;color:var(--brand,#b5e823);">Our Mission</div>
+      <h1>ABOUT <span class="text-gradient">MCL T20</span></h1>
+      <p style="color:#c8d8c0;font-size:1.25rem;max-width:600px;margin:0 auto;">Where Cricket Meets a Cause. An initiative by Mentor &amp; Mascot Indian Film Federation.</p>
+    </div>
+  </div>
+</div>
+
+<section style="padding:5rem 0;">
+  <div class="container" style="max-width:900px;">
+    
+    <div class="about-card reveal">
+      <h2 style="color:var(--brand,#b5e823)!important;margin-bottom:1rem;">Mentor &amp; Mascot Indian Film Federation</h2>
+      <p style="color:#c8d8c0;line-height:1.75;font-size:1.05rem;">
+        The Mentor &amp; Mascot Indian Film Federation (MMIFF) is a premier organization dedicated to fostering talent, creativity, and development in both the sports and entertainment industries. We believe in building platforms that empower communities, support aspiring talent, and integrate corporate social responsibility with high-quality sports and cultural events.
+      </p>
+    </div>
+
+    <div class="about-card reveal">
+      <h2 style="color:var(--brand,#b5e823)!important;margin-bottom:1rem;">MCL Champions League — Season 01</h2>
+      <p style="color:#c8d8c0;line-height:1.75;font-size:1.05rem;margin-bottom:1rem;">
+        The MCL Champions League is MMIFF's signature sporting event, bringing together elite players, state-of-the-art stadiums, and intense competition. Season 01 features 8 powerhouse franchise teams playing 6 matches to claim the coveted championship trophy.
+      </p>
+      <p style="color:#c8d8c0;line-height:1.75;font-size:1.05rem;">
+        Beyond the boundaries, MCL supports local youth development, athlete welfare programs, and social impact projects across Delhi/NCR.
+      </p>
+    </div>
+
+    <div style="text-align:center;margin-top:5rem;margin-bottom:3rem;" class="reveal">
+      <div class="section-label" style="justify-content:center;color:var(--brand,#b5e823);">Visionaries</div>
+      <h2 style="font-size:2.5rem;text-align:center;margin-top:0.5rem;text-transform:uppercase;">THE VISIONARIES BEHIND <span class="text-gradient">MCL T20</span></h2>
+    </div>
+
+    <div class="visionary-grid reveal" style="margin-bottom: 5rem;">
+      <div class="visionary-card">
+        <div class="visionary-img-wrap">
+          <img src="jitender-sharma.png" alt="Jitender Sharma"/>
+        </div>
+        <div class="visionary-info">
+          <h3 class="visionary-name">JITENDER SHARMA</h3>
+          <p class="visionary-title">Founder President, MCL T20</p>
+          <div class="visionary-divider"></div>
+          <p class="visionary-bio">
+            Jitender Sharma is a visionary entrepreneur, and creative leader serving as the Chairperson of the Mentor & Mascot Indian Film Federation (MMIFF). He is the Founder of NXT BIG LEAP, a transformative platform that brings together artistic expression, innovative thinking, entrepreneurship, and soul-centered purpose. With over two decades of experience across media, entertainment, branding, and strategic leadership, he is committed to empowering creators, fostering meaningful collaborations, and building impactful ecosystems for the creative industry.
+          </p>
+        </div>
+      </div>
+
+      <div class="visionary-card">
+        <div class="visionary-img-wrap">
+          <img src="naresh-gupta.png" alt="Naresh Gupta"/>
+        </div>
+        <div class="visionary-info">
+          <h3 class="visionary-name">NARESH GUPTA</h3>
+          <p class="visionary-title">Patron, MCL T20</p>
+          <div class="visionary-divider"></div>
+          <p class="visionary-bio">
+            Naresh Gupta is a renowned entrepreneur and global business leader, serving as the President of the Indo China Chamber of Commerce and Chairman of the Indo Canada Chamber of Commerce. He is also the Founder of Tarang Foundation, driving impactful social initiatives while fostering international trade, strategic collaborations, and sustainable economic growth.
+          </p>
+        </div>
+      </div>
+
+      <div class="visionary-card">
+        <div class="visionary-img-wrap">
+          <img src="krishna-kumar.png" alt="Dr. S. Krishna Kumar"/>
+        </div>
+        <div class="visionary-info">
+          <h3 class="visionary-name">DR. S. KRISHNA KUMAR (Retd. I.A.S.)</h3>
+          <p class="visionary-title">League Chancellor, MCL T20</p>
+          <div class="visionary-divider"></div>
+          <p class="visionary-bio">
+            Dr. S. Krishna Kumar (Retd. I.A.S.) is a distinguished administrator and former Union Minister who has led key ministries including Information & Broadcasting, Petroleum & Natural Gas, Defence, Non-Conventional Energy, Agriculture, Health & Family Welfare, and Textiles. He also served as the Former President of the Mentor & Mascot Indian Film Federation (MMIFF) from 2021 to 2024, contributing significantly to the organization's growth and vision through his vast administrative and leadership experience.
+          </p>
+        </div>
+      </div>
+
+      <div class="visionary-card">
+        <div class="visionary-img-wrap">
+          <img src="uttam-mazumdar.png" alt="Uttam Mazumdar"/>
+        </div>
+        <div class="visionary-info">
+          <h3 class="visionary-name">UTTAM MAZUMDAR</h3>
+          <p class="visionary-title">Director General - Sports, MCL T20</p>
+          <div class="visionary-divider"></div>
+          <p class="visionary-bio">
+            Uttam Mazumdar is a highly respected cricket coach and mentor with over 18 years of experience in player development and high-performance coaching. A mission-driven professional, he has mentored Indian star cricketer Ishan Kishan and coached more than 20 national and international cricketers, including Rinku Singh, Dhruv Jurel, Divyansh Joshi, Keshav Dalal, Karan Sharma, Madhav Kaushik, Subh Sharma, Shoun Roger, Prateek Vats, and Sameer (Nepal). Renowned for nurturing U-16 and U-19 talent, he was appointed as Selector & Head Coach of the Big Cricket League (BCL) 2024 and also served as the Head Coach & Mentor of Team Punjab De Sher in the Celebrity Cricket League (CCL) 2024, earning recognition for his excellence in talent identification, player development, and cricket coaching.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:4rem;" class="reveal">
+      <a href="registration.html" class="btn-primary">Register Now 🏏</a>
+      <a href="timeline.html" class="btn-outline" style="margin-left:1rem;">View Timeline</a>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="display:inline-flex;">
+          <img src="logo.jpg" alt="MCL" style="height:52px;border-radius:calc(var(--radius) - 2px);"/>
+        </a>
+        <p>Where Cricket Meets a Cause. An initiative by Mentor &amp; Mascot Indian Film Federation.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="teams.html">Teams</a></li>
+          <li><a href="matches.html">Schedule</a></li>
+          <li><a href="timeline.html">Timeline</a></li>
+          <li><a href="registration.html">Register</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Teams</h4>
+        <ul>
+          <li><a href="teams.html#team-1">Team A</a></li>
+          <li><a href="teams.html#team-2">Team B</a></li>
+          <li><a href="teams.html#team-3">Team C</a></li>
+          <li><a href="teams.html#team-4">Team D</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>More Teams</h4>
+        <ul>
+          <li><a href="teams.html#team-5">Team E</a></li>
+          <li><a href="teams.html#team-6">Team F</a></li>
+          <li><a href="teams.html#team-7">Team G</a></li>
+          <li><a href="teams.html#team-8">Team H</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 MCL T20 — MMIFF Champions League. All rights reserved.</p>
+      <div class="footer-social"><a href="https://www.instagram.com/mclt20s01?igsh=MXB5dmM5NGc0ZzlzNA==" target="_blank" title="Instagram">📸</a><a href="#" title="Twitter">🐦</a><a href="#" title="YouTube">▶️</a></div>
+    </div>
+  </div>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>

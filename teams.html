@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Teams — MCL MMIFF Champions League</title>
+  <meta name="description" content="Meet the 8 powerhouse teams of MCL MMIFF Champions League."/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body {
+      background-color: #0d0f0c;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 900 !important;
+      color: #fff !important;
+      letter-spacing: -0.025em !important;
+    }
+    .text-gradient, .highlight {
+      background: linear-gradient(to right, var(--brand, #b5e823), var(--accent-color, #22d3ee)) !important;
+      -webkit-background-clip: text !important;
+      background-clip: text !important;
+      color: transparent !important;
+    }
+    section {
+      background: #0d0f0c !important;
+    }
+    .team-detail-card {
+      background: linear-gradient(to bottom right, #1a1f18, #0d0f0c) !important;
+      border: 2px solid #2f372c !important;
+      border-radius: 24px;
+      overflow: hidden;
+      transition: var(--transition);
+      scroll-margin-top: 90px;
+    }
+    .team-header {
+      padding: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      border-bottom: 2px solid #2f372c;
+      position: relative;
+      overflow: hidden;
+    }
+    .team-header::before {
+      content: '';
+      position: absolute; inset: 0;
+      opacity: 0.06;
+    }
+    .team-big-icon {
+      width: 80px; height: 80px; border-radius: 20px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem; flex-shrink: 0;
+      position: relative; z-index: 1;
+      background: rgba(181,232,35,0.15);
+    }
+    .team-header-info { position: relative; z-index: 1; }
+    .team-header-info .team-number { font-size: 0.8rem; color: var(--brand, #b5e823); text-transform: uppercase; letter-spacing: 2px; font-weight: 600; margin-bottom: 0.35rem; }
+    .team-header-info h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; letter-spacing: 1px; line-height: 1; }
+    .team-header-info .team-state-badge {
+      display: inline-block; padding: 4px 12px; border-radius: 999px;
+      font-size: 0.75rem; font-weight: 600; margin-top: 0.5rem;
+      background: rgba(181,232,35,0.15); color: var(--brand, #b5e823);
+    }
+    .team-body {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 0; border-bottom: 2px solid #2f372c;
+    }
+    .team-stat-box {
+      padding: 1.75rem; text-align: center; border-right: 2px solid #2f372c;
+    }
+    .team-stat-box:last-child { border-right: none; }
+    .team-stat-box .t-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: var(--brand, #b5e823); line-height: 1; }
+    .team-stat-box .t-lbl { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted-foreground, #c8d8c0); margin-top: 4px; }
+    .team-foot {
+      padding: 1.5rem 2rem;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    }
+    .team-players { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .player-chip {
+      padding: 5px 12px; border-radius: 999px;
+      background: rgba(255,255,255,0.06); border: 1px solid #2f372c;
+      font-size: 0.78rem; font-weight: 500; color: #fff;
+      white-space: nowrap;
+    }
+    .team-big-num {
+      position: absolute; right: 2rem; top: 50%; transform: translateY(-50%);
+      font-family: 'Bebas Neue', sans-serif; font-size: 8rem; opacity: 0.05; line-height: 1;
+    }
+    .page-hero { position: relative; overflow: hidden; padding: 120px 0 80px; }
+    .page-hero-img { position: absolute; inset: 0; z-index: -1; }
+    .page-hero-img img { width: 100%; height: 100%; object-fit: cover; }
+    .page-hero-img::after { content: ''; position: absolute; inset: 0; background: rgba(13,15,12,0.85); }
+    .page-hero-content { position: relative; z-index: 1; text-align: center; }
+    @media (max-width:768px) {
+      .team-body { grid-template-columns: 1fr; }
+      .team-stat-box { border-right: none; border-bottom: 2px solid #2f372c; }
+      .team-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .team-big-num { display: none; }
+    }
+  </style>
+</head>
+<body>
+<div class="particles"></div>
+
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="logo.jpg" alt="MCL Logo"/>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="teams.html" class="active">Teams</a>
+    <a href="matches.html">Schedule</a>
+    <a href="timeline.html">Timeline</a>
+    <a href="registration.html" class="nav-cta">Player Registration</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <a href="about.html">About Us</a>
+  <a href="teams.html" class="active">Teams</a>
+  <a href="matches.html">Schedule</a>
+  <a href="timeline.html">Timeline</a>
+  <a href="registration.html" style="color:var(--brand);border-color:rgba(181,232,35,0.25);background:rgba(181,232,35,0.06);">Player Registration →</a>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-img">
+    <img src="https://images.pexels.com/photos/31131696/pexels-photo-31131696.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Cricket"/>
+  </div>
+  <div class="page-hero-content">
+    <div class="container">
+      <div class="section-label" style="justify-content:center; color: var(--brand, #b5e823);">Season 01</div>
+      <h1>THE 08 <span class="text-gradient">TEAMS</span></h1>
+      <p>Eight powerhouses battling for cricket supremacy</p>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <div style="display:flex;flex-direction:column;gap:2rem;">
+      
+      <!-- Team 1 -->
+      <div class="team-detail-card reveal" id="team-1">
+        <div class="team-header">
+          <div class="team-big-icon">🏏</div>
+          <div class="team-header-info">
+            <div class="team-number">Team 01</div>
+            <h2>Team A</h2>
+          </div>
+          <div class="team-big-num">01</div>
+        </div>
+        <div class="team-body">
+          <div class="team-stat-box"><div class="t-num">15-18</div><div class="t-lbl">Players</div></div>
+          <div class="team-stat-box"><div class="t-num">—</div><div class="t-lbl">W / L</div></div>
+          <div class="team-stat-box"><div class="t-num">0</div><div class="t-lbl">Points</div></div>
+        </div>
+        <div class="team-foot">
+          <div class="team-players">
+            <span class="player-chip" style="border-color:var(--brand);color:var(--brand);font-weight:700;">Captain</span>
+            <span class="player-chip" style="border-color:var(--accent-color);color:var(--accent-color);font-weight:700;">Vice Captain</span>
+            <span class="player-chip">+16 more</span>
+          </div>
+        </div>
+        <div class="team-schedule" style="padding: 1.5rem 2.5rem 2.5rem; border-top: 2px solid #2f372c;">
+          <h4 style="font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--brand, #b5e823); margin-bottom: 1.25rem; font-weight: 700;">Match Schedule</h4>
+          <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem; color: #c8d8c0;">
+              <thead>
+                <tr style="border-bottom: 2px solid #2f372c;">
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Match</th>
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Opponent</th>
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Date & Time</th>
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Venue</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid rgba(47, 55, 44, 0.4);">
+                  <td style="padding: 10px 8px; font-weight: 700; color: var(--brand, #b5e823);">Match 01</td>
+                  <td style="padding: 10px 8px;">Team B</td>
+                  <td style="padding: 10px 8px;">Oct 10 · 7:30 PM</td>
+                  <td style="padding: 10px 8px;">To Be Announced</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(47, 55, 44, 0.4);">
+                  <td style="padding: 10px 8px; font-weight: 700; color: var(--brand, #b5e823);">Match 05</td>
+                  <td style="padding: 10px 8px;">Team C</td>
+                  <td style="padding: 10px 8px;">Oct 12 · 7:30 PM</td>
+                  <td style="padding: 10px 8px;">To Be Announced</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(47, 55, 44, 0.4);">
+                  <td style="padding: 10px 8px; font-weight: 700; color: var(--brand, #b5e823);">Match 09</td>
+                  <td style="padding: 10px 8px;">Team D</td>
+                  <td style="padding: 10px 8px;">Oct 14 · 7:30 PM</td>
+                  <td style="padding: 10px 8px;">To Be Announced</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team 2 -->
+      <div class="team-detail-card reveal" id="team-2">
+        <div class="team-header">
+          <div class="team-big-icon">⚡</div>
+          <div class="team-header-info">
+            <div class="team-number">Team 02</div>
+            <h2>Team B</h2>
+          </div>
+          <div class="team-big-num">02</div>
+        </div>
+        <div class="team-body">
+          <div class="team-stat-box"><div class="t-num">15-18</div><div class="t-lbl">Players</div></div>
+          <div class="team-stat-box"><div class="t-num">—</div><div class="t-lbl">W / L</div></div>
+          <div class="team-stat-box"><div class="t-num">0</div><div class="t-lbl">Points</div></div>
+        </div>
+        <div class="team-foot">
+          <div class="team-players">
+            <span class="player-chip" style="border-color:var(--brand);color:var(--brand);font-weight:700;">Captain</span>
+            <span class="player-chip" style="border-color:var(--accent-color);color:var(--accent-color);font-weight:700;">Vice Captain</span>
+            <span class="player-chip">+16 more</span>
+          </div>
+        </div>
+        <div class="team-schedule" style="padding: 1.5rem 2.5rem 2.5rem; border-top: 2px solid #2f372c;">
+          <h4 style="font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--brand, #b5e823); margin-bottom: 1.25rem; font-weight: 700;">Match Schedule</h4>
+          <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem; color: #c8d8c0;">
+              <thead>
+                <tr style="border-bottom: 2px solid #2f372c;">
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Match</th>
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Opponent</th>
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Date & Time</th>
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Venue</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid rgba(47, 55, 44, 0.4);">
+                  <td style="padding: 10px 8px; font-weight: 700; color: var(--brand, #b5e823);">Match 01</td>
+                  <td style="padding: 10px 8px;">Team A</td>
+                  <td style="padding: 10px 8px;">Oct 10 · 7:30 PM</td>
+                  <td style="padding: 10px 8px;">To Be Announced</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(47, 55, 44, 0.4);">
+                  <td style="padding: 10px 8px; font-weight: 700; color: var(--brand, #b5e823);">Match 06</td>
+                  <td style="padding: 10px 8px;">Team C</td>
+                  <td style="padding: 10px 8px;">Oct 13 · 3:00 PM</td>
+                  <td style="padding: 10px 8px;">To Be Announced</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(47, 55, 44, 0.4);">
+                  <td style="padding: 10px 8px; font-weight: 700; color: var(--brand, #b5e823);">Match 10</td>
+                  <td style="padding: 10px 8px;">Team D</td>
+                  <td style="padding: 10px 8px;">Oct 15 · 3:00 PM</td>
+                  <td style="padding: 10px 8px;">To Be Announced</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team 3 -->
+      <div class="team-detail-card reveal" id="team-3">
+        <div class="team-header">
+          <div class="team-big-icon">🎯</div>
+          <div class="team-header-info">
+            <div class="team-number">Team 03</div>
+            <h2>Team C</h2>
+          </div>
+          <div class="team-big-num">03</div>
+        </div>
+        <div class="team-body">
+          <div class="team-stat-box"><div class="t-num">15-18</div><div class="t-lbl">Players</div></div>
+          <div class="team-stat-box"><div class="t-num">—</div><div class="t-lbl">W / L</div></div>
+          <div class="team-stat-box"><div class="t-num">0</div><div class="t-lbl">Points</div></div>
+        </div>
+        <div class="team-foot">
+          <div class="team-players">
+            <span class="player-chip" style="border-color:var(--brand);color:var(--brand);font-weight:700;">Captain</span>
+            <span class="player-chip" style="border-color:var(--accent-color);color:var(--accent-color);font-weight:700;">Vice Captain</span>
+            <span class="player-chip">+16 more</span>
+          </div>
+        </div>
+        <div class="team-schedule" style="padding: 1.5rem 2.5rem 2.5rem; border-top: 2px solid #2f372c;">
+          <h4 style="font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--brand, #b5e823); margin-bottom: 1.25rem; font-weight: 700;">Match Schedule</h4>
+          <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem; color: #c8d8c0;">
+              <thead>
+                <tr style="border-bottom: 2px solid #2f372c;">
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Match</th>
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Opponent</th>
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Date & Time</th>
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Venue</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid rgba(47, 55, 44, 0.4);">
+                  <td style="padding: 10px 8px; font-weight: 700; color: var(--brand, #b5e823);">Match 02</td>
+                  <td style="padding: 10px 8px;">Team D</td>
+                  <td style="padding: 10px 8px;">Oct 11 · 3:00 PM</td>
+                  <td style="padding: 10px 8px;">To Be Announced</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(47, 55, 44, 0.4);">
+                  <td style="padding: 10px 8px; font-weight: 700; color: var(--brand, #b5e823);">Match 05</td>
+                  <td style="padding: 10px 8px;">Team A</td>
+                  <td style="padding: 10px 8px;">Oct 12 · 7:30 PM</td>
+                  <td style="padding: 10px 8px;">To Be Announced</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(47, 55, 44, 0.4);">
+                  <td style="padding: 10px 8px; font-weight: 700; color: var(--brand, #b5e823);">Match 06</td>
+                  <td style="padding: 10px 8px;">Team B</td>
+                  <td style="padding: 10px 8px;">Oct 13 · 3:00 PM</td>
+                  <td style="padding: 10px 8px;">To Be Announced</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team 4 -->
+      <div class="team-detail-card reveal" id="team-4">
+        <div class="team-header">
+          <div class="team-big-icon">🎯</div>
+          <div class="team-header-info">
+            <div class="team-number">Team 04</div>
+            <h2>Team D</h2>
+          </div>
+          <div class="team-big-num">04</div>
+        </div>
+        <div class="team-body">
+          <div class="team-stat-box"><div class="t-num">15-18</div><div class="t-lbl">Players</div></div>
+          <div class="team-stat-box"><div class="t-num">—</div><div class="t-lbl">W / L</div></div>
+          <div class="team-stat-box"><div class="t-num">0</div><div class="t-lbl">Points</div></div>
+        </div>
+        <div class="team-foot">
+          <div class="team-players">
+            <span class="player-chip" style="border-color:var(--brand);color:var(--brand);font-weight:700;">Captain</span>
+            <span class="player-chip" style="border-color:var(--accent-color);color:var(--accent-color);font-weight:700;">Vice Captain</span>
+            <span class="player-chip">+16 more</span>
+          </div>
+        </div>
+        <div class="team-schedule" style="padding: 1.5rem 2.5rem 2.5rem; border-top: 2px solid #2f372c;">
+          <h4 style="font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--brand, #b5e823); margin-bottom: 1.25rem; font-weight: 700;">Match Schedule</h4>
+          <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem; color: #c8d8c0;">
+              <thead>
+                <tr style="border-bottom: 2px solid #2f372c;">
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Match</th>
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Opponent</th>
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Date & Time</th>
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Venue</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid rgba(47, 55, 44, 0.4);">
+                  <td style="padding: 10px 8px; font-weight: 700; color: var(--brand, #b5e823);">Match 02</td>
+                  <td style="padding: 10px 8px;">Team C</td>
+                  <td style="padding: 10px 8px;">Oct 11 · 3:00 PM</td>
+                  <td style="padding: 10px 8px;">To Be Announced</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(47, 55, 44, 0.4);">
+                  <td style="padding: 10px 8px; font-weight: 700; color: var(--brand, #b5e823);">Match 09</td>
+                  <td style="padding: 10px 8px;">Team A</td>
+                  <td style="padding: 10px 8px;">Oct 14 · 7:30 PM</td>
+                  <td style="padding: 10px 8px;">To Be Announced</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(47, 55, 44, 0.4);">
+                  <td style="padding: 10px 8px; font-weight: 700; color: var(--brand, #b5e823);">Match 10</td>
+                  <td style="padding: 10px 8px;">Team B</td>
+                  <td style="padding: 10px 8px;">Oct 15 · 3:00 PM</td>
+                  <td style="padding: 10px 8px;">To Be Announced</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team 5 -->
+      <div class="team-detail-card reveal" id="team-5">
+        <div class="team-header">
+          <div class="team-big-icon">👑</div>
+          <div class="team-header-info">
+            <div class="team-number">Team 05</div>
+            <h2>Team E</h2>
+          </div>
+          <div class="team-big-num">05</div>
+        </div>
+        <div class="team-body">
+          <div class="team-stat-box"><div class="t-num">15-18</div><div class="t-lbl">Players</div></div>
+          <div class="team-stat-box"><div class="t-num">—</div><div class="t-lbl">W / L</div></div>
+          <div class="team-stat-box"><div class="t-num">0</div><div class="t-lbl">Points</div></div>
+        </div>
+        <div class="team-foot">
+          <div class="team-players">
+            <span class="player-chip" style="border-color:var(--brand);color:var(--brand);font-weight:700;">Captain</span>
+            <span class="player-chip" style="border-color:var(--accent-color);color:var(--accent-color);font-weight:700;">Vice Captain</span>
+            <span class="player-chip">+16 more</span>
+          </div>
+        </div>
+        <div class="team-schedule" style="padding: 1.5rem 2.5rem 2.5rem; border-top: 2px solid #2f372c;">
+          <h4 style="font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--brand, #b5e823); margin-bottom: 1.25rem; font-weight: 700;">Match Schedule</h4>
+          <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem; color: #c8d8c0;">
+              <thead>
+                <tr style="border-bottom: 2px solid #2f372c;">
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Match</th>
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Opponent</th>
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Date & Time</th>
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Venue</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid rgba(47, 55, 44, 0.4);">
+                  <td style="padding: 10px 8px; font-weight: 700; color: var(--brand, #b5e823);">Match 03</td>
+                  <td style="padding: 10px 8px;">Team F</td>
+                  <td style="padding: 10px 8px;">Oct 10 · 7:30 PM</td>
+                  <td style="padding: 10px 8px;">To Be Announced</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(47, 55, 44, 0.4);">
+                  <td style="padding: 10px 8px; font-weight: 700; color: var(--brand, #b5e823);">Match 07</td>
+                  <td style="padding: 10px 8px;">Team G</td>
+                  <td style="padding: 10px 8px;">Oct 12 · 7:30 PM</td>
+                  <td style="padding: 10px 8px;">To Be Announced</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(47, 55, 44, 0.4);">
+                  <td style="padding: 10px 8px; font-weight: 700; color: var(--brand, #b5e823);">Match 11</td>
+                  <td style="padding: 10px 8px;">Team H</td>
+                  <td style="padding: 10px 8px;">Oct 14 · 7:30 PM</td>
+                  <td style="padding: 10px 8px;">To Be Announced</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team 6 -->
+      <div class="team-detail-card reveal" id="team-6">
+        <div class="team-header">
+          <div class="team-big-icon">🌟</div>
+          <div class="team-header-info">
+            <div class="team-number">Team 06</div>
+            <h2>Team F</h2>
+          </div>
+          <div class="team-big-num">06</div>
+        </div>
+        <div class="team-body">
+          <div class="team-stat-box"><div class="t-num">15-18</div><div class="t-lbl">Players</div></div>
+          <div class="team-stat-box"><div class="t-num">—</div><div class="t-lbl">W / L</div></div>
+          <div class="team-stat-box"><div class="t-num">0</div><div class="t-lbl">Points</div></div>
+        </div>
+        <div class="team-foot">
+          <div class="team-players">
+            <span class="player-chip" style="border-color:var(--brand);color:var(--brand);font-weight:700;">Captain</span>
+            <span class="player-chip" style="border-color:var(--accent-color);color:var(--accent-color);font-weight:700;">Vice Captain</span>
+            <span class="player-chip">+16 more</span>
+          </div>
+        </div>
+        <div class="team-schedule" style="padding: 1.5rem 2.5rem 2.5rem; border-top: 2px solid #2f372c;">
+          <h4 style="font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--brand, #b5e823); margin-bottom: 1.25rem; font-weight: 700;">Match Schedule</h4>
+          <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem; color: #c8d8c0;">
+              <thead>
+                <tr style="border-bottom: 2px solid #2f372c;">
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Match</th>
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Opponent</th>
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Date & Time</th>
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Venue</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid rgba(47, 55, 44, 0.4);">
+                  <td style="padding: 10px 8px; font-weight: 700; color: var(--brand, #b5e823);">Match 03</td>
+                  <td style="padding: 10px 8px;">Team E</td>
+                  <td style="padding: 10px 8px;">Oct 10 · 7:30 PM</td>
+                  <td style="padding: 10px 8px;">To Be Announced</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(47, 55, 44, 0.4);">
+                  <td style="padding: 10px 8px; font-weight: 700; color: var(--brand, #b5e823);">Match 08</td>
+                  <td style="padding: 10px 8px;">Team G</td>
+                  <td style="padding: 10px 8px;">Oct 13 · 3:00 PM</td>
+                  <td style="padding: 10px 8px;">To Be Announced</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(47, 55, 44, 0.4);">
+                  <td style="padding: 10px 8px; font-weight: 700; color: var(--brand, #b5e823);">Match 12</td>
+                  <td style="padding: 10px 8px;">Team H</td>
+                  <td style="padding: 10px 8px;">Oct 15 · 3:00 PM</td>
+                  <td style="padding: 10px 8px;">To Be Announced</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team 7 -->
+      <div class="team-detail-card reveal" id="team-7">
+        <div class="team-header">
+          <div class="team-big-icon">💥</div>
+          <div class="team-header-info">
+            <div class="team-number">Team 07</div>
+            <h2>Team G</h2>
+          </div>
+          <div class="team-big-num">07</div>
+        </div>
+        <div class="team-body">
+          <div class="team-stat-box"><div class="t-num">15-18</div><div class="t-lbl">Players</div></div>
+          <div class="team-stat-box"><div class="t-num">—</div><div class="t-lbl">W / L</div></div>
+          <div class="team-stat-box"><div class="t-num">0</div><div class="t-lbl">Points</div></div>
+        </div>
+        <div class="team-foot">
+          <div class="team-players">
+            <span class="player-chip" style="border-color:var(--brand);color:var(--brand);font-weight:700;">Captain</span>
+            <span class="player-chip" style="border-color:var(--accent-color);color:var(--accent-color);font-weight:700;">Vice Captain</span>
+            <span class="player-chip">+16 more</span>
+          </div>
+        </div>
+        <div class="team-schedule" style="padding: 1.5rem 2.5rem 2.5rem; border-top: 2px solid #2f372c;">
+          <h4 style="font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--brand, #b5e823); margin-bottom: 1.25rem; font-weight: 700;">Match Schedule</h4>
+          <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem; color: #c8d8c0;">
+              <thead>
+                <tr style="border-bottom: 2px solid #2f372c;">
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Match</th>
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Opponent</th>
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Date & Time</th>
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Venue</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid rgba(47, 55, 44, 0.4);">
+                  <td style="padding: 10px 8px; font-weight: 700; color: var(--brand, #b5e823);">Match 04</td>
+                  <td style="padding: 10px 8px;">Team H</td>
+                  <td style="padding: 10px 8px;">Oct 11 · 3:00 PM</td>
+                  <td style="padding: 10px 8px;">To Be Announced</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(47, 55, 44, 0.4);">
+                  <td style="padding: 10px 8px; font-weight: 700; color: var(--brand, #b5e823);">Match 07</td>
+                  <td style="padding: 10px 8px;">Team E</td>
+                  <td style="padding: 10px 8px;">Oct 12 · 7:30 PM</td>
+                  <td style="padding: 10px 8px;">To Be Announced</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(47, 55, 44, 0.4);">
+                  <td style="padding: 10px 8px; font-weight: 700; color: var(--brand, #b5e823);">Match 08</td>
+                  <td style="padding: 10px 8px;">Team F</td>
+                  <td style="padding: 10px 8px;">Oct 13 · 3:00 PM</td>
+                  <td style="padding: 10px 8px;">To Be Announced</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team 8 -->
+      <div class="team-detail-card reveal" id="team-8">
+        <div class="team-header">
+          <div class="team-big-icon">🏆</div>
+          <div class="team-header-info">
+            <div class="team-number">Team 08</div>
+            <h2>Team H</h2>
+          </div>
+          <div class="team-big-num">08</div>
+        </div>
+        <div class="team-body">
+          <div class="team-stat-box"><div class="t-num">15-18</div><div class="t-lbl">Players</div></div>
+          <div class="team-stat-box"><div class="t-num">—</div><div class="t-lbl">W / L</div></div>
+          <div class="team-stat-box"><div class="t-num">0</div><div class="t-lbl">Points</div></div>
+        </div>
+        <div class="team-foot">
+          <div class="team-players">
+            <span class="player-chip" style="border-color:var(--brand);color:var(--brand);font-weight:700;">Captain</span>
+            <span class="player-chip" style="border-color:var(--accent-color);color:var(--accent-color);font-weight:700;">Vice Captain</span>
+            <span class="player-chip">+16 more</span>
+          </div>
+        </div>
+        <div class="team-schedule" style="padding: 1.5rem 2.5rem 2.5rem; border-top: 2px solid #2f372c;">
+          <h4 style="font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--brand, #b5e823); margin-bottom: 1.25rem; font-weight: 700;">Match Schedule</h4>
+          <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem; color: #c8d8c0;">
+              <thead>
+                <tr style="border-bottom: 2px solid #2f372c;">
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Match</th>
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Opponent</th>
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Date & Time</th>
+                  <th style="padding: 10px 8px; font-weight: 700; color: #fff;">Venue</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid rgba(47, 55, 44, 0.4);">
+                  <td style="padding: 10px 8px; font-weight: 700; color: var(--brand, #b5e823);">Match 04</td>
+                  <td style="padding: 10px 8px;">Team G</td>
+                  <td style="padding: 10px 8px;">Oct 11 · 3:00 PM</td>
+                  <td style="padding: 10px 8px;">To Be Announced</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(47, 55, 44, 0.4);">
+                  <td style="padding: 10px 8px; font-weight: 700; color: var(--brand, #b5e823);">Match 11</td>
+                  <td style="padding: 10px 8px;">Team E</td>
+                  <td style="padding: 10px 8px;">Oct 14 · 7:30 PM</td>
+                  <td style="padding: 10px 8px;">To Be Announced</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(47, 55, 44, 0.4);">
+                  <td style="padding: 10px 8px; font-weight: 700; color: var(--brand, #b5e823);">Match 12</td>
+                  <td style="padding: 10px 8px;">Team F</td>
+                  <td style="padding: 10px 8px;">Oct 15 · 3:00 PM</td>
+                  <td style="padding: 10px 8px;">To Be Announced</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    
+    <div style="text-align:center;margin-top:4rem;" class="reveal">
+      <p style="color:var(--muted);margin-bottom:1.5rem;">Ready to be part of history?</p>
+      <a href="registration.html" class="btn-primary" style="font-size:1.05rem;padding:16px 40px;">Register Your Team 🏏</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="display:inline-flex;">
+          <img src="logo.jpg" alt="MCL" style="height:52px;border-radius:calc(var(--radius) - 2px);"/>
+        </a>
+        <p>Where Cricket Meets a Cause. An initiative by Mentor &amp; Mascot Indian Film Federation.</p>
+      </div>
+      <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="teams.html">Teams</a></li><li><a href="matches.html">Schedule</a></li><li><a href="timeline.html">Timeline</a></li><li><a href="registration.html">Register</a></li></ul></div>
+      <div class="footer-col"><h4>Teams</h4><ul><li><a href="teams.html#team-1">Team A</a></li><li><a href="teams.html#team-2">Team B</a></li><li><a href="teams.html#team-3">Team C</a></li><li><a href="teams.html#team-4">Team D</a></li></ul></div>
+      <div class="footer-col"><h4>More Teams</h4><ul><li><a href="teams.html#team-5">Team E</a></li><li><a href="teams.html#team-6">Team F</a></li><li><a href="teams.html#team-7">Team G</a></li><li><a href="teams.html#team-8">Team H</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 MCL T20 — MMIFF Champions League. All rights reserved.</p>
+      <div class="footer-social"><a href="https://www.instagram.com/mclt20s01?igsh=MXB5dmM5NGc0ZzlzNA==" target="_blank" title="Instagram">📸</a><a href="#" title="Twitter">🐦</a><a href="#" title="YouTube">▶️</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

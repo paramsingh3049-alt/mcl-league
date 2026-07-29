@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MCL T20 — MMIFF Champions League | Where Cricket Meets a Cause</title>
+  <meta name="description" content="MCL T20 MMIFF Champions League — 8 powerhouse teams battling for cricket supremacy. The Nation's League of Champions."/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<div class="particles"></div>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="logo.jpg" alt="MCL Logo"/>
+  </a>
+  <div class="nav-links">
+    <a href="index.html" class="active">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="teams.html">Teams</a>
+    <a href="matches.html">Schedule</a>
+    <a href="timeline.html">Timeline</a>
+    <a href="registration.html" class="nav-cta">Player Registration</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <a href="about.html">About Us</a>
+  <a href="teams.html">Teams</a>
+  <a href="matches.html">Schedule</a>
+  <a href="timeline.html">Timeline</a>
+  <a href="registration.html" style="color:var(--brand);border-color:rgba(181,232,35,0.25);background:rgba(181,232,35,0.06);">Player Registration →</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <div class="hero-bg-img">
+    <img src="https://images.pexels.com/photos/36230651/pexels-photo-36230651.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Cricket Stadium"/>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span><span class="dot"></span>Season 01</span>
+    </div>
+
+    <h1>
+      THE NATION'S<br/>
+      <span class="gradient-text">LEAGUE OF CHAMPIONS</span>
+    </h1>
+
+    <p class="hero-sub">
+      08  elite teams and 01 champion. Witness the most electrifying cricket tournament where legends collide and champions rise.
+    </p>
+
+    <div class="hero-actions">
+      <a href="registration.html" class="btn-primary">🏏 Franchise Registration</a>
+      <a href="teams.html" class="btn-outline">Explore Teams →</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="num">08</div>
+        <div class="label">Teams</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num" data-count="12">12</div>
+        <div class="label">League Matches</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num">3cr</div>
+        <div class="label">Prize Pool</div>
+      </div>
+      <div class="hero-stat">
+        <div class="num" data-count="1">01</div>
+        <div class="label">Grand Champion</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll" onclick="document.getElementById('teams-section').scrollIntoView({behavior:'smooth'})">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    Scroll Down
+  </div>
+</section>
+
+<!-- ===== TEAMS SECTION ===== -->
+<section class="bg-section" id="teams-section" style="padding: 6rem 0;">
+  <div class="bg-section-img">
+    <img src="https://images.pexels.com/photos/31131696/pexels-photo-31131696.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Cricket Field"/>
+    <div class="bg-section-overlay"></div>
+  </div>
+
+  <div class="container" style="position:relative;z-index:10;">
+    <div class="reveal" style="text-align:center;margin-bottom:1rem;">
+      <div class="section-label" style="justify-content:center;">The Warriors</div>
+      <h2 class="section-title">THE 08 <span class="highlight">WARRIORS</span></h2>
+      <p class="section-desc" style="margin:0 auto;">meet the powerhouses teams battling for glory</p>
+    </div>
+
+    <div class="teams-grid">
+      <a href="teams.html#team-1" class="team-card reveal">
+        <div class="team-card-shine">
+          <svg viewBox="0 0 100 100"><text fill="var(--brand)" font-size="80" font-weight="900" text-anchor="middle" x="50" y="70">01</text></svg>
+        </div>
+        <div class="team-card-inner">
+          <div class="team-icon" style="border-color:#FF6B35;"><svg fill="none" height="40" viewBox="0 0 40 40" width="40"><path d="M20 4 L24 16 L36 16 L26 24 L30 36 L20 28 L10 36 L14 24 L4 16 L16 16 Z" fill="#FF6B35"/></svg></div>
+          <h4 class="team-name">Team A</h4>
+          
+          <div class="team-bar-wrap"><div class="team-bar"></div></div>
+        </div>
+      </a>
+      <a href="teams.html#team-2" class="team-card reveal">
+        <div class="team-card-shine">
+          <svg viewBox="0 0 100 100"><text fill="var(--brand)" font-size="80" font-weight="900" text-anchor="middle" x="50" y="70">02</text></svg>
+        </div>
+        <div class="team-card-inner">
+          <div class="team-icon" style="border-color:#004E89;"><svg fill="none" height="40" viewBox="0 0 40 40" width="40"><path d="M20 4 L24 16 L36 16 L26 24 L30 36 L20 28 L10 36 L14 24 L4 16 L16 16 Z" fill="#004E89"/></svg></div>
+          <h4 class="team-name">Team B</h4>
+          
+          <div class="team-bar-wrap"><div class="team-bar"></div></div>
+        </div>
+      </a>
+      <a href="teams.html#team-3" class="team-card reveal">
+        <div class="team-card-shine">
+          <svg viewBox="0 0 100 100"><text fill="var(--brand)" font-size="80" font-weight="900" text-anchor="middle" x="50" y="70">03</text></svg>
+        </div>
+        <div class="team-card-inner">
+          <div class="team-icon" style="border-color:#C1121F;"><svg fill="none" height="40" viewBox="0 0 40 40" width="40"><path d="M20 4 L24 16 L36 16 L26 24 L30 36 L20 28 L10 36 L14 24 L4 16 L16 16 Z" fill="#C1121F"/></svg></div>
+          <h4 class="team-name">Team C</h4>
+          
+          <div class="team-bar-wrap"><div class="team-bar"></div></div>
+        </div>
+      </a>
+      <a href="teams.html#team-4" class="team-card reveal">
+        <div class="team-card-shine">
+          <svg viewBox="0 0 100 100"><text fill="var(--brand)" font-size="80" font-weight="900" text-anchor="middle" x="50" y="70">04</text></svg>
+        </div>
+        <div class="team-card-inner">
+          <div class="team-icon" style="border-color:#FFD60A;"><svg fill="none" height="40" viewBox="0 0 40 40" width="40"><path d="M20 4 L24 16 L36 16 L26 24 L30 36 L20 28 L10 36 L14 24 L4 16 L16 16 Z" fill="#FFD60A"/></svg></div>
+          <h4 class="team-name">Team D</h4>
+          
+          <div class="team-bar-wrap"><div class="team-bar"></div></div>
+        </div>
+      </a>
+      <a href="teams.html#team-5" class="team-card reveal">
+        <div class="team-card-shine">
+          <svg viewBox="0 0 100 100"><text fill="var(--brand)" font-size="80" font-weight="900" text-anchor="middle" x="50" y="70">05</text></svg>
+        </div>
+        <div class="team-card-inner">
+          <div class="team-icon" style="border-color:#6A4C93;"><svg fill="none" height="40" viewBox="0 0 40 40" width="40"><path d="M20 4 L24 16 L36 16 L26 24 L30 36 L20 28 L10 36 L14 24 L4 16 L16 16 Z" fill="#6A4C93"/></svg></div>
+          <h4 class="team-name">Team E</h4>
+          
+          <div class="team-bar-wrap"><div class="team-bar"></div></div>
+        </div>
+      </a>
+      <a href="teams.html#team-6" class="team-card reveal">
+        <div class="team-card-shine">
+          <svg viewBox="0 0 100 100"><text fill="var(--brand)" font-size="80" font-weight="900" text-anchor="middle" x="50" y="70">06</text></svg>
+        </div>
+        <div class="team-card-inner">
+          <div class="team-icon" style="border-color:#F72585;"><svg fill="none" height="40" viewBox="0 0 40 40" width="40"><path d="M20 4 L24 16 L36 16 L26 24 L30 36 L20 28 L10 36 L14 24 L4 16 L16 16 Z" fill="#F72585"/></svg></div>
+          <h4 class="team-name">Team F</h4>
+          
+          <div class="team-bar-wrap"><div class="team-bar"></div></div>
+        </div>
+      </a>
+      <a href="teams.html#team-7" class="team-card reveal">
+        <div class="team-card-shine">
+          <svg viewBox="0 0 100 100"><text fill="var(--brand)" font-size="80" font-weight="900" text-anchor="middle" x="50" y="70">07</text></svg>
+        </div>
+        <div class="team-card-inner">
+          <div class="team-icon" style="border-color:#E63946;"><svg fill="none" height="40" viewBox="0 0 40 40" width="40"><path d="M20 4 L24 16 L36 16 L26 24 L30 36 L20 28 L10 36 L14 24 L4 16 L16 16 Z" fill="#E63946"/></svg></div>
+          <h4 class="team-name">Team G</h4>
+          
+          <div class="team-bar-wrap"><div class="team-bar"></div></div>
+        </div>
+      </a>
+      <a href="teams.html#team-8" class="team-card reveal">
+        <div class="team-card-shine">
+          <svg viewBox="0 0 100 100"><text fill="var(--brand)" font-size="80" font-weight="900" text-anchor="middle" x="50" y="70">08</text></svg>
+        </div>
+        <div class="team-card-inner">
+          <div class="team-icon" style="border-color:#06FFA5;"><svg fill="none" height="40" viewBox="0 0 40 40" width="40"><path d="M20 4 L24 16 L36 16 L26 24 L30 36 L20 28 L10 36 L14 24 L4 16 L16 16 Z" fill="#06FFA5"/></svg></div>
+          <h4 class="team-name">Team H</h4>
+          
+          <div class="team-bar-wrap"><div class="team-bar"></div></div>
+        </div>
+      </a>
+    </div>
+
+    <div style="text-align:center;margin-top:2.5rem;" class="reveal">
+      <a href="teams.html" class="btn-outline">View All Teams →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TOURNAMENT FORMAT ===== -->
+<section id="tournament" style="padding:6rem 0;background:var(--background);">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:1rem;">
+      <div class="section-label" style="justify-content:center;">Tournament Format</div>
+      <h2 class="section-title" style="text-align:center;">THE ROAD TO <span class="highlight">GLORY</span></h2>
+      <p class="section-desc" style="margin:0 auto;text-align:center;">The road to championship glory</p>
+    </div>
+    <div class="format-grid">
+      <div class="format-card reveal">
+        <div class="format-number" data-count="12">12</div>
+        <div class="format-label">League Matches</div>
+        <div class="format-desc">Round-robin format where every team faces each other</div>
+      </div>
+      <div class="format-card reveal">
+        <div class="format-number" data-count="2">02</div>
+        <div class="format-label">Knock-out Matches</div>
+        <div class="format-desc">Top teams qualify for knockout stage</div>
+      </div>
+      <div class="format-card reveal">
+        <div class="format-number" data-count="1">01</div>
+        <div class="format-label">Grand Finale</div>
+        <div class="format-desc">Ultimate showdown for the championship trophy</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem;" class="reveal">
+      <a href="matches.html" class="btn-primary">🗓 View Full Schedule</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRIZE POOL ===== -->
+<section class="bg-section" style="padding:6rem 0;">
+  <div class="bg-section-img">
+    <img src="https://images.pexels.com/photos/27594195/pexels-photo-27594195.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Cricket Action"/>
+    <div class="bg-section-overlay" style="background:rgba(0,0,0,0.85);"></div>
+  </div>
+  <div class="container" style="position:relative;z-index:10;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;" class="reveal">
+      <div>
+        <div class="section-label">Prize Pool</div>
+        <h2 class="section-title">PLAY FOR <span class="highlight">GLORY</span></h2>
+      </div>
+      <a href="registration.html" class="btn-primary">Win Big — Register</a>
+    </div>
+    <div class="prize-display reveal">
+      <div>
+        <div class="prize-label">🥈 Runner-Up</div>
+        <div class="prize-amount">₹50 Lakh</div>
+      </div>
+      <div class="prize-divider"></div>
+      <div>
+        <div class="prize-label">🏆 Champion</div>
+        <div class="prize-amount" style="font-size:4.5rem;">₹2 Crore</div>
+        <div style="font-size:0.75rem;color:var(--muted-foreground);margin-top:0.5rem;">+ Trophy + Title</div>
+      </div>
+      <div class="prize-divider"></div>
+      <div>
+        <div class="prize-label">💰 Total Pool</div>
+        <div class="prize-amount">₹3 Crore</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="bg-section" style="padding:6rem 0;">
+  <div class="bg-section-img">
+    <img src="https://images.pexels.com/photos/36230651/pexels-photo-36230651.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Cricket Stadium"/>
+    <div class="bg-section-overlay" style="background:rgba(0,0,0,0.75);"></div>
+  </div>
+  <div class="container reveal" style="position:relative;z-index:10;text-align:center;">
+    <div class="section-label" style="justify-content:center;">Join the Tournament</div>
+    <h2 class="section-title" style="text-align:center;font-size:clamp(3rem,8vw,5.5rem);">
+      ARE YOU<br/><span class="highlight">READY?</span>
+    </h2>
+    <p style="text-align:center;color:var(--muted-foreground);max-width:480px;margin:1rem auto 2.5rem;">
+      Registrations are open. Bring your best squad and compete for cricket supremacy.
+    </p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="registration.html" class="btn-primary" style="font-size:1.1rem;padding:18px 40px;">Register Now 🏏</a>
+      <a href="timeline.html" class="btn-outline">View Timeline</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="display:inline-flex;">
+          <img src="logo.jpg" alt="MCL" style="height:52px;border-radius:calc(var(--radius) - 2px);"/>
+        </a>
+        <p>Where Cricket Meets a Cause. An initiative by Mentor &amp; Mascot Indian Film Federation.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="teams.html">Teams</a></li>
+          <li><a href="matches.html">Schedule</a></li>
+          <li><a href="timeline.html">Timeline</a></li>
+          <li><a href="registration.html">Register</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Teams</h4>
+        <ul>
+          <li><a href="teams.html#team-1">Team A</a></li>
+          <li><a href="teams.html#team-2">Team B</a></li>
+          <li><a href="teams.html#team-3">Team C</a></li>
+          <li><a href="teams.html#team-4">Team D</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>More Teams</h4>
+        <ul>
+          <li><a href="teams.html#team-5">Team E</a></li>
+          <li><a href="teams.html#team-6">Team F</a></li>
+          <li><a href="teams.html#team-7">Team G</a></li>
+          <li><a href="teams.html#team-8">Team H</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 MCL T20 — MMIFF Champions League. All rights reserved.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/mclt20s01?igsh=MXB5dmM5NGc0ZzlzNA==" target="_blank" title="Instagram">📸</a>
+        <a href="#" title="Twitter">🐦</a>
+        <a href="#" title="YouTube">▶️</a>
+        <a href="#" title="Facebook">👥</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

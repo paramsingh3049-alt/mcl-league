@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tournament Timeline — MCL MMIFF Champions League</title>
+  <meta name="description" content="MCL MMIFF Champions League tournament timeline — from registration to the grand finale."/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body { background-color: #0d0f0c; }
+    h1,h2,h3,h4,h5,h6 { font-weight:900!important; color:#fff!important; letter-spacing:-0.025em!important; }
+    .text-gradient { background:linear-gradient(to right,var(--brand,#b5e823),var(--accent-color,#22d3ee))!important; -webkit-background-clip:text!important; background-clip:text!important; color:transparent!important; }
+    section { background:#0d0f0c!important; }
+    .page-hero { position:relative; overflow:hidden; padding:120px 0 80px; }
+    .page-hero-img { position:absolute; inset:0; z-index:0; }
+    .page-hero-img img { width:100%; height:100%; object-fit:cover; }
+    .page-hero-img::after { content:''; position:absolute; inset:0; background:rgba(13,15,12,0.85); }
+    .page-hero-content { position:relative; z-index:1; text-align:center; }
+    .timeline-wrap { position:relative; max-width:800px; margin:4rem auto 0; }
+    .timeline-wrap::before { content:''; position:absolute; left:50%; top:0; bottom:0; width:2px; background:linear-gradient(180deg,var(--brand,#b5e823) 0%,rgba(181,232,35,0.1) 100%); transform:translateX(-50%); }
+    .timeline-item { display:grid; grid-template-columns:1fr 60px 1fr; gap:1.5rem; align-items:start; margin-bottom:3rem; }
+    .timeline-date { font-weight:700; color:var(--brand,#b5e823); font-size:0.95rem; padding-top:1.25rem; }
+    .timeline-dot { width:20px; height:20px; border-radius:50%; background:var(--brand,#b5e823); border:3px solid #0d0f0c; margin:1.5rem auto 0; box-shadow:0 0 15px rgba(181,232,35,0.5); position:relative; z-index:1; }
+    .timeline-content { background:linear-gradient(to bottom right,#1a1f18,#0d0f0c); border:2px solid #2f372c; border-radius:1rem; padding:1.5rem; transition:border-color 0.3s; }
+    .timeline-content:hover { border-color:rgba(181,232,35,0.35); }
+    .timeline-content h3 { font-size:1.1rem!important; font-weight:700!important; color:#fff!important; letter-spacing:0!important; margin-bottom:0.5rem; }
+    .timeline-content p { font-size:0.875rem; color:#c8d8c0; }
+    .timeline-tag { display:inline-block; padding:3px 10px; border-radius:9999px; font-size:0.7rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:0.75rem; }
+    .info-card { background:linear-gradient(to bottom right,#1a1f18,#0d0f0c); border:2px solid #2f372c; border-radius:1rem; padding:2rem; text-align:center; transition:border-color 0.3s; }
+    .info-card:hover { border-color:rgba(181,232,35,0.3); }
+    @media(max-width:768px){
+      .timeline-wrap::before { left:0; }
+      .timeline-item { grid-template-columns:30px 1fr; grid-template-rows:auto auto; }
+      .timeline-item .timeline-date { grid-column:2; grid-row:1; padding-top:0; text-align:left; }
+      .timeline-item .timeline-dot { grid-column:1; grid-row:1; margin-top:0; }
+      .timeline-item .timeline-content { grid-column:2; grid-row:2; }
+    }
+  </style>
+</head>
+<body>
+<div class="particles"></div>
+
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="logo.jpg" alt="MCL Logo"/>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="teams.html">Teams</a>
+    <a href="matches.html">Schedule</a>
+    <a href="timeline.html" class="active">Timeline</a>
+    <a href="registration.html" class="nav-cta">Player Registration</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <a href="about.html">About Us</a>
+  <a href="teams.html">Teams</a>
+  <a href="matches.html">Schedule</a>
+  <a href="timeline.html" class="active">Timeline</a>
+  <a href="registration.html" style="color:var(--brand);border-color:rgba(181,232,35,0.25);background:rgba(181,232,35,0.06);">Player Registration →</a>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-img">
+    <img src="https://images.pexels.com/photos/36230651/pexels-photo-36230651.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Cricket Stadium"/>
+  </div>
+  <div class="page-hero-content">
+    <div class="container">
+      <div class="section-label" style="justify-content:center;color:var(--brand,#b5e823);">Season 01</div>
+      <h1>TOURNAMENT <span class="text-gradient">TIMELINE</span></h1>
+      <p style="color:#c8d8c0;font-size:1.25rem;max-width:600px;margin:0 auto;">Every milestone from registration day to the grand finale. The road to glory.</p>
+    </div>
+  </div>
+</div>
+
+<section style="padding:5rem 0;">
+  <div class="container">
+    <div style="text-align:center; margin-bottom: 2rem;" class="reveal">
+      <h2 style="font-size: 2rem!important; color: var(--brand,#b5e823)!important; letter-spacing: 0.05em!important; text-transform: uppercase;">Tentative Schedule</h2>
+    </div>
+
+    <div class="timeline-wrap">
+
+      <div class="timeline-item reveal">
+        <div class="timeline-date">August 1, 2026</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <span class="timeline-tag" style="background:rgba(181,232,35,0.12);color:var(--brand,#b5e823);">📝 Registration</span>
+          <h3>Registration Opens</h3>
+          <p>The official team and player registration portal goes live. Submit your squad details and secure your spot in the tournament. First come, first served!</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-date">August 20, 2026</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <span class="timeline-tag" style="background:rgba(229,72,77,0.12);color:#e5484d;">🚫 Deadline</span>
+          <h3>Registration Closes</h3>
+          <p>Final deadline for team submissions. Late entries will NOT be accepted.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-date">August 30, 2026</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <span class="timeline-tag" style="background:rgba(34,211,238,0.12);color:var(--accent-color,#22d3ee);">🏷️ Auction</span>
+          <h3>Franchise Auction</h3>
+          <p>The official franchise auction takes place. Teams are bid on, squads are assembled, and franchises secure their players for the tournament. A thrilling day of strategy and competition.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-date">September 5–6, 2026</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <span class="timeline-tag" style="background:rgba(181,232,35,0.12);color:var(--brand,#b5e823);">🏏 Trials</span>
+          <h3>Player Trials</h3>
+          <p>Open player trials across Delhi/NCR venues. Aspiring cricketers showcase their batting, bowling, and fielding skills. Top performers get selected for the franchise squads.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-date">September 26, 2026</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <span class="timeline-tag" style="background:rgba(34,211,238,0.12);color:var(--accent-color,#22d3ee);">🏷️ Auction</span>
+          <h3>Players Auction</h3>
+          <p>The highly anticipated players auction where franchises bid for top cricket talent. Teams strategize their budgets and build their dream squads for the tournament.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-date">September 30, 2026</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <span class="timeline-tag" style="background:rgba(181,232,35,0.12);color:var(--brand,#b5e823);">🛠️ Development</span>
+          <h3>Team Development Stage</h3>
+          <p>Franchises focus on squad building, strategy planning, and hosting team development workshops to prepare the squads for the upcoming season.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-date">October 10–15, 2026</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <span class="timeline-tag" style="background:rgba(34,211,238,0.12);color:var(--accent-color,#22d3ee);">🏏 League</span>
+          <h3>League Stage — 12 Matches</h3>
+          <p>12 high-octane T20 matches across Delhi/NCR venues. Every team fights for the top spot. Points, net run rate, and individual records all matter here.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-date">October 18, 2026</div>
+        <div class="timeline-dot" style="width:24px;height:24px;background:linear-gradient(135deg,var(--brand,#b5e823),#22d3ee);box-shadow:0 0 20px rgba(181,232,35,0.5);"></div>
+        <div class="timeline-content" style="border-color:rgba(34,211,238,0.25);background:linear-gradient(135deg,rgba(34,211,238,0.04),rgba(181,232,35,0.02),#0d0f0c);">
+          <span class="timeline-tag" style="background:rgba(34,211,238,0.12);color:var(--accent-color,#22d3ee);">⚔️ Semi-Finals</span>
+          <h3>Semi-Finals — Top 4 Clash</h3>
+          <p>The top 4 teams from the league stage battle it out in two electrifying semi-final matches. Winners advance to the Grand Finale for the ultimate showdown.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-date">October 20, 2026</div>
+        <div class="timeline-dot" style="width:28px;height:28px;background:linear-gradient(135deg,var(--brand,#b5e823),var(--accent-color,#22d3ee));box-shadow:0 0 25px rgba(181,232,35,0.7);"></div>
+        <div class="timeline-content" style="border-color:rgba(181,232,35,0.35);background:linear-gradient(135deg,rgba(181,232,35,0.05),rgba(34,211,238,0.02),#0d0f0c);">
+          <span class="timeline-tag" style="background:rgba(181,232,35,0.15);color:var(--brand,#b5e823);">🏆 FINALE</span>
+          <h3 style="font-size:1.35rem!important;">Grand Finale — MCL Champion</h3>
+          <p>The ultimate showdown. Two finalists. One champion. One historic night. The MCL Season 01 champion is crowned, taking home the trophy and <strong style="color:var(--brand,#b5e823);">₹3 Crore in prize money</strong>.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin-top:5rem;">
+      <div class="info-card reveal">
+        <div style="font-size:2.5rem;margin-bottom:1rem;">📍</div>
+        <h4 style="margin-bottom:0.5rem;">Delhi/NCR</h4>
+        <p style="color:#c8d8c0;font-size:0.875rem;">All matches held across premium Delhi/NCR venues with electrifying crowds cheering their favourite teams</p>
+      </div>
+      <a href="https://www.youtube.com/watch?v=R9IxIWgaGwk&pp=ygUQbWFuZ28gZGlnaXRhbCB0dg%3D%3D" target="_blank" class="info-card reveal" style="text-decoration:none;display:block;cursor:pointer;">
+        <div style="font-size:2.5rem;margin-bottom:1rem;">📺</div>
+        <h4 style="margin-bottom:0.5rem;">Live Coverage</h4>
+        <p style="color:#c8d8c0;font-size:0.875rem;">All matches broadcasted live. Don't miss a single ball of action</p>
+      </a>
+      <div class="info-card reveal">
+        <div style="font-size:2.5rem;margin-bottom:1rem;">🎖️</div>
+        <h4 style="margin-bottom:0.5rem;">Individual Awards</h4>
+        <p style="color:#c8d8c0;font-size:0.875rem;">Player of the Matches (<span style="color:var(--brand,#b5e823);font-weight:600;">₹10,000</span> each), Player of the Tournament (<span style="color:var(--brand,#b5e823);font-weight:600;">₹10,00,000</span>), Best Batsman (<span style="color:var(--brand,#b5e823);font-weight:600;">₹2,50,000</span>), Best Bowler (<span style="color:var(--brand,#b5e823);font-weight:600;">₹2,50,000</span>), and Emerging Star (<span style="color:var(--brand,#b5e823);font-weight:600;">₹2,00,000</span>) awards</p>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:4rem;" class="reveal">
+      <a href="registration.html" class="btn-primary">Join the Journey 🏏</a>
+      <a href="matches.html" class="btn-outline" style="margin-left:1rem;">Full Schedule</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="display:inline-flex;">
+          <img src="logo.jpg" alt="MCL" style="height:52px;border-radius:calc(var(--radius) - 2px);"/>
+        </a>
+        <p>Where Cricket Meets a Cause. An initiative by Mentor &amp; Mascot Indian Film Federation.</p>
+      </div>
+      <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="teams.html">Teams</a></li><li><a href="matches.html">Schedule</a></li><li><a href="timeline.html">Timeline</a></li><li><a href="about.html">About Us</a></li><li><a href="registration.html">Register</a></li></ul></div>
+      <div class="footer-col"><h4>Teams</h4><ul><li><a href="teams.html#team-1">Team A</a></li><li><a href="teams.html#team-2">Team B</a></li><li><a href="teams.html#team-3">Team C</a></li><li><a href="teams.html#team-4">Team D</a></li></ul></div>
+      <div class="footer-col"><h4>More Teams</h4><ul><li><a href="teams.html#team-5">Team E</a></li><li><a href="teams.html#team-6">Team F</a></li><li><a href="teams.html#team-7">Team G</a></li><li><a href="teams.html#team-8">Team H</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 MCL T20 — MMIFF Champions League. All rights reserved.</p>
+      <div class="footer-social"><a href="https://www.instagram.com/mclt20s01?igsh=MXB5dmM5NGc0ZzlzNA==" target="_blank" title="Instagram">📸</a><a href="#" title="Twitter">🐦</a><a href="#" title="YouTube">▶️</a></div>
+    </div>
+  </div>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>

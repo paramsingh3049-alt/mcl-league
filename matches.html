@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Match Schedule — MCL MMIFF Champions League</title>
+  <meta name="description" content="Full match schedule for MCL MMIFF Champions League Season 01."/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body { background-color: #0d0f0c; }
+    h1,h2,h3,h4,h5,h6 { font-weight:900!important; color:#fff!important; letter-spacing:-0.025em!important; }
+    .text-gradient { background:linear-gradient(to right,var(--brand,#b5e823),var(--accent-color,#22d3ee))!important; -webkit-background-clip:text!important; background-clip:text!important; color:transparent!important; }
+    section { background:#0d0f0c!important; }
+    .page-hero { position:relative; overflow:hidden; padding:120px 0 80px; }
+    .page-hero-img { position:absolute; inset:0; z-index:0; }
+    .page-hero-img img { width:100%; height:100%; object-fit:cover; }
+    .page-hero-img::after { content:''; position:absolute; inset:0; background:rgba(13,15,12,0.85); }
+    .page-hero-content { position:relative; z-index:1; text-align:center; }
+    .match-card { background:linear-gradient(to bottom right,#1a1f18,#0d0f0c)!important; border:2px solid #2f372c!important; }
+    .match-card:hover { border-color:rgba(181,232,35,0.35)!important; }
+    .match-vs .vs { color:var(--brand,#b5e823)!important; }
+    .match-num { background:#1a1f18!important; color:#c8d8c0!important; }
+    .filter-btn { background:transparent; border:1px solid #2f372c; color:#c8d8c0; }
+    .filter-btn:hover,.filter-btn.active { border-color:var(--brand,#b5e823); color:var(--brand,#b5e823); background:rgba(181,232,35,0.06); }
+    .stage-divider { display:flex; align-items:center; gap:1rem; margin:3rem 0 1.5rem; }
+    .stage-divider .line { height:1px; flex:1; background:#2f372c; }
+    .stage-divider span { font-size:0.75rem; text-transform:uppercase; letter-spacing:0.1em; font-weight:700; white-space:nowrap; }
+    
+    /* TABLE STYLES */
+    .match-table-wrap {
+      background: linear-gradient(to bottom right, #1a1f18, #0d0f0c);
+      border: 2px solid #2f372c;
+      border-radius: 1.25rem;
+      padding: 1.5rem;
+      overflow-x: auto;
+      margin-bottom: 2.5rem;
+    }
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.95rem;
+      color: #c8d8c0;
+      min-width: 600px;
+    }
+    .schedule-table th, .schedule-table td {
+      padding: 1.25rem 1rem;
+      border-bottom: 1px solid rgba(47, 55, 44, 0.5);
+      vertical-align: middle;
+    }
+    .schedule-table th {
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 1.5px;
+      border-bottom: 2px solid #2f372c;
+    }
+    .schedule-table tr:last-child td {
+      border-bottom: none;
+    }
+    .schedule-table td .match-tag {
+      display: inline-block;
+      padding: 4px 10px;
+      background: #1a1f18;
+      border: 1px solid #2f372c;
+      border-radius: 6px;
+      color: var(--brand, #b5e823);
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+    .schedule-table td .team-name-cell {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .schedule-table td .vs-badge {
+      font-weight: 800;
+      color: var(--brand, #b5e823);
+      margin: 0 5px;
+      font-style: italic;
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body>
+<div class="particles"></div>
+
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="logo.jpg" alt="MCL Logo"/>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="teams.html">Teams</a>
+    <a href="matches.html" class="active">Schedule</a>
+    <a href="timeline.html">Timeline</a>
+    <a href="registration.html" class="nav-cta">Player Registration</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <a href="about.html">About Us</a>
+  <a href="teams.html">Teams</a>
+  <a href="matches.html" class="active">Schedule</a>
+  <a href="timeline.html">Timeline</a>
+  <a href="registration.html" style="color:var(--brand);border-color:rgba(181,232,35,0.25);background:rgba(181,232,35,0.06);">Player Registration →</a>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-img">
+    <img src="https://images.pexels.com/photos/27594195/pexels-photo-27594195.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Cricket"/>
+  </div>
+  <div class="page-hero-content">
+    <div class="container">
+      <div class="section-label" style="justify-content:center;color:var(--brand,#b5e823);">Season 01</div>
+      <h1>MATCH <span class="text-gradient">SCHEDULE</span></h1>
+      <p style="color:#c8d8c0;font-size:1.25rem;max-width:600px;margin:0 auto;">12 league matches, semi-finals, and one epic grand finale.</p>
+    </div>
+  </div>
+</div>
+
+<section style="padding:5rem 0;">
+  <div class="container">
+
+    <div class="matches-filter reveal">
+      <button class="filter-btn active" onclick="filterMatches('all',this)">All Matches</button>
+      <button class="filter-btn" onclick="filterMatches('league',this)">League Stage</button>
+      <button class="filter-btn" onclick="filterMatches('knockout',this)">Knock-out</button>
+      <button class="filter-btn" onclick="filterMatches('final',this)">Grand Finale</button>
+    </div>
+
+    <div class="stage-divider reveal">
+      <div class="line"></div>
+      <span style="color:#c8d8c0;">Group A — League Stage</span>
+      <div class="line"></div>
+    </div>
+
+    <div class="match-table-wrap reveal" data-stage="league">
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th>Match No.</th>
+            <th>Fixture</th>
+            <th>Date & Time</th>
+            <th>Venue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="match-tag">Match 01</span></td>
+            <td>
+              <div class="team-name-cell">
+                <span>🏏 Team A</span>
+                <span class="vs-badge">VS</span>
+                <span>⚡ Team B</span>
+              </div>
+            </td>
+            <td>Oct 10 · 7:30 PM</td>
+            <td>To Be Announced</td>
+          </tr>
+          <tr>
+            <td><span class="match-tag">Match 02</span></td>
+            <td>
+              <div class="team-name-cell">
+                <span>🎯 Team C</span>
+                <span class="vs-badge">VS</span>
+                <span>🎯 Team D</span>
+              </div>
+            </td>
+            <td>Oct 11 · 3:00 PM</td>
+            <td>To Be Announced</td>
+          </tr>
+          <tr>
+            <td><span class="match-tag">Match 05</span></td>
+            <td>
+              <div class="team-name-cell">
+                <span>🏏 Team A</span>
+                <span class="vs-badge">VS</span>
+                <span>🎯 Team C</span>
+              </div>
+            </td>
+            <td>Oct 12 · 7:30 PM</td>
+            <td>To Be Announced</td>
+          </tr>
+          <tr>
+            <td><span class="match-tag">Match 06</span></td>
+            <td>
+              <div class="team-name-cell">
+                <span>⚡ Team B</span>
+                <span class="vs-badge">VS</span>
+                <span>🎯 Team C</span>
+              </div>
+            </td>
+            <td>Oct 13 · 3:00 PM</td>
+            <td>To Be Announced</td>
+          </tr>
+          <tr>
+            <td><span class="match-tag">Match 09</span></td>
+            <td>
+              <div class="team-name-cell">
+                <span>🏏 Team A</span>
+                <span class="vs-badge">VS</span>
+                <span>🎯 Team D</span>
+              </div>
+            </td>
+            <td>Oct 14 · 7:30 PM</td>
+            <td>To Be Announced</td>
+          </tr>
+          <tr>
+            <td><span class="match-tag">Match 10</span></td>
+            <td>
+              <div class="team-name-cell">
+                <span>⚡ Team B</span>
+                <span class="vs-badge">VS</span>
+                <span>🎯 Team D</span>
+              </div>
+            </td>
+            <td>Oct 15 · 3:00 PM</td>
+            <td>To Be Announced</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="stage-divider reveal">
+      <div class="line"></div>
+      <span style="color:#c8d8c0;">Group B — League Stage</span>
+      <div class="line"></div>
+    </div>
+
+    <div class="match-table-wrap reveal" data-stage="league">
+      <table class="schedule-table">
+        <thead>
+          <tr>
+            <th>Match No.</th>
+            <th>Fixture</th>
+            <th>Date & Time</th>
+            <th>Venue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="match-tag">Match 03</span></td>
+            <td>
+              <div class="team-name-cell">
+                <span>👑 Team E</span>
+                <span class="vs-badge">VS</span>
+                <span>🌟 Team F</span>
+              </div>
+            </td>
+            <td>Oct 10 · 7:30 PM</td>
+            <td>To Be Announced</td>
+          </tr>
+          <tr>
+            <td><span class="match-tag">Match 04</span></td>
+            <td>
+              <div class="team-name-cell">
+                <span>💥 Team G</span>
+                <span class="vs-badge">VS</span>
+                <span>🏆 Team H</span>
+              </div>
+            </td>
+            <td>Oct 11 · 3:00 PM</td>
+            <td>To Be Announced</td>
+          </tr>
+          <tr>
+            <td><span class="match-tag">Match 07</span></td>
+            <td>
+              <div class="team-name-cell">
+                <span>👑 Team E</span>
+                <span class="vs-badge">VS</span>
+                <span>💥 Team G</span>
+              </div>
+            </td>
+            <td>Oct 12 · 7:30 PM</td>
+            <td>To Be Announced</td>
+          </tr>
+          <tr>
+            <td><span class="match-tag">Match 08</span></td>
+            <td>
+              <div class="team-name-cell">
+                <span>🌟 Team F</span>
+                <span class="vs-badge">VS</span>
+                <span>💥 Team G</span>
+              </div>
+            </td>
+            <td>Oct 13 · 3:00 PM</td>
+            <td>To Be Announced</td>
+          </tr>
+          <tr>
+            <td><span class="match-tag">Match 11</span></td>
+            <td>
+              <div class="team-name-cell">
+                <span>👑 Team E</span>
+                <span class="vs-badge">VS</span>
+                <span>🏆 Team H</span>
+              </div>
+            </td>
+            <td>Oct 14 · 7:30 PM</td>
+            <td>To Be Announced</td>
+          </tr>
+          <tr>
+            <td><span class="match-tag">Match 12</span></td>
+            <td>
+              <div class="team-name-cell">
+                <span>🌟 Team F</span>
+                <span class="vs-badge">VS</span>
+                <span>🏆 Team H</span>
+              </div>
+            </td>
+            <td>Oct 15 · 3:00 PM</td>
+            <td>To Be Announced</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+
+    <div class="stage-divider reveal">
+      <div class="line"></div>
+      <span style="color:var(--brand,#b5e823);">Knock-out — 3 Matches</span>
+      <div class="line"></div>
+    </div>
+
+    <div class="match-card reveal" data-stage="knockout" style="border-color:rgba(181,232,35,0.2)!important;">
+      <div class="match-team"><div class="match-team-icon" style="background:rgba(181,232,35,0.1);font-size:1rem;font-weight:800;color:var(--brand);">1st</div><div><div class="match-team-name">1st Place</div></div></div>
+      <div class="match-vs"><div class="match-num" style="background:rgba(181,232,35,0.08);color:var(--brand)!important;">Semi-Final 1</div><span class="vs">VS</span><div class="date">Oct 18 · 7:30 PM<br/><small>TBD Venue</small></div></div>
+      <div class="match-team right"><div class="match-team-icon" style="background:rgba(181,232,35,0.1);font-size:1rem;font-weight:800;color:var(--brand);">4th</div><div><div class="match-team-name">4th Place</div></div></div>
+    </div>
+
+    <div class="match-card reveal" data-stage="knockout" style="border-color:rgba(181,232,35,0.2)!important;">
+      <div class="match-team"><div class="match-team-icon" style="background:rgba(181,232,35,0.1);font-size:1rem;font-weight:800;color:var(--brand);">2nd</div><div><div class="match-team-name">2nd Place</div></div></div>
+      <div class="match-vs"><div class="match-num" style="background:rgba(181,232,35,0.08);color:var(--brand)!important;">Semi-Final 2</div><span class="vs">VS</span><div class="date">Oct 18 · 3:00 PM<br/><small>TBD Venue</small></div></div>
+      <div class="match-team right"><div class="match-team-icon" style="background:rgba(181,232,35,0.1);font-size:1rem;font-weight:800;color:var(--brand);">3rd</div><div><div class="match-team-name">3rd Place</div></div></div>
+    </div>
+
+    <div class="stage-divider reveal">
+      <div class="line"></div>
+      <span style="background:linear-gradient(to right,var(--brand),var(--accent-color));-webkit-background-clip:text;background-clip:text;color:transparent;">🏆 Grand Finale</span>
+      <div class="line"></div>
+    </div>
+
+    <div class="match-card reveal" data-stage="final" style="border:2px solid rgba(181,232,35,0.4)!important;background:linear-gradient(135deg,rgba(181,232,35,0.05),rgba(34,211,238,0.03),#0d0f0c)!important;padding:2.5rem;">
+      <div class="match-team"><div class="match-team-icon" style="background:var(--brand,#b5e823);color:#000;font-size:0.9rem;font-weight:800;border-radius:9999px;width:52px;height:52px;">SF1</div><div><div class="match-team-name">SF1 Winner</div></div></div>
+      <div class="match-vs"><div class="match-num" style="background:rgba(181,232,35,0.1);color:var(--accent-color)!important;font-weight:700;">GRAND FINALE</div><span class="vs" style="font-size:2.5rem;">VS</span><div class="date" style="font-weight:600;">Oct 20, 2026 · 7:00 PM<br/><small>Main Stadium, TBD</small></div></div>
+      <div class="match-team right"><div class="match-team-icon" style="background:var(--brand,#b5e823);color:#000;font-size:0.9rem;font-weight:800;border-radius:9999px;width:52px;height:52px;">SF2</div><div><div class="match-team-name">SF2 Winner</div></div></div>
+    </div>
+
+    <div style="text-align:center;margin-top:4rem;" class="reveal">
+      <p style="color:#c8d8c0;margin-bottom:1.5rem;">Want to be part of this action?</p>
+      <a href="registration.html" class="btn-primary">Register Your Team →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="display:inline-flex;">
+          <img src="logo.jpg" alt="MCL" style="height:52px;border-radius:calc(var(--radius) - 2px);"/>
+        </a>
+        <p>Where Cricket Meets a Cause. An initiative by Mentor &amp; Mascot Indian Film Federation.</p>
+      </div>
+      <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="teams.html">Teams</a></li><li><a href="matches.html">Schedule</a></li><li><a href="timeline.html">Timeline</a></li><li><a href="about.html">About Us</a></li><li><a href="registration.html">Register</a></li></ul></div>
+      <div class="footer-col"><h4>Teams</h4><ul><li><a href="teams.html#team-1">Team A</a></li><li><a href="teams.html#team-2">Team B</a></li><li><a href="teams.html#team-3">Team C</a></li><li><a href="teams.html#team-4">Team D</a></li></ul></div>
+      <div class="footer-col"><h4>More Teams</h4><ul><li><a href="teams.html#team-5">Team E</a></li><li><a href="teams.html#team-6">Team F</a></li><li><a href="teams.html#team-7">Team G</a></li><li><a href="teams.html#team-8">Team H</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 MCL T20 — MMIFF Champions League. All rights reserved.</p>
+      <div class="footer-social"><a href="https://www.instagram.com/mclt20s01?igsh=MXB5dmM5NGc0ZzlzNA==" target="_blank" title="Instagram">📸</a><a href="#" title="Twitter">🐦</a><a href="#" title="YouTube">▶️</a></div>
+    </div>
+  </div>
+</footer>
+<script src="main.js"></script>
+<script>
+function filterMatches(stage,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  
+  // Filter standard cards
+  document.querySelectorAll('.match-card').forEach(card=>{
+    card.style.display=(stage==='all'||card.dataset.stage===stage)?'grid':'none';
+  });
+  
+  // Filter match tables
+  document.querySelectorAll('.match-table-wrap').forEach(table=>{
+    table.style.display=(stage==='all'||table.dataset.stage===stage)?'block':'none';
+  });
+}
+</script>
+</body>
+</html>

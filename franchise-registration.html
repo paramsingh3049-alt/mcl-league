@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Franchise Registration — MCL T20 MMIFF Champions League</title>
+  <meta name="description" content="Apply for an MCL T20 MMIFF Champions League franchise. Submit your Expression of Interest and join the league as a franchise owner."/>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet"/>
+  <style>
+    body { background-color: #0d0f0c; font-family: 'Inter', sans-serif; }
+    h1,h2,h3,h4,h5,h6 { font-weight:900!important; color:#fff!important; letter-spacing:-0.025em!important; }
+    .text-gradient { background:linear-gradient(to right,var(--brand,#b5e823),var(--accent-color,#22d3ee))!important; -webkit-background-clip:text!important; background-clip:text!important; color:transparent!important; }
+    section { background:#0d0f0c!important; }
+
+    /* PAGE HERO */
+    .page-hero { position:relative; overflow:hidden; padding:140px 0 100px; }
+    .page-hero-img { position:absolute; inset:0; z-index:0; }
+    .page-hero-img img { width:100%; height:100%; object-fit:cover; }
+    .page-hero-img::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(13,15,12,0.7) 0%,rgba(13,15,12,0.95) 100%); }
+    .page-hero-content { position:relative; z-index:1; text-align:center; }
+    .page-hero .hero-badge-franchise {
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 24px; border-radius:3rem;
+      background:rgba(181,232,35,0.08); border:1px solid rgba(181,232,35,0.25);
+      font-size:0.85rem; font-weight:700; color:var(--brand,#b5e823);
+      margin-bottom:1.5rem; animation:fadeInUp 0.6s ease;
+    }
+    .page-hero .hero-badge-franchise .pulse-dot {
+      width:8px; height:8px; border-radius:50%; background:var(--brand,#b5e823);
+      animation:pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+    @keyframes fadeInUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+    /* FORM SECTION */
+    .franchise-section { padding:0 0 6rem; }
+
+    /* FORM CARD */
+    .form-card {
+      background:linear-gradient(to bottom right,#1a1f18,#0d0f0c);
+      border:2px solid #2f372c; border-radius:1.25rem; padding:2.5rem;
+      max-width:860px; margin:0 auto;
+      position:relative; overflow:hidden;
+    }
+    .form-card::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:3px;
+      background:linear-gradient(90deg,var(--brand,#b5e823),var(--accent-color,#22d3ee),var(--brand,#b5e823));
+      background-size:200% 100%; animation:shimmer 3s linear infinite;
+    }
+    @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+    .form-section-title {
+      font-size:1.75rem!important; margin-bottom:0.35rem!important; letter-spacing:0!important;
+    }
+    .form-section-sub { color:#c8d8c0; font-size:0.9rem; margin-bottom:2rem; }
+    .section-divider { height:2px; background:linear-gradient(to right,rgba(181,232,35,0.3),transparent); border:none; margin:2rem 0; }
+
+    /* INFO BADGE */
+    .info-badge {
+      display:inline-flex; align-items:center; gap:6px;
+      padding:6px 16px; border-radius:2rem; background:rgba(181,232,35,0.08);
+      border:1px solid rgba(181,232,35,0.2); font-size:0.8rem; font-weight:600;
+      color:var(--brand,#b5e823); margin-bottom:1.5rem;
+    }
+
+    /* FORM GROUPS */
+    .fgroup { margin-bottom:1.25rem; }
+    .fgroup label {
+      display:block; font-size:0.72rem; font-weight:700; color:#c8d8c0;
+      margin-bottom:6px; text-transform:uppercase; letter-spacing:0.06em;
+    }
+    .fgroup label .req { color:var(--brand,#b5e823); margin-left:2px; }
+    .fgroup input,.fgroup select,.fgroup textarea {
+      width:100%; padding:13px 18px;
+      background:rgba(255,255,255,0.04); border:1px solid #2f372c;
+      border-radius:0.625rem; color:#eef2e9; font-size:0.95rem;
+      font-family:'Inter',sans-serif; transition:all 0.3s; box-sizing:border-box;
+    }
+    .fgroup input:focus,.fgroup select:focus,.fgroup textarea:focus {
+      border-color:var(--brand,#b5e823); box-shadow:0 0 0 3px rgba(181,232,35,0.12); outline:none;
+    }
+    .fgroup select option { background:#171a15; }
+    .fgroup textarea { resize:vertical; min-height:110px; }
+    .fgroup input::placeholder,.fgroup textarea::placeholder { color:#4a5544; }
+    .frow { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    @media(max-width:640px){ .frow { grid-template-columns:1fr; } }
+
+    /* UPLOAD ZONE */
+    .upload-zone {
+      border:2px dashed #2f372c; border-radius:0.75rem;
+      padding:1.75rem; text-align:center; cursor:pointer; transition:all 0.3s;
+      background:rgba(255,255,255,0.02);
+    }
+    .upload-zone:hover {
+      border-color:rgba(181,232,35,0.4); background:rgba(181,232,35,0.04);
+      transform:translateY(-2px); box-shadow:0 8px 25px rgba(181,232,35,0.08);
+    }
+    .upload-zone .upload-icon { font-size:2.2rem; margin-bottom:0.5rem; }
+    .upload-zone strong { color:#fff; display:block; margin-bottom:4px; font-size:0.9rem; }
+    .upload-zone input[type=file] { display:none; }
+
+    /* SUBMIT BUTTON */
+    .btn-submit {
+      padding:16px 40px; border-radius:0.75rem; font-size:1.05rem; font-weight:700;
+      background:linear-gradient(135deg,var(--brand,#b5e823),#8fba13); color:#000; border:none;
+      cursor:pointer; transition:all 0.3s; font-family:'Inter',sans-serif;
+      display:inline-flex; align-items:center; gap:10px;
+      box-shadow:0 8px 30px rgba(181,232,35,0.3);
+      position:relative; overflow:hidden;
+    }
+    .btn-submit::before {
+      content:''; position:absolute; top:-50%; left:-50%; width:200%; height:200%;
+      background:linear-gradient(45deg,transparent,rgba(255,255,255,0.1),transparent);
+      transform:rotate(45deg); transition:all 0.5s;
+    }
+    .btn-submit:hover {
+      transform:scale(1.03) translateY(-2px);
+      box-shadow:0 12px 40px rgba(181,232,35,0.4);
+    }
+    .btn-submit:hover::before { left:100%; }
+    .btn-submit:active { transform:scale(0.98); }
+
+    /* SUCCESS STATE */
+    .form-success {
+      display:none; text-align:center; padding:3rem 2rem;
+    }
+    .form-success .tick { font-size:4.5rem; margin-bottom:1.25rem; animation:bounceIn 0.6s ease; }
+    @keyframes bounceIn {
+      0%{opacity:0;transform:scale(0.3)} 50%{transform:scale(1.1)} 70%{transform:scale(0.95)} 100%{opacity:1;transform:scale(1)}
+    }
+    .form-success h3 { font-size:2rem!important; margin-bottom:0.75rem!important; letter-spacing:0!important; }
+    .form-success p { color:#c8d8c0; margin-bottom:2rem; }
+
+    /* FILE NAME DISPLAY */
+    .file-name-display { margin-top:0.75rem; font-size:0.8rem; color:var(--brand,#b5e823); display:none; }
+
+    /* FEATURES STRIP */
+    .features-strip {
+      display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem;
+      max-width:860px; margin:3rem auto 0; padding:0 1rem;
+    }
+    .feature-item {
+      text-align:center; padding:1.5rem 1rem;
+      background:rgba(255,255,255,0.02); border:1px solid #2f372c;
+      border-radius:0.75rem; transition:all 0.3s;
+    }
+    .feature-item:hover {
+      border-color:rgba(181,232,35,0.3); background:rgba(181,232,35,0.03);
+      transform:translateY(-3px);
+    }
+    .feature-icon { font-size:1.8rem; margin-bottom:0.5rem; }
+    .feature-label { font-size:0.75rem; color:#c8d8c0; font-weight:600; text-transform:uppercase; letter-spacing:0.04em; }
+    @media(max-width:768px) {
+      .features-strip { grid-template-columns:repeat(2,1fr); }
+      .form-card { padding:1.75rem; }
+      .page-hero { padding:120px 0 70px; }
+    }
+    @media(max-width:480px) {
+      .features-strip { grid-template-columns:1fr 1fr; gap:0.75rem; }
+      .form-card { padding:1.25rem; margin:0 0.5rem; }
+    }
+
+    /* FIELD COUNTER */
+    .field-counter {
+      text-align:right; font-size:0.7rem; color:#4a5544; margin-top:4px;
+    }
+    .field-counter.warn { color:var(--brand,#b5e823); }
+
+    @keyframes spin { to { transform:rotate(360deg); } }
+  </style>
+</head>
+<body>
+<div class="particles"></div>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="logo.jpg" alt="MCL Logo"/>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="teams.html">Teams</a>
+    <a href="matches.html">Schedule</a>
+    <a href="timeline.html">Timeline</a>
+    <a href="registration.html">Player Registration</a>
+    <a href="franchise-registration.html" class="nav-cta active">Franchise Registration</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <a href="about.html">About Us</a>
+  <a href="teams.html">Teams</a>
+  <a href="matches.html">Schedule</a>
+  <a href="timeline.html">Timeline</a>
+  <a href="registration.html">Player Registration</a>
+  <a href="franchise-registration.html" class="active" style="color:var(--brand);border-color:rgba(181,232,35,0.25);background:rgba(181,232,35,0.06);">Franchise Registration →</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<div class="page-hero">
+  <div class="page-hero-img">
+    <img src="https://images.pexels.com/photos/36230651/pexels-photo-36230651.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Cricket Stadium"/>
+  </div>
+  <div class="page-hero-content">
+    <div class="container">
+      <div class="hero-badge-franchise">
+        <div class="pulse-dot"></div>
+        Applications Open — Season 01
+      </div>
+      <h1 style="font-size:clamp(2.5rem,7vw,4.5rem);margin-bottom:0.5rem;">
+        <span class="text-gradient">FRANCHISE</span><br/>REGISTRATION
+      </h1>
+      <p style="color:#c8d8c0;font-size:1.15rem;max-width:640px;margin:0 auto;">
+        Own a piece of cricket history. Apply to become an MCL T20 MMIFF Champions League franchise owner.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FEATURES STRIP ===== -->
+<div class="container">
+  <div class="features-strip reveal">
+    <div class="feature-item">
+      <div class="feature-icon">🏏</div>
+      <div class="feature-label">8 Elite Teams</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">💰</div>
+      <div class="feature-label">₹3 Crore Prize Pool</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">📺</div>
+      <div class="feature-label">Full Media Coverage</div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">🏟️</div>
+      <div class="feature-label">Premium Venues</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FRANCHISE APPLICATION FORM ===== -->
+<section class="franchise-section">
+  <div class="container">
+
+    <div class="form-card reveal" id="franchiseFormCard" style="margin-top:3rem;">
+
+      <!-- FORM CONTENT -->
+      <div id="franchiseApplyForm">
+        <div class="info-badge">🏢 Franchise Application — Apply Now</div>
+        <h2 class="form-section-title">Apply Now</h2>
+        <p class="form-section-sub">Fill in your details below to express interest in owning an MCL T20 franchise. All fields marked with <span style="color:var(--brand);">*</span> are required.</p>
+
+        <!-- Full Name of Applicant / Organization -->
+        <div class="fgroup">
+          <label for="franchiseFullName">Full Name of Applicant / Organization <span class="req">*</span></label>
+          <input type="text" id="franchiseFullName" name="franchiseFullName" placeholder="e.g. John Doe / XYZ Sports Pvt. Ltd." required/>
+        </div>
+
+        <!-- Entity Type -->
+        <div class="fgroup">
+          <label for="franchiseEntityType">Type of Entity <span class="req">*</span></label>
+          <select id="franchiseEntityType" name="franchiseEntityType" required>
+            <option value="" disabled selected>Select Entity Type</option>
+            <option>Individual</option>
+            <option>Partnership</option>
+            <option>Pvt. Ltd</option>
+            <option>LLP</option>
+            <option>Others</option>
+          </select>
+        </div>
+
+        <!-- Mobile & Email -->
+        <div class="frow">
+          <div class="fgroup">
+            <label for="franchiseMobile">Mobile <span class="req">*</span></label>
+            <input type="tel" id="franchiseMobile" name="franchiseMobile" placeholder="+91 00000 00000" required/>
+          </div>
+          <div class="fgroup">
+            <label for="franchiseEmail">Email <span class="req">*</span></label>
+            <input type="email" id="franchiseEmail" name="franchiseEmail" placeholder="you@example.com" required/>
+          </div>
+        </div>
+
+        <!-- Registered Address -->
+        <div class="fgroup">
+          <label for="franchiseAddress">Registered Address <span class="req">*</span></label>
+          <textarea id="franchiseAddress" name="franchiseAddress" placeholder="Full registered address of the applicant / organization" rows="3" required></textarea>
+        </div>
+
+        <!-- Website / Social Media -->
+        <div class="fgroup">
+          <label for="franchiseWebsite">Website / Social Media (if any) <span class="req">*</span></label>
+          <input type="url" id="franchiseWebsite" name="franchiseWebsite" placeholder="https://yourwebsite.com or social media link" required/>
+        </div>
+
+        <hr class="section-divider"/>
+
+        <!-- Annual Turnover -->
+        <div class="fgroup">
+          <label for="franchiseTurnover">Annual Turnover (last 3 years) <span class="req">*</span></label>
+          <input type="text" id="franchiseTurnover" name="franchiseTurnover" placeholder="e.g. ₹50L / ₹1 Crore / ₹5 Crore per year" required/>
+        </div>
+
+        <!-- Business / Industry Experience -->
+        <div class="fgroup">
+          <label for="franchiseExperience">Existing Business / Industry Experience <span class="req">*</span></label>
+          <textarea id="franchiseExperience" name="franchiseExperience" placeholder="Describe your existing business background, industry, and years of experience..." rows="3" required></textarea>
+        </div>
+
+        <!-- Source of Investment -->
+        <div class="fgroup">
+          <label for="franchiseInvestSource">Source of Franchise Investment <span class="req">*</span></label>
+          <select id="franchiseInvestSource" name="franchiseInvestSource" required>
+            <option value="" disabled selected>Select Source</option>
+            <option>Own Funds</option>
+            <option>Investors</option>
+            <option>Consortium</option>
+          </select>
+        </div>
+
+        <!-- Preferred Franchise Name / State -->
+        <div class="fgroup">
+          <label for="franchisePreferred">Preferred Franchise Name / State <span class="req">*</span></label>
+          <input type="text" id="franchisePreferred" name="franchisePreferred" placeholder="e.g. Mumbai Warriors / Maharashtra" required/>
+        </div>
+
+        <hr class="section-divider"/>
+
+        <!-- MCL T20 EOI Form Attachment -->
+        <div class="fgroup">
+          <label>Attach • MCL T20 EOI Form</label>
+          <div class="upload-zone" onclick="document.getElementById('franchiseEOI').click()">
+            <input type="file" id="franchiseEOI" name="franchiseEOI" accept=".pdf,.doc,.docx,.jpg,.png" onchange="showFileName(this,'eoiFileName')"/>
+            <div class="upload-icon">📄</div>
+            <strong>MCL T20 EOI Form</strong>
+            <div style="font-size:0.75rem;color:#6b7b65;margin-top:4px;">PDF, DOC, DOCX, JPG, PNG — Max 5 MB</div>
+          </div>
+          <div class="file-name-display" id="eoiFileName"></div>
+        </div>
+
+        <!-- Additional Attachments -->
+        <div class="fgroup">
+          <label>Attachments</label>
+          <div class="upload-zone" onclick="document.getElementById('franchiseAttachments').click()">
+            <input type="file" id="franchiseAttachments" name="franchiseAttachments" accept=".pdf,.doc,.docx,.jpg,.png,.xlsx" multiple onchange="showAttachCount(this)"/>
+            <div class="upload-icon">📎</div>
+            <strong>Upload Attachments</strong>
+            <div style="font-size:0.75rem;color:#6b7b65;margin-top:4px;">Upload supporting documents (optional) — Max 5 MB each</div>
+          </div>
+          <div class="file-name-display" id="attachCountDisplay"></div>
+        </div>
+
+        <hr class="section-divider"/>
+
+        <!-- Message -->
+        <div class="fgroup">
+          <label for="franchiseMessage">Message <span class="req">*</span></label>
+          <textarea id="franchiseMessage" name="franchiseMessage" placeholder="Tell us why you want to own an MCL T20 franchise, your vision, and anything else you'd like us to know..." rows="5" required oninput="updateCharCount(this)"></textarea>
+          <div class="field-counter" id="messageCounter">0 / 2000</div>
+        </div>
+
+        <!-- Submit -->
+        <div style="text-align:center;margin-top:2.5rem;">
+          <button class="btn-submit" id="fSubmitBtn" onclick="submitFranchiseForm()" style="width:100%;max-width:440px;">
+            🏢 Submit Application
+          </button>
+          <p style="color:#4a5544;font-size:0.75rem;margin-top:1rem;">By submitting, you agree to the MCL T20 franchise terms and conditions.</p>
+        </div>
+      </div>
+
+      <!-- FRANCHISE SUCCESS STATE -->
+      <div class="form-success" id="franchiseFormSuccess">
+        <div class="tick">🎉</div>
+        <h3>Application Submitted!</h3>
+        <p style="color:#c8d8c0;margin-bottom:1rem;">Thank you for your interest in the MCL T20 franchise! Our team will review your application and contact you within <strong style="color:var(--brand);">72 hours</strong>.</p>
+        <p style="color:#6b7b65;font-size:0.85rem;margin-bottom:2rem;">Application Reference: <strong style="color:#fff;" id="appRef">MCL-FR-2026-XXXX</strong></p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+          <a href="teams.html" class="btn-outline">View Teams</a>
+          <a href="index.html" class="btn-primary">Back to Home</a>
+        </div>
+      </div>
+
+    </div><!-- end form-card -->
+
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="display:inline-flex;">
+          <img src="logo.jpg" alt="MCL" style="height:52px;border-radius:calc(var(--radius) - 2px);"/>
+        </a>
+        <p>Where Cricket Meets a Cause. An initiative by Mentor &amp; Mascot Indian Film Federation.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="teams.html">Teams</a></li>
+          <li><a href="matches.html">Schedule</a></li>
+          <li><a href="timeline.html">Timeline</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="registration.html">Player Registration</a></li>
+          <li><a href="franchise-registration.html" style="color:var(--brand);">Franchise Registration</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Teams</h4>
+        <ul>
+          <li><a href="teams.html#team-1">Team A</a></li>
+          <li><a href="teams.html#team-2">Team B</a></li>
+          <li><a href="teams.html#team-3">Team C</a></li>
+          <li><a href="teams.html#team-4">Team D</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>More Teams</h4>
+        <ul>
+          <li><a href="teams.html#team-5">Team E</a></li>
+          <li><a href="teams.html#team-6">Team F</a></li>
+          <li><a href="teams.html#team-7">Team G</a></li>
+          <li><a href="teams.html#team-8">Team H</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 MCL T20 — MMIFF Champions League. All rights reserved.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/mclt20s01?igsh=MXB5dmM5NGc0ZzlzNA==" target="_blank" title="Instagram">📸</a>
+        <a href="#" title="Twitter">🐦</a>
+        <a href="#" title="YouTube">▶️</a>
+        <a href="#" title="Facebook">👥</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+  /* ══════════════════════════════
+     FILE NAME DISPLAY
+  ══════════════════════════════ */
+  function showFileName(input, displayId) {
+    const display = document.getElementById(displayId);
+    if (input.files && input.files[0]) {
+      display.textContent = '✓ ' + input.files[0].name;
+      display.style.display = 'block';
+    }
+  }
+
+  function showAttachCount(input) {
+    const display = document.getElementById('attachCountDisplay');
+    if (input.files && input.files.length > 0) {
+      display.textContent = '✓ ' + input.files.length + ' file' + (input.files.length > 1 ? 's' : '') + ' selected';
+      display.style.display = 'block';
+    }
+  }
+
+  /* ══════════════════════════════
+     CHARACTER COUNTER
+  ══════════════════════════════ */
+  function updateCharCount(textarea) {
+    const counter = document.getElementById('messageCounter');
+    const len = textarea.value.length;
+    counter.textContent = len + ' / 2000';
+    counter.classList.toggle('warn', len > 1800);
+    if (len > 2000) {
+      textarea.value = textarea.value.substring(0, 2000);
+      counter.textContent = '2000 / 2000';
+    }
+  }
+
+  /* ══════════════════════════════
+     FORM VALIDATION
+  ══════════════════════════════ */
+  function validateForm() {
+    const requiredFields = [
+      { id: 'franchiseFullName', name: 'Full Name' },
+      { id: 'franchiseEntityType', name: 'Entity Type' },
+      { id: 'franchiseMobile', name: 'Mobile' },
+      { id: 'franchiseEmail', name: 'Email' },
+      { id: 'franchiseAddress', name: 'Registered Address' },
+      { id: 'franchiseWebsite', name: 'Website / Social Media' },
+      { id: 'franchiseTurnover', name: 'Annual Turnover' },
+      { id: 'franchiseExperience', name: 'Business Experience' },
+      { id: 'franchiseInvestSource', name: 'Source of Investment' },
+      { id: 'franchisePreferred', name: 'Preferred Franchise Name/State' },
+      { id: 'franchiseMessage', name: 'Message' }
+    ];
+
+    for (const field of requiredFields) {
+      const el = document.getElementById(field.id);
+      if (!el || !el.value.trim()) {
+        el && el.focus();
+        el && (el.style.borderColor = '#e5484d');
+        setTimeout(() => el && (el.style.borderColor = ''), 3000);
+        showToast && showToast('Required Field', `Please fill in: ${field.name}`, '⚠️');
+        return false;
+      }
+    }
+
+    // Email validation
+    const email = document.getElementById('franchiseEmail').value;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      showToast && showToast('Invalid Email', 'Please enter a valid email address.', '⚠️');
+      return false;
+    }
+
+    // Mobile validation
+    const mobile = document.getElementById('franchiseMobile').value;
+    const mobileClean = mobile.replace(/[\s\-\+\(\)]/g, '');
+    if (mobileClean.length < 10) {
+      showToast && showToast('Invalid Mobile', 'Please enter a valid mobile number.', '⚠️');
+      return false;
+    }
+
+    return true;
+  }
+
+  /* ══════════════════════════════
+     FRANCHISE SUBMIT
+  ══════════════════════════════ */
+  function submitFranchiseForm() {
+    if (!validateForm()) return;
+
+    const btn = document.getElementById('fSubmitBtn');
+    btn.innerHTML = '<span style="display:inline-block;animation:spin 1s linear infinite;border:2px solid #000;border-top-color:transparent;border-radius:50%;width:18px;height:18px;"></span> Submitting...';
+    btn.disabled = true;
+    btn.style.opacity = '0.7';
+
+    // Generate reference number
+    const refNum = 'MCL-FR-2026-' + Math.floor(1000 + Math.random() * 9000);
+
+    setTimeout(() => {
+      document.getElementById('franchiseApplyForm').style.display = 'none';
+      document.getElementById('appRef').textContent = refNum;
+      document.getElementById('franchiseFormSuccess').style.display = 'block';
+      showToast && showToast('Franchise Application Submitted! 🏢', 'We will contact you within 72 hours.', '✅');
+
+      // Scroll to success
+      document.getElementById('franchiseFormCard').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 1800);
+  }
+
+  /* ══════════════════════════════
+     FOCUS ANIMATIONS
+  ══════════════════════════════ */
+  document.querySelectorAll('.fgroup input, .fgroup select, .fgroup textarea').forEach(el => {
+    el.addEventListener('focus', () => {
+      el.parentElement.style.transform = 'translateY(-1px)';
+      el.parentElement.style.transition = 'transform 0.2s ease';
+    });
+    el.addEventListener('blur', () => {
+      el.parentElement.style.transform = 'translateY(0)';
+    });
+  });
+</script>
+</body>
+</html>
