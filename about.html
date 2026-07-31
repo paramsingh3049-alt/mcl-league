@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Core Team — MCL T20 MMIFF Champions League</title>
+  <title>About Us — MCL T20 MMIFF Champions League</title>
   <meta name="description" content="Learn about MCL T20 MMIFF Champions League, where cricket meets a cause."/>
   <link rel="stylesheet" href="style.css"/>
   <style>
@@ -18,6 +18,196 @@
     .page-hero-content { position:relative; z-index:1; text-align:center; }
     .about-card { background:linear-gradient(to bottom right,#1a1f18,#0d0f0c); border:2px solid #2f372c; border-radius:1rem; padding:2.5rem; transition:border-color 0.3s; margin-bottom: 2rem; }
     .about-card:hover { border-color:rgba(181,232,35,0.35); }
+
+    /* ===== ABOUT US SECTION STYLES ===== */
+    #about-us { scroll-margin-top: 80px; }
+
+    /* Section Headers */
+    .au-section-label {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 6px 18px; border-radius: 9999px;
+      background: rgba(181,232,35,0.08); border: 1px solid rgba(181,232,35,0.25);
+      color: var(--brand,#b5e823); font-size: 0.75rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;
+    }
+    .au-section-title {
+      font-size: clamp(1.75rem,4vw,2.75rem) !important; font-weight: 900 !important;
+      color: #fff !important; letter-spacing: -0.025em !important;
+      text-transform: uppercase; line-height: 1.15 !important;
+    }
+    .au-section-sub {
+      color: #c8d8c0; font-size: 1.05rem; line-height: 1.75; max-width: 780px; margin: 0 auto;
+    }
+    .au-section-divider {
+      height: 3px; width: 80px;
+      background: linear-gradient(90deg, var(--brand,#b5e823), #22d3ee);
+      border-radius: 4px; margin: 1.25rem auto 0;
+    }
+
+    /* Intro Banner */
+    .au-intro-banner {
+      background: linear-gradient(135deg, #151a13 0%, #0d0f0c 60%, #111810 100%);
+      border: 2px solid #2f372c; border-radius: 1.5rem; padding: 3rem 3.5rem;
+      position: relative; overflow: hidden;
+    }
+    .au-intro-banner::before {
+      content: ''; position: absolute; top: -60px; right: -60px;
+      width: 300px; height: 300px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(181,232,35,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .au-intro-banner::after {
+      content: ''; position: absolute; bottom: -40px; left: -40px;
+      width: 200px; height: 200px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(34,211,238,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .au-tagline {
+      font-size: 1.35rem !important; font-weight: 800 !important; color: #fff !important;
+      margin-bottom: 0.5rem; letter-spacing: -0.01em !important;
+    }
+    .au-tagline-sub { color: var(--brand,#b5e823); font-size: 1rem; font-weight: 600; margin-bottom: 1.5rem; }
+    .au-intro-text { color: #c8d8c0; font-size: 1.05rem; line-height: 1.8; }
+
+    /* The MCL T20 Difference Grid */
+    .au-difference-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;
+    }
+    .au-diff-card {
+      background: linear-gradient(to bottom right,#181d16,#0d0f0c);
+      border: 2px solid #2f372c; border-radius: 1.1rem; padding: 1.75rem;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .au-diff-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--brand,#b5e823), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .au-diff-card:hover { border-color: rgba(181,232,35,0.35); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(181,232,35,0.08); }
+    .au-diff-card:hover::before { opacity: 1; }
+    .au-diff-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+    .au-diff-title { font-size: 1rem !important; font-weight: 800 !important; color: #fff !important; margin-bottom: 0.6rem; letter-spacing: 0 !important; }
+    .au-diff-text { color: #8fa88a; font-size: 0.9rem; line-height: 1.65; }
+
+    /* Why MCL T20 Is Different */
+    .au-why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+    .au-why-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      background: rgba(181,232,35,0.04); border: 1px solid rgba(181,232,35,0.12);
+      border-radius: 0.875rem; padding: 1.35rem;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .au-why-item:hover { border-color: rgba(181,232,35,0.3); background: rgba(181,232,35,0.07); }
+    .au-why-bullet { width: 8px; height: 8px; border-radius: 50%; background: var(--brand,#b5e823); flex-shrink: 0; margin-top: 0.45rem; }
+    .au-why-text { color: #c8d8c0; font-size: 0.95rem; line-height: 1.6; }
+
+    /* Opportunity Cards */
+    .au-opp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+    .au-opp-card {
+      background: linear-gradient(to bottom right,#181d16,#0d0f0c);
+      border: 2px solid #2f372c; border-radius: 1.1rem; padding: 2rem 1.5rem;
+      text-align: center; transition: all 0.3s;
+    }
+    .au-opp-card:hover { border-color: rgba(181,232,35,0.35); transform: translateY(-4px); }
+    .au-opp-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+    .au-opp-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--brand,#b5e823); margin-bottom: 0.6rem; }
+    .au-opp-title { font-size: 1.15rem !important; font-weight: 800 !important; color: #fff !important; margin-bottom: 0.75rem; letter-spacing: 0 !important; }
+    .au-opp-text { color: #8fa88a; font-size: 0.875rem; line-height: 1.65; }
+
+    /* Owner's Arena */
+    .au-owners-banner {
+      background: linear-gradient(135deg, #0d1a08 0%, #0d0f0c 50%, #0a100d 100%);
+      border: 2px solid rgba(181,232,35,0.25); border-radius: 1.5rem; padding: 3rem;
+      position: relative; overflow: hidden;
+    }
+    .au-owners-banner::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 80% 50%, rgba(181,232,35,0.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .au-owners-highlights {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; margin-top: 2rem;
+    }
+    .au-owners-highlight-item {
+      background: rgba(181,232,35,0.06); border: 1px solid rgba(181,232,35,0.18);
+      border-radius: 0.75rem; padding: 1.25rem; display: flex; align-items: flex-start; gap: 0.75rem;
+    }
+    .au-owners-highlight-icon { font-size: 1.35rem; flex-shrink: 0; }
+    .au-owners-highlight-text strong { display: block; color: #fff; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .au-owners-highlight-text span { color: #8fa88a; font-size: 0.78rem; }
+
+    /* Cricket for a Cause */
+    .au-cause-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+    .au-cause-card {
+      background: linear-gradient(to bottom right,#181d16,#0d0f0c);
+      border: 2px solid #2f372c; border-radius: 1.1rem; padding: 2rem;
+      transition: all 0.3s; position: relative; overflow: hidden;
+    }
+    .au-cause-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, transparent, var(--brand,#b5e823), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .au-cause-card:hover { border-color: rgba(181,232,35,0.35); transform: translateY(-3px); }
+    .au-cause-card:hover::after { opacity: 1; }
+    .au-cause-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+    .au-cause-title { font-size: 1.05rem !important; font-weight: 800 !important; color: var(--brand,#b5e823) !important; margin-bottom: 0.6rem; letter-spacing: 0 !important; }
+    .au-cause-text { color: #8fa88a; font-size: 0.9rem; line-height: 1.65; }
+
+    /* Impact Flow */
+    .au-impact-flow {
+      display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 420px; margin: 2.5rem auto 0;
+    }
+    .au-flow-item {
+      background: rgba(181,232,35,0.06); border: 1px solid rgba(181,232,35,0.2);
+      border-radius: 0.75rem; padding: 0.85rem 2rem; text-align: center; width: 100%;
+      color: #c8d8c0; font-size: 0.9rem; font-weight: 600;
+    }
+    .au-flow-arrow {
+      color: var(--brand,#b5e823); font-size: 1.25rem; line-height: 1; padding: 0.2rem 0;
+    }
+
+    /* League At A Glance Table */
+    .au-glance-table { width: 100%; border-collapse: collapse; }
+    .au-glance-table tr { border-bottom: 1px solid #2f372c; }
+    .au-glance-table tr:last-child { border-bottom: none; }
+    .au-glance-table td { padding: 1rem 1.25rem; font-size: 0.95rem; }
+    .au-glance-table td:first-child { color: var(--brand,#b5e823); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.8rem; width: 200px; }
+    .au-glance-table td:last-child { color: #c8d8c0; font-weight: 600; }
+
+    /* Join the Legacy CTA */
+    .au-legacy-banner {
+      background: linear-gradient(135deg, #0f1e08 0%, #0d1510 60%, #080d0b 100%);
+      border: 2px solid rgba(181,232,35,0.3); border-radius: 1.5rem; padding: 4rem 3rem;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .au-legacy-banner::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(181,232,35,0.1) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .au-legacy-tagline {
+      font-size: clamp(1.5rem,3.5vw,2.25rem) !important; font-weight: 900 !important;
+      color: #fff !important; letter-spacing: -0.02em !important;
+      text-transform: uppercase; margin-bottom: 1rem;
+    }
+    .au-legacy-pillars {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin: 1.75rem 0;
+    }
+    .au-legacy-pillar {
+      padding: 0.5rem 1.35rem; background: rgba(181,232,35,0.08);
+      border: 1px solid rgba(181,232,35,0.25); border-radius: 9999px;
+      color: var(--brand,#b5e823); font-size: 0.85rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+
+    @media (max-width: 768px) {
+      .au-intro-banner { padding: 2rem 1.5rem; }
+      .au-owners-banner { padding: 2rem 1.5rem; }
+      .au-legacy-banner { padding: 2.5rem 1.5rem; }
+      .au-glance-table td:first-child { width: 140px; }
+    }
 
     /* VISIONARY SECTION */
     .visionary-grid { display: flex; flex-direction: column; gap: 2rem; max-width: 900px; margin: 0 auto; }
