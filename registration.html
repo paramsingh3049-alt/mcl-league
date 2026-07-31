@@ -7,6 +7,8 @@
   <meta name="description" content="Register as a player or franchise for MCL T20 MMIFF Champions League Season 01."/>
   <link rel="stylesheet" href="style.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet"/>
+  <!-- Supabase JS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     body { background-color: #0d0f0c; font-family: 'Inter', sans-serif; }
     h1,h2,h3,h4,h5,h6 { font-weight:900!important; color:#fff!important; letter-spacing:-0.025em!important; }
@@ -1472,6 +1474,7 @@
   </div>
 </footer>
 
+<script src="supabase.js"></script>
 <script src="main.js"></script>
 <script>
   /* ══════════════════════════════
@@ -1637,41 +1640,213 @@
   }
 
   /* ══════════════════════════════
-     PLAYER SUBMIT
+     PLAYER SUBMIT — Supabase
   ══════════════════════════════ */
-  function submitForm() {
+  async function submitForm() {
     if (!document.getElementById('agreeDisclaimer').checked) {
       showToast && showToast('Disclaimer Required', 'Please read and accept the disclaimer to continue.', '⚠️');
       return;
     }
+
     const btn = document.getElementById('submitBtn');
     btn.innerHTML = '<span style="display:inline-block;animation:spin 1s linear infinite;border:2px solid #000;border-top-color:transparent;border-radius:50%;width:18px;height:18px;"></span> Submitting...';
     btn.disabled = true;
-    setTimeout(() => {
+
+    try {
+      // ── Upload files in parallel ──
+      const photoFile   = document.getElementById('photoUpload').files[0];
+      const dobFile     = document.getElementById('dobProof').files[0];
+      const idFile      = document.getElementById('idProof').files[0];
+      const payFile     = document.getElementById('paymentProof').files[0];
+
+      const [photoUrl, dobUrl, idUrl, payUrl] = await Promise.all([
+        uploadFile('player-photos',    'photos',    photoFile),
+        uploadFile('player-documents', 'dob-proofs', dobFile),
+        uploadFile('player-documents', 'id-proofs',  idFile),
+        uploadFile('payment-proofs',   'players',    payFile),
+      ]);
+
+      // ── Collect checked facilities ──
+      const signatureData = canvas ? canvas.toDataURL() : null;
+
+      // ── Build payload ──
+      const payload = {
+        prefix:        document.getElementById('prefix')?.value || null,
+        first_name:    document.getElementById('firstName').value.trim(),
+        last_name:     document.getElementById('lastName').value.trim(),
+        dob:           document.getElementById('dob').value || null,
+        age:           parseInt(document.getElementById('age').value) || null,
+        email:         document.getElementById('email').value.trim(),
+        whatsapp:      document.getElementById('whatsapp').value.trim(),
+        blood_group:   document.getElementById('bloodGroup').value || null,
+        nationality:   document.getElementById('nationality').value.trim(),
+        addr1:         document.getElementById('addr1').value.trim(),
+        addr2:         document.getElementById('addr2')?.value.trim() || null,
+        city:          document.getElementById('city').value.trim(),
+        state:         document.getElementById('state').value.trim(),
+        postal:        document.getElementById('postal').value.trim(),
+
+        playing_role:      document.querySelector('[name="playingRole"]:checked')?.value || null,
+        batting_style:     document.querySelector('[name="battingStyle"]:checked')?.value || null,
+        bowling_style:     document.querySelector('[name="bowlingStyle"]:checked')?.value || null,
+        achievement:       document.getElementById('achievement').value.trim(),
+        strength_weakness: document.getElementById('strengthWeakness')?.value.trim() || null,
+
+        existing_injury:   document.querySelector('[name="existingInjury"]:checked')?.value || null,
+        injury_details:    document.getElementById('injuryDetailsInput')?.value.trim() || null,
+        medical_condition: document.querySelector('[name="medicalCondition"]:checked')?.value || null,
+        medical_details:   document.getElementById('medicalDetailsInput')?.value.trim() || null,
+
+        ec_first_name:   document.getElementById('ecFirstName').value.trim(),
+        ec_last_name:    document.getElementById('ecLastName').value.trim(),
+        ec_relationship: document.getElementById('ecRelationship').value.trim(),
+        ec_mobile:       document.getElementById('ecMobile').value.trim(),
+        ec_alt_phone:    document.getElementById('ecAltPhone').value.trim(),
+        ec_addr1:        document.getElementById('ecAddr1').value.trim(),
+        ec_addr2:        document.getElementById('ecAddr2')?.value.trim() || null,
+        ec_city:         document.getElementById('ecCity').value.trim(),
+        ec_state:        document.getElementById('ecState').value.trim(),
+        ec_postal:       document.getElementById('ecPostal').value.trim(),
+
+        instagram: document.getElementById('instagram').value.trim(),
+        facebook:  document.getElementById('facebook').value.trim(),
+        youtube:   document.getElementById('youtube')?.value.trim() || null,
+
+        photo_url:         photoUrl,
+        dob_proof_url:     dobUrl,
+        id_proof_url:      idUrl,
+        payment_proof_url: payUrl,
+        signature_data:    signatureData,
+      };
+
+      // ── Insert into Supabase ──
+      const { error } = await db.from('player_registrations').insert(payload);
+      if (error) throw error;
+
+      // ── Success ──
       document.getElementById('step-6').classList.remove('active');
       document.getElementById('stepProgress').style.display = 'none';
       document.getElementById('formSuccess').style.display = 'block';
       showToast && showToast('Registration Submitted! 🏏', 'We will contact you within 48 hours.', '✅');
-    }, 1800);
+
+    } catch (err) {
+      console.error('Player registration error:', err);
+      showToast && showToast('Submission Failed', err.message || 'Please check your connection and try again.', '❌');
+      btn.innerHTML = '🏏 Submit Registration';
+      btn.disabled = false;
+    }
   }
 
   /* ══════════════════════════════
-     FRANCHISE SUBMIT
+     FRANCHISE SUBMIT — Supabase
   ══════════════════════════════ */
-  function submitFranchiseForm() {
+  async function submitFranchiseForm() {
     if (!document.getElementById('fAgreeDisclaimer').checked) {
       showToast && showToast('Disclaimer Required', 'Please read and accept the franchise disclaimer to continue.', '⚠️');
       return;
     }
+
     const btn = document.getElementById('fSubmitBtn');
     btn.innerHTML = '<span style="display:inline-block;animation:spin 1s linear infinite;border:2px solid #000;border-top-color:transparent;border-radius:50%;width:18px;height:18px;"></span> Submitting...';
     btn.disabled = true;
-    setTimeout(() => {
+
+    try {
+      // ── Upload files ──
+      const ownerPhotoFile  = document.getElementById('fOwnerPhoto')?.files[0];
+      const ownerIDFile     = document.getElementById('fOwnerID')?.files[0];
+      const entityCertFile  = document.getElementById('fEntityCert')?.files[0];
+      const groundProofFile = document.getElementById('fGroundProof')?.files[0];
+      const additionalFile  = document.getElementById('fAdditionalDocs')?.files[0];
+      const payFile         = document.getElementById('fPaymentProof')?.files[0];
+
+      const [ownerPhotoUrl, ownerIdUrl, entityCertUrl, groundProofUrl, additionalUrl, fPayUrl] = await Promise.all([
+        uploadFile('franchise-documents', 'owner-photos',   ownerPhotoFile),
+        uploadFile('franchise-documents', 'owner-ids',      ownerIDFile),
+        uploadFile('franchise-documents', 'entity-certs',   entityCertFile),
+        uploadFile('franchise-documents', 'ground-proofs',  groundProofFile),
+        uploadFile('franchise-documents', 'additional',     additionalFile),
+        uploadFile('payment-proofs',      'franchises',     payFile),
+      ]);
+
+      // ── Collect facilities checkboxes ──
+      const facilities = Array.from(document.querySelectorAll('[name="facilities"]:checked')).map(c => c.value);
+
+      // ── Franchise signature ──
+      const fSignatureData = fCanvas ? fCanvas.toDataURL() : null;
+
+      // ── Reference number ──
+      const refNum = 'MCL-FR-2026-' + Math.floor(1000 + Math.random() * 9000);
+
+      // ── Build payload ──
+      const payload = {
+        // Franchise Info (Step 1)
+        franchise_name:    document.getElementById('franchiseName')?.value.trim() || null,
+        franchise_type:    document.getElementById('franchiseType')?.value || null,
+        est_year:          parseInt(document.getElementById('franchiseEstYear')?.value) || null,
+        franchise_email:   document.getElementById('franchiseEmail')?.value.trim() || null,
+        franchise_phone:   document.getElementById('franchisePhone')?.value.trim() || null,
+        franchise_website: document.getElementById('franchiseWebsite')?.value.trim() || null,
+        franchise_addr1:   document.getElementById('cAddr1')?.value.trim() || null,
+        franchise_addr2:   document.getElementById('cAddr2')?.value.trim() || null,
+        franchise_city:    document.getElementById('cCity')?.value.trim() || null,
+        franchise_state:   document.getElementById('cState')?.value || null,
+        franchise_postal:  document.getElementById('cPostal')?.value.trim() || null,
+
+        // Owner Info (Step 2)
+        owner_prefix:      document.getElementById('ownerPrefix')?.value || null,
+        owner_first_name:  document.getElementById('ownerFirstName')?.value.trim() || null,
+        owner_last_name:   document.getElementById('ownerLastName')?.value.trim() || null,
+        owner_dob:         document.getElementById('ownerDob')?.value || null,
+        owner_designation: document.getElementById('ownerDesignation')?.value.trim() || null,
+        owner_email:       document.getElementById('ownerEmail')?.value.trim() || null,
+        owner_phone:       document.getElementById('ownerPhone')?.value.trim() || null,
+        owner_alt_phone:   document.getElementById('ownerAltPhone')?.value.trim() || null,
+        owner_nationality: document.getElementById('ownerNationality')?.value.trim() || null,
+        owner_addr1:       document.getElementById('ownerAddr1')?.value.trim() || null,
+        owner_addr2:       document.getElementById('ownerAddr2')?.value.trim() || null,
+        owner_city:        document.getElementById('ownerCity')?.value.trim() || null,
+        owner_state:       document.getElementById('ownerState')?.value.trim() || null,
+        owner_postal:      document.getElementById('ownerPostal')?.value.trim() || null,
+
+        // Facilities (Step 3)
+        ground_type:       document.getElementById('groundType')?.value || null,
+        pitch_count:       parseInt(document.getElementById('pitchCount')?.value) || null,
+        seating_capacity:  parseInt(document.getElementById('seatingCapacity')?.value) || null,
+        player_capacity:   parseInt(document.getElementById('playerCapacity')?.value) || null,
+        facilities:        facilities,
+        ground_ownership:  document.getElementById('groundOwnership')?.value || null,
+        coach_count:       parseInt(document.getElementById('coachCount')?.value) || null,
+        franchise_desc:    document.getElementById('franchiseDesc')?.value.trim() || null,
+
+        // Files (Step 4)
+        owner_photo_url:    ownerPhotoUrl,
+        owner_id_url:       ownerIdUrl,
+        entity_cert_url:    entityCertUrl,
+        ground_proof_url:   groundProofUrl,
+        additional_doc_url: additionalUrl,
+
+        // Payment & Declaration (Step 5)
+        payment_proof_url: fPayUrl,
+        signature_data:    fSignatureData,
+        reference_no:      refNum,
+      };
+
+      // ── Insert into Supabase ──
+      const { error } = await db.from('franchise_registrations').insert(payload);
+      if (error) throw error;
+
+      // ── Success ──
       document.getElementById('fstep-5').classList.remove('active');
       document.getElementById('fStepProgress').style.display = 'none';
       document.getElementById('franchiseFormSuccess').style.display = 'block';
       showToast && showToast('Franchise Application Submitted! 🏢', 'We will contact you within 72 hours.', '✅');
-    }, 1800);
+
+    } catch (err) {
+      console.error('Franchise registration error:', err);
+      showToast && showToast('Submission Failed', err.message || 'Please check your connection and try again.', '❌');
+      btn.innerHTML = '🏢 Submit Franchise Registration';
+      btn.disabled = false;
+    }
   }
 
   /* ══════════════════════════════
