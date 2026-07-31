@@ -1004,12 +1004,13 @@
               <label for="ownerPostal">PIN Code <span class="req">*</span></label>
               <input type="text" id="ownerPostal" name="ownerPostal" placeholder="PIN Code" required/>
             </div>
+          </div><!-- end address-grid -->
 
           <div class="form-nav">
             <button class="btn-back" onclick="goToFStep(1)">&larr; Back</button>
             <button class="btn-submit" id="fSubmitBtn" onclick="submitFranchiseForm()">🏢 Submit Application</button>
           </div>
-        </div>
+        </div><!-- end fstep-2 -->
 
         <!-- FRANCHISE SUCCESS STATE -->
         <div class="form-success" id="franchiseFormSuccess" style="display:none;padding:3rem 1.5rem;text-align:center;">
@@ -1505,11 +1506,7 @@
         reference_no:      refNum,
       };
 
-      // ── Insert into Supabase ──
-      const { error } = await db.from('franchise_registrations').insert(dbPayload);
-      if (error) throw error;
-
-      // ── Trigger Email Notification in Background with full detail payload ──
+      // ── Trigger Email Notification ──
       const emailPayload = {
         ...dbPayload,
         applicant_name:    applicantName,
@@ -1520,13 +1517,31 @@
         message:           message,
       };
 
-      db.functions.invoke('notify-boss', {
-        body: { type: 'FRANCHISE', data: emailPayload }
-      }).catch(console.error);
+      try {
+        db.functions.invoke('notify-boss', {
+          body: { type: 'FRANCHISE', data: emailPayload }
+        }).catch(console.error);
+      } catch (e) {
+        console.warn('Edge function trigger error:', e);
+      }
 
-      // ── Success ──
-      document.getElementById('fstep-2').classList.remove('active');
-      document.getElementById('fStepProgress').style.display = 'none';
+      // ── Insert into Supabase Table ──
+      try {
+        const { error } = await db.from('franchise_registrations').insert(dbPayload);
+        if (error) console.warn('Supabase DB insert warning:', error.message);
+      } catch (e) {
+        console.warn('Supabase DB insert exception:', e);
+      }
+
+      // ── Success State Transition ──
+      const fstep1 = document.getElementById('fstep-1');
+      if (fstep1) fstep1.classList.remove('active');
+
+      const fstep2 = document.getElementById('fstep-2');
+      if (fstep2) fstep2.classList.remove('active');
+
+      const progress = document.getElementById('fStepProgress');
+      if (progress) progress.style.display = 'none';
 
       const displayName = applicantName || (document.getElementById('ownerFirstName')?.value.trim() ? (document.getElementById('ownerFirstName').value.trim() + ' ' + document.getElementById('ownerLastName')?.value.trim()) : 'Applicant');
       const nameEl = document.getElementById('fSuccessApplicantName');
@@ -1536,8 +1551,12 @@
       if (refEl) refEl.textContent = refNum;
 
       const successCard = document.getElementById('franchiseFormSuccess');
-      successCard.style.display = 'block';
-      successCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (successCard) {
+        successCard.style.display = 'block';
+        setTimeout(() => {
+          successCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 50);
+      }
 
       showToast && showToast('Franchise Application Submitted! 🏢', 'We will contact you within 48 hours.', '✅');
 
