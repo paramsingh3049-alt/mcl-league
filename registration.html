@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Registration — MCL T20 MMIFF Champions League</title>
   <meta name="description" content="Register as a player or franchise for MCL T20 MMIFF Champions League Season 01."/>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet"/>
   <!-- Supabase JS SDK -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -240,12 +240,11 @@
 <nav class="navbar" id="navbar">
   <a href="index.html" class="nav-logo">
     <div><div class="nav-logo-text"><span class="brand">MCL T20</span><span class="sub">MMIFF Champions League</span></div></div>
-    <img src="logo.png" alt="MCL Logo"/>
+    <img src="assets/images/logo.png" alt="MCL Logo"/>
   </a>
   <div class="nav-links">
     <a href="index.html">Home</a>
-    <a href="about.html#about-us">About Us</a>
-    <a href="about.html">Visionaries</a>
+    <a href="visionaries.html">Visionaries</a>
     <a href="teams.html">Teams</a>
     <a href="matches.html">Schedule</a>
     <a href="timeline.html">Timeline</a>
@@ -257,8 +256,7 @@
 </nav>
 <div class="mobile-nav" id="mobileNav">
   <a href="index.html">Home</a>
-  <a href="about.html#about-us">About Us</a>
-  <a href="about.html">Visionaries</a>
+  <a href="visionaries.html">Visionaries</a>
   <a href="teams.html">Teams</a>
   <a href="matches.html">Schedule</a>
   <a href="timeline.html">Timeline</a>
@@ -719,7 +717,7 @@
           <div style="text-align:center;margin-bottom:1.5rem;">
             <p style="color:#c8d8c0;font-size:0.875rem;margin-bottom:0.75rem;">Scan the QR code below using any UPI app (GPay, PhonePe, Paytm, BHIM) to pay the registration fee, then upload the screenshot.</p>
             <div class="qr-card">
-              <img src="payment-qr.jpg" alt="Payment QR Code" id="playerPaymentQR" />
+              <img src="assets/images/payment-qr.jpg" alt="Payment QR Code" id="playerPaymentQR" />
               <div class="qr-card-label"><span>📲</span> SCAN &amp; PAY</div>
             </div>
             <p style="color:#6b7b65;font-size:0.75rem;">Please keep a screenshot of your successful transaction receipt for reference.</p>
@@ -1366,7 +1364,7 @@
           <div style="text-align:center;margin-bottom:1.5rem;">
             <p style="color:#c8d8c0;font-size:0.875rem;margin-bottom:0.75rem;">Scan the QR code below using any UPI app (GPay, PhonePe, Paytm, BHIM) to pay the franchise registration fee, then upload the screenshot.</p>
             <div class="qr-card">
-              <img src="payment-qr.jpg" alt="Franchise Payment QR Code" id="franchisePaymentQR" />
+              <img src="assets/images/payment-qr.jpg" alt="Franchise Payment QR Code" id="franchisePaymentQR" />
               <div class="qr-card-label"><span>📲</span> SCAN &amp; PAY</div>
             </div>
             <p style="color:#6b7b65;font-size:0.75rem;">Please keep a screenshot of your successful transaction receipt for reference.</p>
@@ -1459,11 +1457,11 @@
       <div class="footer-brand">
         <a href="index.html" class="nav-logo" style="display:inline-flex;">
           <div class="nav-logo-text"><span class="brand">MCL T20</span><span class="sub">MMIFF Champions League</span></div>
-          <img src="logo.png" alt="MCL" style="height:52px;border-radius:calc(var(--radius) - 2px);"/>
+          <img src="assets/images/logo.png" alt="MCL" style="height:52px;border-radius:calc(var(--radius) - 2px);"/>
         </a>
         <p>Where Cricket Meets a Cause. An initiative by Mentor &amp; Mascot Indian Film Federation.</p>
       </div>
-      <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="teams.html">Teams</a></li><li><a href="matches.html">Schedule</a></li><li><a href="timeline.html">Timeline</a></li><li><a href="about.html#about-us">About Us</a>`n    <a href="about.html">Visionaries</a></li><li><a href="registration.html">Register</a></li></ul></div>
+      <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="teams.html">Teams</a></li><li><a href="matches.html">Schedule</a></li><li><a href="timeline.html">Timeline</a></li><li><a href="visionaries.html#about-us">Visionaries</a>`n    <a href="visionaries.html">Visionaries</a></li><li><a href="registration.html">Register</a></li></ul></div>
       <div class="footer-col"><h4>Group A</h4><ul><li><a href="teams.html#team-1">Team A</a></li><li><a href="teams.html#team-2">Team B</a></li><li><a href="teams.html#team-3">Team C</a></li><li><a href="teams.html#team-4">Team D</a></li></ul></div>
       <div class="footer-col"><h4>Group B</h4><ul><li><a href="teams.html#team-5">Team E</a></li><li><a href="teams.html#team-6">Team F</a></li><li><a href="teams.html#team-7">Team G</a></li><li><a href="teams.html#team-8">Team H</a></li></ul></div>
     </div>
@@ -1487,8 +1485,8 @@
   </div>
 </footer>
 
-<script src="supabase.js"></script>
-<script src="main.js"></script>
+<script src="assets/js/supabase.js"></script>
+<script src="assets/js/main.js"></script>
 <script>
   /* ══════════════════════════════
      TAB SWITCHING
@@ -1540,6 +1538,9 @@
   const totalFSteps = 5;
 
   function goToFStep(step) {
+    if (step > currentFStep) {
+      if (!validateCurrentStep('fstep-' + currentFStep)) return;
+    }
     document.getElementById('fstep-' + currentFStep).classList.remove('active');
     document.querySelectorAll('#fStepProgress .step-item')[currentFStep - 1].classList.remove('active');
     document.querySelectorAll('#fStepProgress .step-item')[currentFStep - 1].classList.add('done');
@@ -1736,6 +1737,11 @@
       const { error } = await db.from('player_registrations').insert(payload);
       if (error) throw error;
 
+      // ── Trigger Email Notification in Background (non-blocking) ──
+      db.functions.invoke('notify-boss', {
+        body: { type: 'PLAYER', data: payload }
+      }).catch(console.error);
+
       // ── Success ──
       document.getElementById('step-6').classList.remove('active');
       document.getElementById('stepProgress').style.display = 'none';
@@ -1847,6 +1853,11 @@
       // ── Insert into Supabase ──
       const { error } = await db.from('franchise_registrations').insert(payload);
       if (error) throw error;
+
+      // ── Trigger Email Notification in Background (non-blocking) ──
+      db.functions.invoke('notify-boss', {
+        body: { type: 'FRANCHISE', data: payload }
+      }).catch(console.error);
 
       // ── Success ──
       document.getElementById('fstep-5').classList.remove('active');
