@@ -52,23 +52,37 @@ serve(async (req) => {
         </div>
       `;
     } else if (type === "FRANCHISE") {
-      subject = `🏢 New Franchise Registration: ${data.franchise_name}`;
+      subject = `🏢 New Franchise Application: ${data.preferred_name || data.applicant_name || data.franchise_name}`;
       htmlContent = `
-        <div style="font-family: sans-serif; color: #333; max-width: 600px; margin: 0 auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
+        <div style="font-family: sans-serif; color: #333; max-width: 640px; margin: 0 auto; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background: #fff;">
           <div style="background-color: #111; color: #b5e823; padding: 20px; text-align: center;">
-            <h2 style="margin: 0;">New Franchise Registration</h2>
+            <h2 style="margin: 0;">New Franchise Application</h2>
+            <p style="margin: 5px 0 0; font-size: 14px; color: #c8d8c0;">Ref #: ${data.reference_no || 'N/A'}</p>
           </div>
           <div style="padding: 20px;">
-            <p><strong>Franchise Name:</strong> ${data.franchise_name}</p>
-            <p><strong>Owner:</strong> ${data.owner_first_name} ${data.owner_last_name}</p>
-            <p><strong>Email:</strong> ${data.owner_email}</p>
-            <p><strong>Phone:</strong> ${data.owner_phone}</p>
-            <p><strong>City/State:</strong> ${data.franchise_city}, ${data.franchise_state}</p>
+            <h3 style="margin-top: 0; color: #111; border-bottom: 2px solid #b5e823; padding-bottom: 6px;">1. Franchise Information</h3>
+            <p><strong>Applicant / Org Name:</strong> ${data.applicant_name || 'N/A'}</p>
+            <p><strong>Entity Type:</strong> ${data.entity_type || 'N/A'}</p>
+            <p><strong>Email:</strong> ${data.franchise_email || 'N/A'}</p>
+            <p><strong>Mobile:</strong> ${data.franchise_phone || 'N/A'}</p>
+            <p><strong>Registered Address:</strong> ${data.franchise_address || 'N/A'}</p>
+            <p><strong>Website / Social:</strong> ${data.franchise_website || 'N/A'}</p>
+            <p><strong>Annual Turnover:</strong> ${data.annual_turnover || 'N/A'}</p>
+            <p><strong>Industry Experience:</strong> ${data.experience || 'N/A'}</p>
+            <p><strong>Source of Investment:</strong> ${data.investment_source || 'N/A'}</p>
+            <p><strong>Preferred Name / State:</strong> ${data.preferred_name || 'N/A'}</p>
+            <p><strong>Message:</strong> ${data.message || 'N/A'}</p>
+
             <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;" />
-            <h3 style="margin-top: 0;">Business & Ground Info</h3>
-            <p><strong>Entity Type:</strong> ${data.franchise_type}</p>
-            <p><strong>Ground Type:</strong> ${data.ground_type}</p>
-            <p><strong>Investment Source:</strong> ${data.investment_source || "N/A"}</p>
+            
+            <h3 style="margin-top: 0; color: #111; border-bottom: 2px solid #b5e823; padding-bottom: 6px;">2. Owner / Authorized Contact</h3>
+            <p><strong>Owner Name:</strong> ${data.owner_prefix || ''} ${data.owner_first_name || ''} ${data.owner_last_name || ''}</p>
+            <p><strong>Designation:</strong> ${data.owner_designation || 'N/A'}</p>
+            <p><strong>DOB:</strong> ${data.owner_dob || 'N/A'}</p>
+            <p><strong>Personal Email:</strong> ${data.owner_email || 'N/A'}</p>
+            <p><strong>Mobile:</strong> ${data.owner_phone || 'N/A'} ${data.owner_alt_phone ? `(Alt: ${data.owner_alt_phone})` : ''}</p>
+            <p><strong>Nationality:</strong> ${data.owner_nationality || 'N/A'}</p>
+            <p><strong>Residential Address:</strong> ${data.owner_addr1 || ''} ${data.owner_addr2 || ''}, ${data.owner_city || ''}, ${data.owner_state || ''} - ${data.owner_postal || ''}</p>
           </div>
         </div>
       `;

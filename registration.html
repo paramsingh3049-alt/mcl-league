@@ -244,6 +244,7 @@
   </a>
   <div class="nav-links">
     <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
     <a href="visionaries.html">Visionaries</a>
     <a href="teams.html">Teams</a>
     <a href="matches.html">Schedule</a>
@@ -256,7 +257,8 @@
 </nav>
 <div class="mobile-nav" id="mobileNav">
   <a href="index.html">Home</a>
-  <a href="visionaries.html">Visionaries</a>
+    <a href="about.html">About Us</a>
+    <a href="visionaries.html">Visionaries</a>
   <a href="teams.html">Teams</a>
   <a href="matches.html">Schedule</a>
   <a href="timeline.html">Timeline</a>
@@ -805,17 +807,30 @@
     </div><!-- end panel-player -->
 
 
+
     <!-- ══════════════════════════════════════════════
-         PANEL 2: Franchise Registration — Apply Now
+         PANEL 2: Franchise Registration
     ══════════════════════════════════════════════ -->
     <div class="reg-panel" id="panel-franchise" role="tabpanel" aria-labelledby="tab-franchise">
 
+      <!-- ── STEP PROGRESS ── -->
+      <div class="step-progress" id="fStepProgress">
+        <div class="step-item active" data-fstep="1">
+          <div class="step-num">1</div>
+          <div class="step-label">Apply Now</div>
+        </div>
+        <div class="step-item" data-fstep="2">
+          <div class="step-num">2</div>
+          <div class="step-label">Owner Details</div>
+        </div>
+      </div>
+
       <div class="form-card" id="franchiseFormCard">
 
-        <!-- FORM CONTENT -->
-        <div id="franchiseApplyForm">
+        <!-- ===== FRANCHISE STEP 1: Apply Now ===== -->
+        <div class="form-step active" id="fstep-1">
           <div class="info-badge">🏢 Franchise Registration</div>
-          <h2 class="form-section-title">Apply Now</h2>
+          <h2 class="form-section-title">Franchise Information</h2>
           <p class="form-section-sub">Fill in your details below to express interest in owning an MCL T20 franchise.</p>
 
           <!-- Full Name -->
@@ -857,8 +872,8 @@
 
           <!-- Website / Social Media -->
           <div class="fgroup">
-            <label for="franchiseWebsite">Website / Social Media (if any) <span class="req">*</span></label>
-            <input type="url" id="franchiseWebsite" name="franchiseWebsite" placeholder="https://yourwebsite.com or social media link" required/>
+            <label for="franchiseWebsite">Website / Social Media (optional)</label>
+            <input type="text" id="franchiseWebsite" name="franchiseWebsite" placeholder="e.g. https://yourwebsite.com or @socialhandle"/>
           </div>
 
           <!-- Annual Turnover -->
@@ -890,33 +905,7 @@
             <input type="text" id="franchisePreferred" name="franchisePreferred" placeholder="e.g. Mumbai Warriors / Maharashtra" required/>
           </div>
 
-          <hr class="section-divider"/>
 
-          <!-- MCL T20 EOI Form Attachment -->
-          <div class="fgroup">
-            <label>Attach • MCL T20 EOI Form</label>
-            <div class="upload-zone" onclick="document.getElementById('franchiseEOI').click()">
-              <input type="file" id="franchiseEOI" name="franchiseEOI" accept=".pdf,.doc,.docx,.jpg,.png" style="display:none" onchange="showFileName(this,'eoiFileName')"/>
-              <div class="upload-icon">📄</div>
-              <div><strong>MCL T20 EOI Form</strong></div>
-              <div style="font-size:0.75rem;color:#6b7b65;margin-top:4px;">PDF, DOC, DOCX, JPG, PNG — Max 5 MB</div>
-            </div>
-            <div class="file-name-display" id="eoiFileName" style="display:none;color:var(--brand);font-size:0.8rem;margin-top:6px;"></div>
-          </div>
-
-          <!-- Additional Attachments -->
-          <div class="fgroup">
-            <label>Attachments</label>
-            <div class="upload-zone" onclick="document.getElementById('franchiseAttachments').click()">
-              <input type="file" id="franchiseAttachments" name="franchiseAttachments" accept=".pdf,.doc,.docx,.jpg,.png,.xlsx" multiple style="display:none" onchange="showAttachCount(this)"/>
-              <div class="upload-icon">📎</div>
-              <div><strong>Upload Attachments</strong></div>
-              <div style="font-size:0.75rem;color:#6b7b65;margin-top:4px;">Upload supporting documents (optional) — Max 5 MB each</div>
-            </div>
-            <div class="file-name-display" id="attachCountDisplay" style="display:none;color:var(--brand);font-size:0.8rem;margin-top:6px;"></div>
-          </div>
-
-          <hr class="section-divider"/>
 
           <!-- Message -->
           <div class="fgroup">
@@ -924,146 +913,13 @@
             <textarea id="franchiseMessage" name="franchiseMessage" placeholder="Tell us why you want to own an MCL T20 franchise, your vision, and anything else you'd like us to know..." rows="5" required></textarea>
           </div>
 
-          <!-- Submit -->
-          <div style="text-align:center;margin-top:2rem;">
-            <button class="btn-submit" id="fSubmitBtn" onclick="submitFranchiseForm()" style="width:100%;max-width:400px;padding:16px 32px;font-size:1.05rem;">
-              🏢 Submit Application
-            </button>
+
+          <div class="form-nav" style="justify-content:flex-end;margin-top:2rem;">
+            <button class="btn-next" onclick="goToFStep(2)">Next Step &rarr;</button>
           </div>
         </div>
 
-        <!-- FRANCHISE SUCCESS STATE -->
-        <div class="form-success" id="franchiseFormSuccess">
-          <div class="tick">🎉</div>
-          <h3>Application Submitted!</h3>
-          <p style="color:#c8d8c0;margin-bottom:2rem;">Thank you! Our franchise team will review your application and contact you within 72 hours. Welcome to the MCL T20 family!</p>
-          <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-            <a href="teams.html" class="btn-outline">View Teams</a>
-            <a href="index.html" class="btn-primary">Back to Home</a>
-          </div>
-        </div>
-
-      </div><!-- end franchiseFormCard -->
-    </div><!-- end panel-franchise -->
-
-
-        <div class="step-item" data-fstep="2">
-          <div class="step-num">2</div>
-          <div class="step-label">Owner Details</div>
-        </div>
-        <div class="step-item" data-fstep="3">
-          <div class="step-num">3</div>
-          <div class="step-label">Facilities</div>
-        </div>
-        <div class="step-item" data-fstep="4">
-          <div class="step-num">4</div>
-          <div class="step-label">Documents</div>
-        </div>
-        <div class="step-item" data-fstep="5">
-          <div class="step-num">5</div>
-          <div class="step-label">Payment</div>
-        </div>
-      </div>
-
-      <div class="form-card" id="franchiseFormCard">
-
-        <!-- ===== FRANCHISE STEP 1: Franchise Information ===== -->
-        <div class="form-step active" id="fstep-1">
-          <div class="info-badge">🏢 Franchise Registration</div>
-          <h2 class="form-section-title">Franchise Information</h2>
-          <p class="form-section-sub">Provide details about your cricket franchise entity.</p>
-
-          <div class="fgroup">
-            <label for="franchiseName">Franchise Name <span class="req">*</span></label>
-            <input type="text" id="franchiseName" name="franchiseName" placeholder="e.g. City Cricket Academy" required/>
-          </div>
-
-          <div class="frow">
-            <div class="fgroup">
-              <label for="franchiseType">Franchise Type <span class="req">*</span></label>
-              <select id="franchiseType" name="franchiseType" required>
-                <option value="" disabled selected>Select Type</option>
-                <option>Cricket Academy</option>
-                <option>Sports Club</option>
-                <option>School / College</option>
-                <option>Private Ground</option>
-                <option>Community Centre</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div class="fgroup">
-              <label for="franchiseEstYear">Year Established <span class="req">*</span></label>
-              <input type="number" id="franchiseEstYear" name="franchiseEstYear" placeholder="e.g. 2010" min="1950" max="2026" required/>
-            </div>
-          </div>
-
-          <div class="frow">
-            <div class="fgroup">
-              <label for="franchiseEmail">Franchise Email <span class="req">*</span></label>
-              <input type="email" id="franchiseEmail" name="franchiseEmail" placeholder="franchise@example.com" required/>
-            </div>
-            <div class="fgroup">
-              <label for="franchisePhone">Franchise Phone / WhatsApp <span class="req">*</span></label>
-              <input type="tel" id="franchisePhone" name="franchisePhone" placeholder="+91 00000 00000" required/>
-            </div>
-          </div>
-
-          <div class="fgroup">
-            <label for="franchiseWebsite">Website / Social Media Link</label>
-            <input type="url" id="franchiseWebsite" name="franchiseWebsite" placeholder="https://yourwebsite.com"/>
-          </div>
-
-          <hr class="section-divider"/>
-
-          <h4 style="color:#fff;font-size:1rem!important;margin-bottom:1rem;letter-spacing:0!important;">Franchise Address <span class="req" style="color:var(--brand,#b5e823);">*</span></h4>
-          <div class="address-grid">
-            <div class="fgroup">
-              <label for="cAddr1">Street Address <span class="req">*</span></label>
-              <input type="text" id="cAddr1" name="cAddr1" placeholder="Building / Plot No., Street, Area" required/>
-            </div>
-            <div class="fgroup">
-              <label for="cAddr2">Street Address Line 2</label>
-              <input type="text" id="cAddr2" name="cAddr2" placeholder="Landmark, Colony (optional)"/>
-            </div>
-            <div class="address-row">
-              <div class="fgroup">
-                <label for="cCity">City <span class="req">*</span></label>
-                <input type="text" id="cCity" name="cCity" placeholder="City" required/>
-              </div>
-              <div class="fgroup">
-                <label for="cState">State <span class="req">*</span></label>
-                <select id="cState" name="cState" required>
-                  <option value="" disabled selected>Select State</option>
-                  <option>Andhra Pradesh</option><option>Arunachal Pradesh</option>
-                  <option>Assam</option><option>Bihar</option><option>Chhattisgarh</option>
-                  <option>Goa</option><option>Gujarat</option><option>Haryana</option>
-                  <option>Himachal Pradesh</option><option>Jharkhand</option>
-                  <option>Karnataka</option><option>Kerala</option>
-                  <option>Madhya Pradesh</option><option>Maharashtra</option>
-                  <option>Manipur</option><option>Meghalaya</option><option>Mizoram</option>
-                  <option>Nagaland</option><option>Odisha</option><option>Punjab</option>
-                  <option>Rajasthan</option><option>Sikkim</option><option>Tamil Nadu</option>
-                  <option>Telangana</option><option>Tripura</option>
-                  <option>Uttar Pradesh</option><option>Uttarakhand</option>
-                  <option>West Bengal</option><option>Delhi (NCT)</option>
-                  <option>Jammu &amp; Kashmir</option><option>Ladakh</option>
-                  <option>Puducherry</option><option>Other</option>
-                </select>
-              </div>
-            </div>
-            <div class="fgroup" style="max-width:240px;">
-              <label for="cPostal">PIN Code <span class="req">*</span></label>
-              <input type="text" id="cPostal" name="cPostal" placeholder="PIN Code" required/>
-            </div>
-          </div>
-
-          <div class="form-nav">
-            <span class="step-counter">Step 1 of 5</span>
-            <button class="btn-next" onclick="goToFStep(2)">Next → Owner Details</button>
-          </div>
-        </div>
-
-        <!-- ===== FRANCHISE STEP 2: OWNER / CONTACT DETAILS ===== -->
+        <!-- ===== FRANCHISE STEP 2: Owner Details ===== -->
         <div class="form-step" id="fstep-2">
           <div class="info-badge">🏢 Franchise Registration</div>
           <h2 class="form-section-title">Owner / Authorized Contact</h2>
@@ -1148,300 +1004,60 @@
               <label for="ownerPostal">PIN Code <span class="req">*</span></label>
               <input type="text" id="ownerPostal" name="ownerPostal" placeholder="PIN Code" required/>
             </div>
-          </div>
 
           <div class="form-nav">
-            <button class="btn-back" onclick="goToFStep(1)">← Back</button>
-            <span class="step-counter">Step 2 of 5</span>
-            <button class="btn-next" onclick="goToFStep(3)">Next → Facilities</button>
-          </div>
-        </div>
-
-        <!-- ===== FRANCHISE STEP 3: FACILITIES & CAPACITY ===== -->
-        <div class="form-step" id="fstep-3">
-          <div class="info-badge">🏢 Franchise Registration</div>
-          <h2 class="form-section-title">Facilities &amp; Capacity</h2>
-          <p class="form-section-sub">Tell us about your ground, infrastructure, and training facilities.</p>
-
-          <div class="frow">
-            <div class="fgroup">
-              <label for="groundType">Ground Type <span class="req">*</span></label>
-              <select id="groundType" name="groundType" required>
-                <option value="" disabled selected>Select Ground Type</option>
-                <option>Full Cricket Ground</option>
-                <option>Half Ground / Practice Ground</option>
-                <option>Indoor Nets</option>
-                <option>Turf Wicket</option>
-                <option>Cement / Concrete</option>
-                <option>Multi-Sport Ground</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div class="fgroup">
-              <label for="pitchCount">Number of Pitches / Nets <span class="req">*</span></label>
-              <input type="number" id="pitchCount" name="pitchCount" placeholder="e.g. 3" min="1" required/>
-            </div>
-          </div>
-
-          <div class="frow">
-            <div class="fgroup">
-              <label for="seatingCapacity">Spectator Seating Capacity</label>
-              <input type="number" id="seatingCapacity" name="seatingCapacity" placeholder="e.g. 500" min="0"/>
-            </div>
-            <div class="fgroup">
-              <label for="playerCapacity">Player Capacity (per session) <span class="req">*</span></label>
-              <input type="number" id="playerCapacity" name="playerCapacity" placeholder="e.g. 30" min="1" required/>
-            </div>
-          </div>
-
-          <div class="fgroup">
-            <label>Available Facilities <span class="req">*</span></label>
-            <div class="check-group" id="facilitiesGroup">
-              <label class="check-opt" onclick="toggleCheck(this)">
-                <input type="checkbox" name="facilities" value="Changing Rooms"/>
-                <div class="dot"></div><span>Changing Rooms</span>
-              </label>
-              <label class="check-opt" onclick="toggleCheck(this)">
-                <input type="checkbox" name="facilities" value="Floodlights"/>
-                <div class="dot"></div><span>Floodlights</span>
-              </label>
-              <label class="check-opt" onclick="toggleCheck(this)">
-                <input type="checkbox" name="facilities" value="Parking"/>
-                <div class="dot"></div><span>Parking</span>
-              </label>
-              <label class="check-opt" onclick="toggleCheck(this)">
-                <input type="checkbox" name="facilities" value="Canteen / Cafeteria"/>
-                <div class="dot"></div><span>Canteen / Cafeteria</span>
-              </label>
-              <label class="check-opt" onclick="toggleCheck(this)">
-                <input type="checkbox" name="facilities" value="First Aid Room"/>
-                <div class="dot"></div><span>First Aid Room</span>
-              </label>
-              <label class="check-opt" onclick="toggleCheck(this)">
-                <input type="checkbox" name="facilities" value="Scoreboard"/>
-                <div class="dot"></div><span>Scoreboard</span>
-              </label>
-              <label class="check-opt" onclick="toggleCheck(this)">
-                <input type="checkbox" name="facilities" value="Commentary Box"/>
-                <div class="dot"></div><span>Commentary Box</span>
-              </label>
-              <label class="check-opt" onclick="toggleCheck(this)">
-                <input type="checkbox" name="facilities" value="CCTV Surveillance"/>
-                <div class="dot"></div><span>CCTV Surveillance</span>
-              </label>
-              <label class="check-opt" onclick="toggleCheck(this)">
-                <input type="checkbox" name="facilities" value="Gym / Fitness Area"/>
-                <div class="dot"></div><span>Gym / Fitness Area</span>
-              </label>
-              <label class="check-opt" onclick="toggleCheck(this)">
-                <input type="checkbox" name="facilities" value="Washrooms"/>
-                <div class="dot"></div><span>Washrooms</span>
-              </label>
-            </div>
-          </div>
-
-          <div class="frow">
-            <div class="fgroup">
-              <label for="groundOwnership">Ground Ownership <span class="req">*</span></label>
-              <select id="groundOwnership" name="groundOwnership" required>
-                <option value="" disabled selected>Select Ownership</option>
-                <option>Owned</option>
-                <option>Leased / Rented</option>
-                <option>Government Allotted</option>
-                <option>Partnership</option>
-              </select>
-            </div>
-            <div class="fgroup">
-              <label for="coachCount">Number of Coaches</label>
-              <input type="number" id="coachCount" name="coachCount" placeholder="e.g. 2" min="0"/>
-            </div>
-          </div>
-
-          <div class="fgroup">
-            <label for="franchiseDesc">Brief Description of the Franchise <span class="req">*</span></label>
-            <textarea id="franchiseDesc" name="franchiseDesc" placeholder="Describe your franchise — history, achievements, notable alumni, special infrastructure, community programs..." required></textarea>
-          </div>
-
-          <div class="form-nav">
-            <button class="btn-back" onclick="goToFStep(2)">← Back</button>
-            <span class="step-counter">Step 3 of 5</span>
-            <button class="btn-next" onclick="goToFStep(4)">Next → Documents</button>
-          </div>
-        </div>
-
-        <!-- ===== FRANCHISE STEP 4: DOCUMENTS ===== -->
-        <div class="form-step" id="fstep-4">
-          <div class="info-badge">🏢 Franchise Registration</div>
-          <h2 class="form-section-title">Document Uploads</h2>
-          <p class="form-section-sub">Please upload all required documents for verification.</p>
-
-          <div class="frow">
-            <div class="fgroup">
-              <label>Owner / Director Photo <span class="req">*</span></label>
-              <div class="file-upload-area" onclick="document.getElementById('fOwnerPhoto').click()">
-                <input type="file" id="fOwnerPhoto" name="fOwnerPhoto" accept="image/*" onchange="showFileName(this,'fOwnerPhotoName')"/>
-                <div class="file-upload-icon">📸</div>
-                <div class="file-upload-text">
-                  <strong>Click to upload Photo</strong>
-                  <span>JPG, PNG — Max 10 MB</span>
-                </div>
-                <div class="file-name-display" id="fOwnerPhotoName"></div>
-              </div>
-            </div>
-            <div class="fgroup">
-              <label>Owner ID Proof <span class="req">*</span></label>
-              <div class="file-upload-area" onclick="document.getElementById('fOwnerID').click()">
-                <input type="file" id="fOwnerID" name="fOwnerID" accept=".pdf,.jpg,.jpeg,.png" onchange="showFileName(this,'fOwnerIDName')"/>
-                <div class="file-upload-icon">🪪</div>
-                <div class="file-upload-text">
-                  <strong>Aadhaar / PAN / Passport</strong>
-                  <span>PDF, JPG, PNG — Max 10 MB</span>
-                </div>
-                <div class="file-name-display" id="fOwnerIDName"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="frow">
-            <div class="fgroup">
-              <label>Entity Registration Certificate <span class="req">*</span></label>
-              <div class="file-upload-area" onclick="document.getElementById('fEntityCert').click()">
-                <input type="file" id="fEntityCert" name="fEntityCert" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" onchange="showFileName(this,'fEntityCertName')"/>
-                <div class="file-upload-icon">📜</div>
-                <div class="file-upload-text">
-                  <strong>Registration Certificate</strong>
-                  <span>PDF, JPG, PNG, DOC — Max 10 MB</span>
-                </div>
-                <div class="file-name-display" id="fEntityCertName"></div>
-              </div>
-            </div>
-            <div class="fgroup">
-              <label>Ground / Property Proof <span class="req">*</span></label>
-              <div class="file-upload-area" onclick="document.getElementById('fGroundProof').click()">
-                <input type="file" id="fGroundProof" name="fGroundProof" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" onchange="showFileName(this,'fGroundProofName')"/>
-                <div class="file-upload-icon">🏟️</div>
-                <div class="file-upload-text">
-                  <strong>Ownership / Lease Agreement</strong>
-                  <span>PDF, JPG, PNG, DOC — Max 10 MB</span>
-                </div>
-                <div class="file-name-display" id="fGroundProofName"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="fgroup">
-            <label>Any Additional Supporting Documents</label>
-            <div class="file-upload-area" onclick="document.getElementById('fAdditionalDocs').click()">
-              <input type="file" id="fAdditionalDocs" name="fAdditionalDocs" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" onchange="showFileName(this,'fAdditionalDocsName')"/>
-              <div class="file-upload-icon">📂</div>
-              <div class="file-upload-text">
-                <strong>Upload Additional Documents</strong>
-                <span>Awards, Certificates, Letters — PDF, JPG, PNG — Max 10 MB</span>
-              </div>
-              <div class="file-name-display" id="fAdditionalDocsName"></div>
-            </div>
-          </div>
-
-          <div class="form-nav">
-            <button class="btn-back" onclick="goToFStep(3)">← Back</button>
-            <span class="step-counter">Step 4 of 5</span>
-            <button class="btn-next" onclick="goToFStep(5)">Next → Payment</button>
-          </div>
-        </div>
-
-        <!-- ===== FRANCHISE STEP 5: PAYMENT & DECLARATION ===== -->
-        <div class="form-step" id="fstep-5">
-          <div class="info-badge">🏢 Franchise Registration</div>
-          <h2 class="form-section-title">Payment &amp; Declaration</h2>
-          <p class="form-section-sub">Complete your franchise registration by paying the registration fee.</p>
-
-          <div class="fee-box">
-            <div class="fee-label">Franchise Registration Fee</div>
-            <div class="fee-amount">₹25,000</div>
-            <div class="fee-note">One-time franchise registration fee. Non-refundable.</div>
-          </div>
-
-          <div style="text-align:center;margin-bottom:1.5rem;">
-            <p style="color:#c8d8c0;font-size:0.875rem;margin-bottom:0.75rem;">Scan the QR code below using any UPI app (GPay, PhonePe, Paytm, BHIM) to pay the franchise registration fee, then upload the screenshot.</p>
-            <div class="qr-card">
-              <img src="payment-qr.jpg" alt="Franchise Payment QR Code" id="franchisePaymentQR" />
-              <div class="qr-card-label"><span>📲</span> SCAN &amp; PAY</div>
-            </div>
-            <p style="color:#6b7b65;font-size:0.75rem;">Please keep a screenshot of your successful transaction receipt for reference.</p>
-          </div>
-
-          <div class="fgroup">
-            <label>Payment Screenshot <span class="req">*</span></label>
-            <div class="file-upload-area" onclick="document.getElementById('fPaymentProof').click()">
-              <input type="file" id="fPaymentProof" name="fPaymentProof" accept=".pdf,.jpg,.jpeg,.png" onchange="showFileName(this,'fPaymentProofName')"/>
-              <div class="file-upload-icon">💳</div>
-              <div class="file-upload-text">
-                <strong>Upload Payment Screenshot</strong>
-                <span>JPG, PNG, PDF — Max 10 MB</span>
-              </div>
-              <div class="file-name-display" id="fPaymentProofName"></div>
-            </div>
-          </div>
-
-          <hr class="section-divider"/>
-
-          <!-- FRANCHISE DISCLAIMER -->
-          <div class="fgroup">
-            <label>Franchise Registration Disclaimer &amp; Declaration <span class="req">*</span></label>
-            <div class="disclaimer-box">
-              <h4>MCL T20 – Franchise Registration Disclaimer &amp; Declaration</h4>
-              <p><strong style="color:#fff;">DISCLAIMER</strong></p>
-              <p>By submitting this franchise registration form, the applicant acknowledges and agrees to the following terms and conditions:</p>
-              <p>1. Registration of a franchise does not guarantee selection, approval, branding rights, player allocation, or any other commercial engagement with MCL T20.</p>
-              <p>2. The Organizing Committee of MCL T20 reserves the sole and absolute right to accept, reject, suspend, or cancel any franchise registration without assigning any reason.</p>
-              <p>3. All information and documents submitted must be authentic, accurate, and legally valid. Submission of fraudulent documents will result in permanent disqualification and may attract legal action.</p>
-              <p>4. The registered franchise shall comply with all MCL T20 rules, franchise agreements, code of conduct, operational guidelines, and decisions of the Governing Council.</p>
-              <p>5. MCL T20, MMIFF, and their affiliates shall not be held liable for any financial loss, dispute, injury, or liability arising from franchise operations.</p>
-              <p>6. The franchise grants MCL T20 rights to use its name, logo, images, and related content for promotional and media purposes during the league.</p>
-              <p>7. Any misconduct, breach of agreement, or actions detrimental to the reputation of MCL T20 may result in franchise cancellation and legal proceedings.</p>
-              <p>8. The franchise fee paid is non-refundable under all circumstances.</p>
-              <p>9. All disputes shall be subject to the jurisdiction of New Delhi, India.</p>
-              <br/>
-              <p><strong style="color:#fff;">AUTHORIZED REPRESENTATIVE DECLARATION</strong></p>
-              <p>I hereby certify that I am duly authorized to register this franchise, all information furnished is true and correct, and I agree to abide by all MCL T20 rules, regulations, and the decisions of the Organizing Committee.</p>
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:10px;margin-top:0.75rem;">
-              <input type="checkbox" id="fAgreeDisclaimer" name="fAgreeDisclaimer" style="margin-top:3px;accent-color:var(--brand,#b5e823);width:16px;height:16px;flex-shrink:0;" required/>
-              <label for="fAgreeDisclaimer" style="font-size:0.85rem;color:#c8d8c0;cursor:pointer;text-transform:none;letter-spacing:0;font-weight:500;">
-                I have read and agree to the Franchise Registration Disclaimer &amp; Declaration above. <span class="req">*</span>
-              </label>
-            </div>
-          </div>
-
-          <!-- SIGNATURE (Franchise) -->
-          <div class="fgroup">
-            <label>Authorized Signature <span class="req">*</span></label>
-            <div class="signature-pad-wrapper">
-              <canvas id="fSignaturePad" width="760" height="150"></canvas>
-              <div class="sig-controls">
-                <button type="button" class="sig-btn" onclick="clearFSignature()">🗑 Clear</button>
-                <span style="flex:1;"></span>
-                <span class="sig-label">Draw your signature above</span>
-              </div>
-            </div>
-            <p class="sig-label" style="text-align:left;margin-top:6px;">Use your mouse or touch to sign in the box above.</p>
-          </div>
-
-          <div class="form-nav">
-            <button class="btn-back" onclick="goToFStep(4)">← Back</button>
-            <span class="step-counter">Step 5 of 5</span>
-            <button class="btn-submit" id="fSubmitBtn" onclick="submitFranchiseForm()">🏢 Submit Franchise Registration</button>
+            <button class="btn-back" onclick="goToFStep(1)">&larr; Back</button>
+            <button class="btn-submit" id="fSubmitBtn" onclick="submitFranchiseForm()">🏢 Submit Application</button>
           </div>
         </div>
 
         <!-- FRANCHISE SUCCESS STATE -->
-        <div class="form-success" id="franchiseFormSuccess">
-          <div class="tick">🎉</div>
-          <h3>Franchise Application Submitted!</h3>
-          <p style="color:#c8d8c0;margin-bottom:2rem;">Thank you! Our franchise team will review your franchise application and contact you within 72 hours. Welcome to the MCL T20 family!</p>
+        <div class="form-success" id="franchiseFormSuccess" style="display:none;padding:3rem 1.5rem;text-align:center;">
+          <div class="tick" style="font-size:4.5rem;margin-bottom:1rem;">🎉</div>
+          <div style="display:inline-block;padding:6px 18px;background:rgba(181,232,35,0.1);border:1px solid rgba(181,232,35,0.3);border-radius:9999px;color:var(--brand,#b5e823);font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1rem;">
+            Application Received
+          </div>
+          <h2 style="font-size:2.25rem!important;font-weight:900!important;color:#fff!important;margin-bottom:0.75rem!important;">
+            THANK YOU FOR <span class="text-gradient">APPLYING!</span>
+          </h2>
+          <p style="color:#c8d8c0;font-size:1.1rem;max-width:620px;margin:0 auto 1.75rem;line-height:1.7;">
+            We have successfully received the franchise application for <strong style="color:#fff;" id="fSuccessApplicantName">MCL T20</strong>. Our franchise committee is reviewing your details.
+          </p>
+
+          <!-- Reference Number Box -->
+          <div style="background:rgba(181,232,35,0.06);border:2px dashed rgba(181,232,35,0.3);border-radius:1rem;padding:1.25rem 2rem;display:inline-block;margin-bottom:2rem;">
+            <div style="font-size:0.75rem;color:#8fa88a;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;margin-bottom:4px;">Application Reference Number</div>
+            <div style="font-size:1.75rem;font-weight:900;color:var(--brand,#b5e823);letter-spacing:0.05em;" id="fRefNumDisplay">MCL-FR-2026-XXXX</div>
+            <div style="font-size:0.78rem;color:#6b7b65;margin-top:4px;">Please save this reference number for your records.</div>
+          </div>
+
+          <!-- Next Steps Box -->
+          <div style="background:linear-gradient(to bottom right,#181d16,#0d0f0c);border:1px solid #2f372c;border-radius:1rem;padding:1.5rem;max-width:680px;margin:0 auto 2.5rem;text-align:left;">
+            <h4 style="color:#fff;font-size:0.95rem!important;margin-bottom:1rem!important;text-transform:uppercase;letter-spacing:0.05em;">What Happens Next?</h4>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;">
+              <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:0.75rem;padding:1rem;">
+                <div style="color:var(--brand,#b5e823);font-size:0.8rem;font-weight:700;margin-bottom:4px;">STEP 01</div>
+                <div style="color:#fff;font-size:0.88rem;font-weight:700;margin-bottom:4px;">Application Review</div>
+                <div style="color:#8fa88a;font-size:0.78rem;line-height:1.4;">Our committee evaluates your entity details within 24-48 hrs.</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:0.75rem;padding:1rem;">
+                <div style="color:var(--brand,#b5e823);font-size:0.8rem;font-weight:700;margin-bottom:4px;">STEP 02</div>
+                <div style="color:#fff;font-size:0.88rem;font-weight:700;margin-bottom:4px;">Official Contact</div>
+                <div style="color:#8fa88a;font-size:0.78rem;line-height:1.4;">Our League Officer contacts you via email &amp; phone.</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:0.75rem;padding:1rem;">
+                <div style="color:var(--brand,#b5e823);font-size:0.8rem;font-weight:700;margin-bottom:4px;">STEP 03</div>
+                <div style="color:#fff;font-size:0.88rem;font-weight:700;margin-bottom:4px;">E-Auction &amp; Onboarding</div>
+                <div style="color:#8fa88a;font-size:0.78rem;line-height:1.4;">Access E-Auction portal &amp; franchise agreement kit.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
           <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-            <a href="teams.html" class="btn-outline">View Teams</a>
-            <a href="index.html" class="btn-primary">Back to Home</a>
+            <a href="index.html" class="btn-primary" style="padding:12px 28px;">Back to Home &rarr;</a>
+            <a href="teams.html" class="btn-outline" style="padding:12px 28px;">Explore Teams</a>
+            <a href="about.html" class="btn-outline" style="padding:12px 28px;">About MCL T20</a>
           </div>
         </div>
 
@@ -1507,12 +1123,95 @@
   }
 
   /* ══════════════════════════════
+     FORM VALIDATION HELPER
+  ══════════════════════════════ */
+  function validateCurrentStep(stepId) {
+    const stepEl = document.getElementById(stepId);
+    if (!stepEl) return true;
+
+    const fields = stepEl.querySelectorAll('input, select, textarea');
+    for (let field of fields) {
+      if (field.hasAttribute('required')) {
+        let isValid = true;
+        
+        if (field.type === 'checkbox' || field.type === 'radio') {
+          if (field.name) {
+            const checked = stepEl.querySelector(`input[name="${field.name}"]:checked`);
+            if (!checked) isValid = false;
+          } else if (!field.checked) {
+            isValid = false;
+          }
+        } else {
+          if (!field.value.trim()) {
+            isValid = false;
+          } else if (!field.checkValidity()) {
+            isValid = false;
+          }
+        }
+
+        if (!isValid) {
+          field.style.borderColor = '#ef4444';
+          field.style.boxShadow = '0 0 0 3px rgba(239, 68, 68, 0.25)';
+          field.focus({ preventScroll: false });
+          field.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+          let labelText = '';
+          const label = stepEl.querySelector(`label[for="${field.id}"]`) || field.closest('.fgroup')?.querySelector('label');
+          if (label) {
+            labelText = label.textContent.replace('*', '').replace('•', '').trim();
+          }
+          
+          const fieldName = labelText || field.placeholder || field.name || 'Required Field';
+          if (typeof showToast === 'function') {
+            showToast('Required Field Missing', `Please fill in: ${fieldName}`, '⚠️');
+          }
+
+          const clearError = () => {
+            field.style.borderColor = '';
+            field.style.boxShadow = '';
+            field.removeEventListener('input', clearError);
+            field.removeEventListener('change', clearError);
+          };
+          field.addEventListener('input', clearError);
+          field.addEventListener('change', clearError);
+
+          return false;
+        }
+      } else if (field.value.trim() && !field.checkValidity()) {
+        field.style.borderColor = '#ef4444';
+        field.style.boxShadow = '0 0 0 3px rgba(239, 68, 68, 0.25)';
+        field.focus({ preventScroll: false });
+        field.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        if (typeof showToast === 'function') {
+          showToast('Invalid Format', `Please check: ${field.placeholder || field.name}`, '⚠️');
+        }
+
+        const clearError = () => {
+          field.style.borderColor = '';
+          field.style.boxShadow = '';
+          field.removeEventListener('input', clearError);
+          field.removeEventListener('change', clearError);
+        };
+        field.addEventListener('input', clearError);
+        field.addEventListener('change', clearError);
+
+        return false;
+      }
+    }
+    return true;
+  }
+
+  /* ══════════════════════════════
      PLAYER REGISTRATION - STEP NAV
   ══════════════════════════════ */
   let currentStep = 1;
   const totalSteps = 6;
 
   function goToStep(step) {
+    if (step > currentStep) {
+      if (!validateCurrentStep('step-' + currentStep)) return;
+    }
     document.getElementById('step-' + currentStep).classList.remove('active');
     document.querySelectorAll('.step-item')[currentStep - 1].classList.remove('active');
     document.querySelectorAll('.step-item')[currentStep - 1].classList.add('done');
@@ -1535,7 +1234,7 @@
      FRANCHISE REGISTRATION - STEP NAV
   ══════════════════════════════ */
   let currentFStep = 1;
-  const totalFSteps = 5;
+  const totalFSteps = 2;
 
   function goToFStep(step) {
     if (step > currentFStep) {
@@ -1760,58 +1459,34 @@
      FRANCHISE SUBMIT — Supabase
   ══════════════════════════════ */
   async function submitFranchiseForm() {
-    if (!document.getElementById('fAgreeDisclaimer').checked) {
-      showToast && showToast('Disclaimer Required', 'Please read and accept the franchise disclaimer to continue.', '⚠️');
-      return;
-    }
+    if (!validateCurrentStep('fstep-2')) return;
 
     const btn = document.getElementById('fSubmitBtn');
     btn.innerHTML = '<span style="display:inline-block;animation:spin 1s linear infinite;border:2px solid #000;border-top-color:transparent;border-radius:50%;width:18px;height:18px;"></span> Submitting...';
     btn.disabled = true;
 
     try {
-      // ── Upload files ──
-      const ownerPhotoFile  = document.getElementById('fOwnerPhoto')?.files[0];
-      const ownerIDFile     = document.getElementById('fOwnerID')?.files[0];
-      const entityCertFile  = document.getElementById('fEntityCert')?.files[0];
-      const groundProofFile = document.getElementById('fGroundProof')?.files[0];
-      const additionalFile  = document.getElementById('fAdditionalDocs')?.files[0];
-      const payFile         = document.getElementById('fPaymentProof')?.files[0];
-
-      const [ownerPhotoUrl, ownerIdUrl, entityCertUrl, groundProofUrl, additionalUrl, fPayUrl] = await Promise.all([
-        uploadFile('franchise-documents', 'owner-photos',   ownerPhotoFile),
-        uploadFile('franchise-documents', 'owner-ids',      ownerIDFile),
-        uploadFile('franchise-documents', 'entity-certs',   entityCertFile),
-        uploadFile('franchise-documents', 'ground-proofs',  groundProofFile),
-        uploadFile('franchise-documents', 'additional',     additionalFile),
-        uploadFile('payment-proofs',      'franchises',     payFile),
-      ]);
-
-      // ── Collect facilities checkboxes ──
-      const facilities = Array.from(document.querySelectorAll('[name="facilities"]:checked')).map(c => c.value);
-
-      // ── Franchise signature ──
-      const fSignatureData = fCanvas ? fCanvas.toDataURL() : null;
-
-      // ── Reference number ──
       const refNum = 'MCL-FR-2026-' + Math.floor(1000 + Math.random() * 9000);
 
-      // ── Build payload ──
-      const payload = {
-        // Franchise Info (Step 1)
-        franchise_name:    document.getElementById('franchiseName')?.value.trim() || null,
-        franchise_type:    document.getElementById('franchiseType')?.value || null,
-        est_year:          parseInt(document.getElementById('franchiseEstYear')?.value) || null,
-        franchise_email:   document.getElementById('franchiseEmail')?.value.trim() || null,
-        franchise_phone:   document.getElementById('franchisePhone')?.value.trim() || null,
-        franchise_website: document.getElementById('franchiseWebsite')?.value.trim() || null,
-        franchise_addr1:   document.getElementById('cAddr1')?.value.trim() || null,
-        franchise_addr2:   document.getElementById('cAddr2')?.value.trim() || null,
-        franchise_city:    document.getElementById('cCity')?.value.trim() || null,
-        franchise_state:   document.getElementById('cState')?.value || null,
-        franchise_postal:  document.getElementById('cPostal')?.value.trim() || null,
+      const applicantName = document.getElementById('franchiseFullName')?.value.trim() || '';
+      const preferredName = document.getElementById('franchisePreferred')?.value.trim() || '';
+      const turnover      = document.getElementById('franchiseTurnover')?.value.trim() || '';
+      const experience    = document.getElementById('franchiseExperience')?.value.trim() || '';
+      const investSource  = document.getElementById('franchiseInvestSource')?.value || '';
+      const message       = document.getElementById('franchiseMessage')?.value.trim() || '';
 
-        // Owner Info (Step 2)
+      const combinedDesc = `Turnover: ${turnover} | Experience: ${experience} | Investment Source: ${investSource} | Message: ${message}`;
+
+      // Build payload matching exact database column names in franchise_registrations table
+      const dbPayload = {
+        franchise_name:    preferredName || applicantName || 'MCL Franchise Applicant',
+        franchise_type:    document.getElementById('franchiseEntityType')?.value || null,
+        franchise_email:   document.getElementById('franchiseEmail')?.value.trim() || null,
+        franchise_phone:   document.getElementById('franchiseMobile')?.value.trim() || null,
+        franchise_addr1:   document.getElementById('franchiseAddress')?.value.trim() || null,
+        franchise_website: document.getElementById('franchiseWebsite')?.value.trim() || null,
+        franchise_desc:    combinedDesc,
+
         owner_prefix:      document.getElementById('ownerPrefix')?.value || null,
         owner_first_name:  document.getElementById('ownerFirstName')?.value.trim() || null,
         owner_last_name:   document.getElementById('ownerLastName')?.value.trim() || null,
@@ -1827,48 +1502,49 @@
         owner_state:       document.getElementById('ownerState')?.value.trim() || null,
         owner_postal:      document.getElementById('ownerPostal')?.value.trim() || null,
 
-        // Facilities (Step 3)
-        ground_type:       document.getElementById('groundType')?.value || null,
-        pitch_count:       parseInt(document.getElementById('pitchCount')?.value) || null,
-        seating_capacity:  parseInt(document.getElementById('seatingCapacity')?.value) || null,
-        player_capacity:   parseInt(document.getElementById('playerCapacity')?.value) || null,
-        facilities:        facilities,
-        ground_ownership:  document.getElementById('groundOwnership')?.value || null,
-        coach_count:       parseInt(document.getElementById('coachCount')?.value) || null,
-        franchise_desc:    document.getElementById('franchiseDesc')?.value.trim() || null,
-
-        // Files (Step 4)
-        owner_photo_url:    ownerPhotoUrl,
-        owner_id_url:       ownerIdUrl,
-        entity_cert_url:    entityCertUrl,
-        ground_proof_url:   groundProofUrl,
-        additional_doc_url: additionalUrl,
-
-        // Payment & Declaration (Step 5)
-        payment_proof_url: fPayUrl,
-        signature_data:    fSignatureData,
         reference_no:      refNum,
       };
 
       // ── Insert into Supabase ──
-      const { error } = await db.from('franchise_registrations').insert(payload);
+      const { error } = await db.from('franchise_registrations').insert(dbPayload);
       if (error) throw error;
 
-      // ── Trigger Email Notification in Background (non-blocking) ──
+      // ── Trigger Email Notification in Background with full detail payload ──
+      const emailPayload = {
+        ...dbPayload,
+        applicant_name:    applicantName,
+        annual_turnover:   turnover,
+        experience:        experience,
+        investment_source: investSource,
+        preferred_name:    preferredName,
+        message:           message,
+      };
+
       db.functions.invoke('notify-boss', {
-        body: { type: 'FRANCHISE', data: payload }
+        body: { type: 'FRANCHISE', data: emailPayload }
       }).catch(console.error);
 
       // ── Success ──
-      document.getElementById('fstep-5').classList.remove('active');
+      document.getElementById('fstep-2').classList.remove('active');
       document.getElementById('fStepProgress').style.display = 'none';
-      document.getElementById('franchiseFormSuccess').style.display = 'block';
-      showToast && showToast('Franchise Application Submitted! 🏢', 'We will contact you within 72 hours.', '✅');
+
+      const displayName = applicantName || (document.getElementById('ownerFirstName')?.value.trim() ? (document.getElementById('ownerFirstName').value.trim() + ' ' + document.getElementById('ownerLastName')?.value.trim()) : 'Applicant');
+      const nameEl = document.getElementById('fSuccessApplicantName');
+      if (nameEl) nameEl.textContent = displayName;
+
+      const refEl = document.getElementById('fRefNumDisplay');
+      if (refEl) refEl.textContent = refNum;
+
+      const successCard = document.getElementById('franchiseFormSuccess');
+      successCard.style.display = 'block';
+      successCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      showToast && showToast('Franchise Application Submitted! 🏢', 'We will contact you within 48 hours.', '✅');
 
     } catch (err) {
       console.error('Franchise registration error:', err);
       showToast && showToast('Submission Failed', err.message || 'Please check your connection and try again.', '❌');
-      btn.innerHTML = '🏢 Submit Franchise Registration';
+      btn.innerHTML = '🏢 Submit Application';
       btn.disabled = false;
     }
   }

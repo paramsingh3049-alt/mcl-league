@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us — MCL T20 MMIFF Champions League</title>
+  <meta name="description" content="Where Cricket Meets Cinema. Where Sport Creates Impact. Learn about MCL T20."/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body { background-color: #0d0f0c; }
+    h1,h2,h3,h4,h5,h6 { font-weight:900!important; color:#fff!important; letter-spacing:-0.025em!important; }
+    .text-gradient { background:linear-gradient(to right,var(--brand,#b5e823),var(--accent-color,#22d3ee))!important; -webkit-background-clip:text!important; background-clip:text!important; color:transparent!important; }
+    section { background:#0d0f0c!important; }
+    .page-hero { position:relative; overflow:hidden; padding:120px 0 80px; }
+    .page-hero-img { position:absolute; inset:0; z-index:0; }
+    .page-hero-img img { width:100%; height:100%; object-fit:cover; }
+    .page-hero-img::after { content:''; position:absolute; inset:0; background:rgba(13,15,12,0.85); }
+    .page-hero-content { position:relative; z-index:1; text-align:center; }
+
+    /* Section Headers */
+    .au-section-label {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 6px 18px; border-radius: 9999px;
+      background: rgba(181,232,35,0.08); border: 1px solid rgba(181,232,35,0.25);
+      color: var(--brand,#b5e823); font-size: 0.75rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;
+    }
+    .au-section-title {
+      font-size: clamp(1.75rem,4vw,2.75rem) !important; font-weight: 900 !important;
+      color: #fff !important; letter-spacing: -0.025em !important;
+      text-transform: uppercase; line-height: 1.15 !important;
+    }
+    .au-section-sub {
+      color: #c8d8c0; font-size: 1.05rem; line-height: 1.75; max-width: 780px; margin: 0 auto;
+    }
+
+    /* Intro Banner */
+    .au-intro-banner {
+      background: linear-gradient(135deg, #151a13 0%, #0d0f0c 60%, #111810 100%);
+      border: 2px solid #2f372c; border-radius: 1.5rem; padding: 3rem 3.5rem;
+      position: relative; overflow: hidden;
+    }
+    .au-intro-banner::before {
+      content: ''; position: absolute; top: -60px; right: -60px;
+      width: 300px; height: 300px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(181,232,35,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .au-tagline {
+      font-size: 1.5rem !important; font-weight: 900 !important; color: #fff !important;
+      margin-bottom: 0.5rem; letter-spacing: -0.01em !important;
+    }
+    .au-tagline-sub { color: var(--brand,#b5e823); font-size: 1.1rem; font-weight: 700; margin-bottom: 1.5rem; }
+    .au-intro-text { color: #c8d8c0; font-size: 1.05rem; line-height: 1.8; }
+
+    /* Grid layout */
+    .au-grid-3 {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;
+    }
+    .au-card {
+      background: linear-gradient(to bottom right,#181d16,#0d0f0c);
+      border: 2px solid #2f372c; border-radius: 1.1rem; padding: 2rem;
+      transition: all 0.3s; position: relative; overflow: hidden;
+    }
+    .au-card:hover {
+      border-color: rgba(181,232,35,0.35); transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(181,232,35,0.08);
+    }
+    .au-icon { font-size: 2.2rem; margin-bottom: 1rem; display: block; }
+    .au-card-title { font-size: 1.1rem !important; font-weight: 800 !important; color: #fff !important; margin-bottom: 0.6rem; letter-spacing: 0 !important; }
+    .au-card-text { color: #8fa88a; font-size: 0.92rem; line-height: 1.65; }
+
+    /* Why List */
+    .au-why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
+    .au-why-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      background: rgba(181,232,35,0.04); border: 1px solid rgba(181,232,35,0.15);
+      border-radius: 0.875rem; padding: 1.35rem; transition: all 0.3s;
+    }
+    .au-why-item:hover { border-color: rgba(181,232,35,0.35); background: rgba(181,232,35,0.08); }
+    .au-why-bullet { width: 10px; height: 10px; border-radius: 50%; background: var(--brand,#b5e823); flex-shrink: 0; margin-top: 0.4rem; }
+    .au-why-text { color: #c8d8c0; font-size: 0.95rem; line-height: 1.6; }
+
+    /* Owner Banner */
+    .au-owners-banner {
+      background: linear-gradient(135deg, #0d1a08 0%, #0d0f0c 50%, #0a100d 100%);
+      border: 2px solid rgba(181,232,35,0.25); border-radius: 1.5rem; padding: 3rem;
+      position: relative; overflow: hidden;
+    }
+    .au-owners-highlights {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; margin-top: 2rem;
+    }
+    .au-owners-highlight-item {
+      background: rgba(181,232,35,0.06); border: 1px solid rgba(181,232,35,0.18);
+      border-radius: 0.75rem; padding: 1.25rem; display: flex; align-items: flex-start; gap: 0.75rem;
+    }
+
+    /* Impact Flow */
+    .au-impact-flow {
+      display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 520px; margin: 2.5rem auto 0;
+    }
+    .au-flow-item {
+      background: rgba(181,232,35,0.06); border: 1px solid rgba(181,232,35,0.25);
+      border-radius: 0.75rem; padding: 1rem 2rem; text-align: center; width: 100%;
+      color: #fff; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.05em;
+    }
+    .au-flow-arrow {
+      color: var(--brand,#b5e823); font-size: 1.5rem; line-height: 1; padding: 0.3rem 0; font-weight: 900;
+    }
+
+    /* Table */
+    .au-table-card {
+      background: linear-gradient(to bottom right,#181d16,#0d0f0c);
+      border: 2px solid #2f372c; border-radius: 1.25rem; overflow: hidden;
+    }
+    .au-glance-table { width: 100%; border-collapse: collapse; }
+    .au-glance-table tr { border-bottom: 1px solid #2f372c; }
+    .au-glance-table tr:last-child { border-bottom: none; }
+    .au-glance-table td { padding: 1.1rem 1.5rem; font-size: 0.95rem; }
+    .au-glance-table td:first-child { color: var(--brand,#b5e823); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.82rem; width: 220px; background: rgba(181,232,35,0.02); }
+    .au-glance-table td:last-child { color: #c8d8c0; font-weight: 600; }
+
+    /* CTA Banner */
+    .au-cta-banner {
+      background: linear-gradient(135deg, #0f1e08 0%, #0d1510 60%, #080d0b 100%);
+      border: 2px solid rgba(181,232,35,0.3); border-radius: 1.5rem; padding: 3.5rem 2rem;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .au-cta-banner::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(181,232,35,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .au-legacy-pillars {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin: 1.75rem 0;
+    }
+    .au-legacy-pillar {
+      padding: 0.6rem 1.5rem; background: rgba(181,232,35,0.08);
+      border: 1px solid rgba(181,232,35,0.3); border-radius: 9999px;
+      color: var(--brand,#b5e823); font-size: 0.85rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.08em;
+    }
+
+    @media (max-width: 768px) {
+      .au-intro-banner { padding: 2rem 1.5rem; }
+      .au-owners-banner { padding: 2rem 1.5rem; }
+      .au-cta-banner { padding: 2.5rem 1.5rem; }
+      .au-glance-table td:first-child { width: 140px; }
+    }
+  </style>
+</head>
+<body>
+<div class="particles"></div>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo">
+    <div><div class="nav-logo-text"><span class="brand">MCL T20</span><span class="sub">MMIFF Champions League</span></div></div>
+    <img src="logo.png" alt="MCL Logo"/>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html" class="active">About Us</a>
+    <a href="visionaries.html">Visionaries</a>
+    <a href="teams.html">Teams</a>
+    <a href="matches.html">Schedule</a>
+    <a href="timeline.html">Timeline</a>
+    <a href="registration.html" class="nav-cta">Player Registration</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <a href="about.html" class="active">About Us</a>
+  <a href="visionaries.html">Visionaries</a>
+  <a href="teams.html">Teams</a>
+  <a href="matches.html">Schedule</a>
+  <a href="timeline.html">Timeline</a>
+  <a href="registration.html" style="color:var(--brand);border-color:rgba(181,232,35,0.25);background:rgba(181,232,35,0.06);">Player Registration &rarr;</a>
+</div>
+
+<!-- ===== PAGE HERO ===== -->
+<div class="page-hero">
+  <div class="page-hero-img">
+    <img src="https://images.pexels.com/photos/36230651/pexels-photo-36230651.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Cricket Stadium"/>
+  </div>
+  <div class="page-hero-content">
+    <div class="container">
+      <div class="au-section-label">MCL T20 — ABOUT US</div>
+      <h1 class="au-section-title">WHERE CRICKET MEETS <span class="text-gradient">CINEMA</span></h1>
+      <p style="color:#c8d8c0;font-size:1.15rem;max-width:720px;margin:1rem auto 0;line-height:1.65;font-weight:500;">
+        Where Sport Creates Impact.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== INTRO BANNER SECTION ===== -->
+<section style="padding:4rem 0 3rem;">
+  <div class="container" style="max-width:1050px;">
+    <div class="au-intro-banner reveal">
+      <div class="au-tagline">MMIFF Champions League T20 (MCL T20)</div>
+      <div class="au-tagline-sub">Cricket &bull; Cinema &bull; Community &bull; Impact</div>
+      <p class="au-intro-text">
+        MMIFF Champions League T20 (MCL T20) is a new-age cricket and entertainment platform designed to bring together competitive T20 cricket, cinema, celebrity engagement, digital innovation and social impact under one powerful league ecosystem.
+      </p>
+      <p class="au-intro-text" style="margin-top:1rem;">
+        With <strong style="color:#fff;">08 franchise teams, 15 matches</strong> and a high-energy entertainment format, MCL T20 is built to create lasting value for fans, players, franchise owners, brands, partners and communities—on and beyond the field.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THE MCL T20 DIFFERENCE ===== -->
+<section style="padding:3rem 0;">
+  <div class="container" style="max-width:1050px;">
+    <div class="reveal" style="text-align:center;margin-bottom:2.5rem;">
+      <div class="au-section-label">DISTINCTIVE HIGHLIGHTS</div>
+      <h2 class="au-section-title">THE MCL T20 <span class="text-gradient">DIFFERENCE</span></h2>
+    </div>
+
+    <div class="au-grid-3 reveal">
+      <div class="au-card">
+        <span class="au-icon">🏏</span>
+        <h3 class="au-card-title">08 Exclusive Franchise Teams</h3>
+        <p class="au-card-text">A carefully curated franchise ecosystem owned by visionaries, brands and celebrities, creating long-term sporting and entertainment properties.</p>
+      </div>
+
+      <div class="au-card">
+        <span class="au-icon">🎬</span>
+        <h3 class="au-card-title">Cricket &times; Cinema</h3>
+        <p class="au-card-text">A distinctive fusion of sport, entertainment, celebrity culture and creative talent, bringing the energy of cricket together with the influence of cinema.</p>
+      </div>
+
+      <div class="au-card">
+        <span class="au-icon">🌐</span>
+        <h3 class="au-card-title">Global Digital Reach</h3>
+        <p class="au-card-text">Live streaming, media partnerships and digital-first fan engagement designed to take MCL T20 beyond stadiums and across borders.</p>
+      </div>
+
+      <div class="au-card">
+        <span class="au-icon">⚡</span>
+        <h3 class="au-card-title">Digital-First Innovation</h3>
+        <p class="au-card-text">From e-auctions for franchises and players to digital fan engagement, MCL T20 embraces technology across the league ecosystem.</p>
+      </div>
+
+      <div class="au-card" style="grid-column: span 2 / span 2;">
+        <span class="au-icon">🤝</span>
+        <h3 class="au-card-title">Cricket for a Cause</h3>
+        <p class="au-card-text">A league with purpose—using the power of cricket to support sportsperson welfare, artist empowerment and grassroots development.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY MCL T20 IS DIFFERENT ===== -->
+<section style="padding:4rem 0;">
+  <div class="container" style="max-width:1050px;">
+    <div class="reveal" style="text-align:center;margin-bottom:2.5rem;">
+      <div class="au-section-label">OUR VISION</div>
+      <h2 class="au-section-title">WHY MCL T20 IS <span class="text-gradient">DIFFERENT</span></h2>
+      <p class="au-section-sub" style="margin-top:0.5rem;">Not just another T20 league. A new sporting and entertainment movement built around a larger vision:</p>
+    </div>
+
+    <div class="au-why-grid reveal">
+      <div class="au-why-item">
+        <div class="au-why-bullet"></div>
+        <div class="au-why-text">Building enduring franchises with regional roots and global ambition</div>
+      </div>
+      <div class="au-why-item">
+        <div class="au-why-bullet"></div>
+        <div class="au-why-text">Creating multiple revenue opportunities across sponsorship, media, merchandising and co-branding</div>
+      </div>
+      <div class="au-why-item">
+        <div class="au-why-bullet"></div>
+        <div class="au-why-text">Connecting fans, families and communities through sport and entertainment</div>
+      </div>
+      <div class="au-why-item">
+        <div class="au-why-bullet"></div>
+        <div class="au-why-text">Creating experiences beyond the boundary through celebrity, culture and digital engagement</div>
+      </div>
+      <div class="au-why-item" style="grid-column: 1 / -1;">
+        <div class="au-why-bullet"></div>
+        <div class="au-why-text"><strong style="color:#fff;">Turning league participation into long-term legacy</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ONE LEAGUE. MANY OPPORTUNITIES. ===== -->
+<section style="padding:4rem 0;">
+  <div class="container" style="max-width:1050px;">
+    <div class="reveal" style="text-align:center;margin-bottom:2.5rem;">
+      <div class="au-section-label">ECOSYSTEM STAKEHOLDERS</div>
+      <h2 class="au-section-title">ONE LEAGUE. <span class="text-gradient">MANY OPPORTUNITIES.</span></h2>
+    </div>
+
+    <div class="au-grid-3 reveal">
+      <div class="au-card">
+        <span class="au-icon">📣</span>
+        <h3 class="au-card-title">For Fans</h3>
+        <p class="au-card-text">Follow your team, experience the action and become part of a growing cricket community—in stadiums and across digital platforms.</p>
+      </div>
+
+      <div class="au-card">
+        <span class="au-icon">🏢</span>
+        <h3 class="au-card-title">For Franchise Owners</h3>
+        <p class="au-card-text">Enter the world of cricket ownership and build a long-term sporting and entertainment asset.</p>
+      </div>
+
+      <div class="au-card">
+        <span class="au-icon">💎</span>
+        <h3 class="au-card-title">For Sponsors &amp; Brands</h3>
+        <p class="au-card-text">Connect with a highly engaged audience through sports, entertainment, content and purpose-driven partnerships.</p>
+      </div>
+
+      <div class="au-card">
+        <span class="au-icon">🏆</span>
+        <h3 class="au-card-title">For Players &amp; Members</h3>
+        <p class="au-card-text">Compete, perform, connect and create unforgettable moments on the field and behind the scenes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THE OWNER'S ARENA ===== -->
+<section style="padding:4rem 0;">
+  <div class="container" style="max-width:1050px;">
+    <div class="au-owners-banner reveal">
+      <div class="au-section-label">FRANCHISE ACQUISITION</div>
+      <h2 class="au-section-title" style="margin-bottom:0.5rem;">THE OWNER'S <span class="text-gradient">ARENA</span></h2>
+      <p class="au-tagline" style="font-size:1.15rem!important;margin-bottom:1rem;">Own the Game. Build the Legacy.</p>
+      <p class="au-intro-text">
+        MCL T20 offers an opportunity to own one of 08 exclusive franchise teams through a transparent, digitally enabled franchise acquisition ecosystem.
+      </p>
+
+      <div class="au-owners-highlights">
+        <div class="au-owners-highlight-item">
+          <span class="au-owners-highlight-icon">🏆</span>
+          <div class="au-owners-highlight-text">
+            <strong>08 Exclusive Franchises</strong>
+            <span>Regional roots &amp; global identity</span>
+          </div>
+        </div>
+        <div class="au-owners-highlight-item">
+          <span class="au-owners-highlight-icon">📱</span>
+          <div class="au-owners-highlight-text">
+            <strong>E-Auction Process</strong>
+            <span>Transparent &amp; digital acquisition</span>
+          </div>
+        </div>
+        <div class="au-owners-highlight-item">
+          <span class="au-owners-highlight-icon">💰</span>
+          <div class="au-owners-highlight-text">
+            <strong>Multi-Revenue Stream</strong>
+            <span>Sponsorship, Media, Merchandising &amp; Co-Branding</span>
+          </div>
+        </div>
+        <div class="au-owners-highlight-item">
+          <span class="au-owners-highlight-icon">🌟</span>
+          <div class="au-owners-highlight-text">
+            <strong>Long-Term Vision</strong>
+            <span>Build a recognizable sporting property</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:2rem;">
+        <p style="color:var(--brand,#b5e823);font-weight:700;font-size:1.1rem;margin-bottom:1rem;">Your team. Your identity. Your legacy.</p>
+        <a href="registration.html#franchise" class="btn-primary" style="display:inline-block;padding:12px 32px;">Apply for Franchise Ownership &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CRICKET FOR A CAUSE ===== -->
+<section style="padding:4rem 0;">
+  <div class="container" style="max-width:1050px;">
+    <div class="reveal" style="text-align:center;margin-bottom:2.5rem;">
+      <div class="au-section-label">SOCIAL RESPONSIBILITY</div>
+      <h2 class="au-section-title">MCL T20 — <span class="text-gradient">CRICKET FOR A CAUSE</span></h2>
+      <p class="au-tagline" style="font-size:1.15rem!important;margin-top:0.5rem;">Every Boundary Can Create an Impact.</p>
+      <p class="au-section-sub" style="margin-top:0.5rem;">
+        MCL T20 is committed to transforming cricket into a platform for meaningful social change. A significant portion of franchise and sponsorship proceeds is envisioned to support initiatives across:
+      </p>
+    </div>
+
+    <div class="au-grid-3 reveal" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+      <div class="au-card">
+        <span class="au-icon">🩺</span>
+        <h3 class="au-card-title" style="color:var(--brand,#b5e823)!important;">Sportsperson Welfare</h3>
+        <p class="au-card-text">Scholarships, training opportunities, healthcare support and health-insurance assistance for deserving and underprivileged athletes.</p>
+      </div>
+
+      <div class="au-card">
+        <span class="au-icon">🎨</span>
+        <h3 class="au-card-title" style="color:var(--brand,#b5e823)!important;">Artist Empowerment</h3>
+        <p class="au-card-text">Grants, platforms and opportunities for emerging filmmakers, musicians, performers and creative professionals.</p>
+      </div>
+
+      <div class="au-card">
+        <span class="au-icon">🌱</span>
+        <h3 class="au-card-title" style="color:var(--brand,#b5e823)!important;">Grassroots Development</h3>
+        <p class="au-card-text">Support for academies, rural tournaments, youth development programmes and cultural initiatives.</p>
+      </div>
+    </div>
+
+    <!-- WHY IT MATTERS + IMPACT FLOW -->
+    <div class="reveal" style="margin-top:4rem;background:linear-gradient(to bottom right,#181d16,#0d0f0c);border:2px solid #2f372c;border-radius:1.5rem;padding:3rem 2.5rem;">
+      <div style="text-align:center;">
+        <div class="au-section-label">PURPOSE &amp; IMPACT</div>
+        <h3 class="au-section-title" style="font-size:1.75rem!important;">WHY IT <span class="text-gradient">MATTERS</span></h3>
+        <p class="au-intro-text" style="max-width:760px;margin:1rem auto 0;">
+          Sports and Arts are powerful pillars of India's identity. Yet countless talented young athletes and artists remain unseen because opportunity does not always reach talent.
+        </p>
+        <p style="color:var(--brand,#b5e823);font-weight:700;margin-top:1rem;">MCL T20 aims to create a sustainable impact ecosystem:</p>
+      </div>
+
+      <div class="au-impact-flow">
+        <div class="au-flow-item">INVESTORS &amp; SPONSORS</div>
+        <div class="au-flow-arrow">&darr;</div>
+        <div class="au-flow-item">POWER THE LEAGUE</div>
+        <div class="au-flow-arrow">&darr;</div>
+        <div class="au-flow-item">LEAGUE ECOSYSTEM &amp; REVENUES</div>
+        <div class="au-flow-arrow">&darr;</div>
+        <div class="au-flow-item">SUPPORT ATHLETES &amp; ARTISTS</div>
+        <div class="au-flow-arrow">&darr;</div>
+        <div class="au-flow-item">CREATE OPPORTUNITY &amp; INSPIRATION</div>
+        <div class="au-flow-arrow">&darr;</div>
+        <div class="au-flow-item" style="background:rgba(181,232,35,0.15);border-color:var(--brand,#b5e823);color:var(--brand,#b5e823);">A NEW GENERATION OF CHANGE-MAKERS</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THE LEAGUE AT A GLANCE ===== -->
+<section style="padding:4rem 0;">
+  <div class="container" style="max-width:900px;">
+    <div class="reveal" style="text-align:center;margin-bottom:2.5rem;">
+      <div class="au-section-label">QUICK SUMMARY</div>
+      <h2 class="au-section-title">THE LEAGUE AT A <span class="text-gradient">GLANCE</span></h2>
+    </div>
+
+    <div class="au-table-card reveal">
+      <table class="au-glance-table">
+        <tbody>
+          <tr>
+            <td>FORMAT</td>
+            <td>T20 Cricket League</td>
+          </tr>
+          <tr>
+            <td>TEAMS</td>
+            <td>08 Regional Franchises</td>
+          </tr>
+          <tr>
+            <td>DURATION</td>
+            <td>Approx. 08–10 Days</td>
+          </tr>
+          <tr>
+            <td>MATCHES</td>
+            <td>15 Total</td>
+          </tr>
+          <tr>
+            <td>GROUP STAGE</td>
+            <td>12 Matches</td>
+          </tr>
+          <tr>
+            <td>KNOCKOUT</td>
+            <td>03 Matches</td>
+          </tr>
+          <tr>
+            <td>DISTRIBUTION</td>
+            <td>OTT &bull; YouTube &bull; Social Media &bull; Digital Platforms</td>
+          </tr>
+          <tr>
+            <td>PROJECTED DIGITAL REACH</td>
+            <td>Approx. 05–08 Million Viewers</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BUILT FOR THE NEXT GENERATION ===== -->
+<section style="padding:3rem 0 4rem;">
+  <div class="container" style="max-width:1050px;">
+    <div class="reveal" style="background:linear-gradient(135deg,#151a13,#0d0f0c);border:2px solid #2f372c;border-radius:1.5rem;padding:3rem 2.5rem;text-align:center;">
+      <div class="au-section-label">TALENT DEVELOPMENT</div>
+      <h2 class="au-section-title" style="font-size:1.85rem!important;margin-bottom:1rem;">BUILT FOR THE <span class="text-gradient">NEXT GENERATION</span></h2>
+      <p class="au-intro-text" style="max-width:800px;margin:0 auto 1rem;">
+        MCL T20 is supported by a wider sporting ecosystem focused on talent development, training, partnerships and opportunity creation.
+      </p>
+      <p class="au-intro-text" style="max-width:800px;margin:0 auto;">
+        Through the MMIFF Cricket Academy and its authorized training and partnership ecosystem, the league aims to create pathways that extend beyond the tournament—helping emerging talent develop, compete and connect with larger opportunities.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== JOIN THE LEGACY CTA ===== -->
+<section style="padding:3rem 0 6rem;">
+  <div class="container" style="max-width:1050px;">
+    <div class="au-cta-banner reveal">
+      <div class="au-section-label">BECOME A PART</div>
+      <h2 class="au-legacy-tagline">JOIN THE <span class="text-gradient">LEGACY</span></h2>
+      <p class="au-intro-text" style="font-size:1.15rem;max-width:680px;margin:0 auto;color:#fff;font-weight:600;">
+        More Than a Tournament. A Movement.
+      </p>
+      <p class="au-intro-text" style="max-width:720px;margin:0.75rem auto 0;">
+        MCL T20 brings together talent, discipline, competition, entertainment, culture and social responsibility in one integrated platform.
+      </p>
+
+      <div class="au-legacy-pillars">
+        <div class="au-legacy-pillar">CRICKET</div>
+        <div class="au-legacy-pillar">CINEMA</div>
+        <div class="au-legacy-pillar">COMMUNITY</div>
+        <div class="au-legacy-pillar">IMPACT</div>
+      </div>
+
+      <p style="color:var(--brand,#b5e823);font-size:1.1rem;font-weight:700;margin-bottom:2rem;">
+        08 Teams. 15 Matches. One Vision. Where the Game Meets the Bigger Picture.
+      </p>
+
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="registration.html" class="btn-primary" style="padding:14px 32px;">Register as a Player &rarr;</a>
+        <a href="registration.html#franchise" class="btn-outline" style="padding:14px 32px;border:2px solid rgba(181,232,35,0.3);color:#fff;">Franchise Application &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="display:inline-flex;">
+          <div class="nav-logo-text"><span class="brand">MCL T20</span><span class="sub">MMIFF Champions League</span></div>
+          <img src="logo.png" alt="MCL" style="height:52px;border-radius:calc(var(--radius) - 2px);"/>
+        </a>
+        <p>Where Cricket Meets a Cause. An initiative by Mentor &amp; Mascot Indian Film Federation.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="visionaries.html">Visionaries</a></li>
+          <li><a href="teams.html">Teams</a></li>
+          <li><a href="matches.html">Schedule</a></li>
+          <li><a href="timeline.html">Timeline</a></li>
+          <li><a href="registration.html">Register</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Group A</h4>
+        <ul>
+          <li><a href="teams.html#team-1">Team A</a></li>
+          <li><a href="teams.html#team-2">Team B</a></li>
+          <li><a href="teams.html#team-3">Team C</a></li>
+          <li><a href="teams.html#team-4">Team D</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Group B</h4>
+        <ul>
+          <li><a href="teams.html#team-5">Team E</a></li>
+          <li><a href="teams.html#team-6">Team F</a></li>
+          <li><a href="teams.html#team-7">Team G</a></li>
+          <li><a href="teams.html#team-8">Team H</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 MCL T20 — MMIFF Champions League. All rights reserved.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/mclt20s01?igsh=MXB5dmM5NGc0ZzlzNA==" target="_blank" title="Instagram" style="display:flex;align-items:center;justify-content:center;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </a>
+        <a href="#" title="Twitter" style="display:flex;align-items:center;justify-content:center;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4.01c-1 .49-1.98.68-3 .99-1.12-1.27-2.7-1.2-4.12-1.2-4.86 0-7.38 4.52-6.84 8.58C4 11.43 3.01 6.58 2 4c-1.5 3.5-1 7.15 1 9.5-1.02-.15-1.98-.38-2.9-.84.2 3 1.83 5.48 4.7 6.4-1.05.3-2.1.33-3.15.11 1.04 2.87 3.73 4.29 6.84 4.38-2.9 2.1-6.17 2.5-9.4 1.7 3.32 1.86 6.52 2.62 10.32 2.62 11.83 0 18.7-9.4 18.7-18.7.02-.27 0-.54 0-.81A12.7 12.7 0 0 0 22 4.01Z"></path></svg>
+        </a>
+        <a href="#" title="YouTube" style="display:flex;align-items:center;justify-content:center;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+        </a>
+        <a href="#" title="Facebook" style="display:flex;align-items:center;justify-content:center;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
