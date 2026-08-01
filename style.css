@@ -22,7 +22,7 @@
 
 /* ===== RESET & BASE ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
+html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
 
 body {
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -225,8 +225,11 @@ input, textarea, select { font-family: inherit; outline: none; }
 @keyframes bob { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
 
 /* ===== SECTIONS ===== */
-section { padding: 6rem 0; position: relative; }
+section { padding: 4.5rem 0; position: relative; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+/* Anchor scroll offset — prevents navbar covering content */
+section[id], div[id] { scroll-margin-top: 84px; }
 
 .section-label {
   display: inline-flex; align-items: center; gap: 8px;
@@ -525,15 +528,17 @@ footer {
 
 /* ===== TOAST ===== */
 .toast {
-  position: fixed; bottom: 2rem; right: 2rem; z-index: 9999;
+  position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999;
   background: var(--card); border: 1px solid var(--brand);
   border-radius: var(--radius); padding: 1rem 1.5rem;
   display: flex; gap: 12px; align-items: center;
   box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-  transform: translateX(200%); transition: var(--transition); max-width: 320px;
+  transform: translateX(200%); transition: var(--transition);
+  max-width: min(320px, calc(100vw - 2rem));
+  width: max-content;
 }
 .toast.show { transform: translateX(0); }
-.toast-icon { font-size: 1.5rem; }
+.toast-icon { font-size: 1.5rem; flex-shrink: 0; }
 .toast-text strong { display: block; font-size: 0.95rem; color: #fff; margin-bottom: 2px; }
 .toast-text span { font-size: 0.8rem; color: var(--muted-foreground); }
 
@@ -571,7 +576,9 @@ footer {
 @media (max-width: 768px) {
   .nav-links, .nav-cta { display: none; }
   .hamburger { display: flex; }
-  section { padding: 4rem 0; }
+  section { padding: 3rem 0; }
+  .toast { right: 1rem; bottom: 1rem; left: 1rem; right: 1rem; max-width: calc(100vw - 2rem); transform: translateY(200%); }
+  .toast.show { transform: translateY(0); }
   .hero-stats { gap: 2rem; }
   .match-card { grid-template-columns: 1fr; gap: 1rem; }
   .match-team.right { flex-direction: row; text-align: left; }
