@@ -592,3 +592,20 @@ footer {
 
 .footer-quick-links ul { display: flex; flex-wrap: wrap; gap: 1rem; }
 .footer-quick-links ul li { margin-bottom: 0; }
+
+@media (max-width: 480px) {
+  .container { padding: 0 1rem; }
+  section { padding: 3rem 0; }
+  .hero { min-height: 80vh; }
+  .hero h1 { font-size: clamp(2.8rem, 12vw, 5rem); }
+  .hero-sub { font-size: 1rem; margin-bottom: 2rem; }
+  .hero-stats { gap: 1.5rem; }
+  .hero-stat .num { font-size: 2.8rem; }
+  .page-hero { padding: 8rem 0 4rem; }
+  .page-hero h1 { font-size: clamp(2rem, 10vw, 3.5rem); }
+  .btn-primary, .btn-outline { padding: 1rem 1.5rem; font-size: 1rem; }
+  .team-header { padding: 1.5rem; }
+  .match-card { padding: 1.25rem 1rem; }
+  /* prevent any child from overflowing viewport */
+  img, video, iframe, table { max-width: 100%; }
+}
