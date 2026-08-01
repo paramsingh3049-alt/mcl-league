@@ -225,7 +225,7 @@ input, textarea, select { font-family: inherit; outline: none; }
 @keyframes bob { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
 
 /* ===== SECTIONS ===== */
-section { padding: 4.5rem 0; position: relative; }
+section { padding: 3.5rem 0; position: relative; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
 
 /* Anchor scroll offset — prevents navbar covering content */
@@ -502,7 +502,7 @@ section[id], div[id] { scroll-margin-top: 84px; }
 footer {
   background: #000;
   border-top: 1px solid var(--border);
-  padding: 4rem 0 2rem;
+  padding: 3rem 0 2rem;
 }
 .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
 @media (max-width: 1024px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
@@ -576,7 +576,7 @@ footer {
 @media (max-width: 768px) {
   .nav-links, .nav-cta { display: none; }
   .hamburger { display: flex; }
-  section { padding: 3rem 0; }
+  section { padding: 2.5rem 0; }
   .toast { right: 1rem; bottom: 1rem; left: 1rem; right: 1rem; max-width: calc(100vw - 2rem); transform: translateY(200%); }
   .toast.show { transform: translateY(0); }
   .hero-stats { gap: 2rem; }
@@ -602,7 +602,7 @@ footer {
 
 @media (max-width: 480px) {
   .container { padding: 0 1rem; }
-  section { padding: 3rem 0; }
+  section { padding: 2rem 0; }
   .hero { min-height: 80vh; }
   .hero h1 { font-size: clamp(2.8rem, 12vw, 5rem); }
   .hero-sub { font-size: 1rem; margin-bottom: 2rem; }

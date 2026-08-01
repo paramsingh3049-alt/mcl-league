@@ -308,7 +308,20 @@
         margin: 0 auto 1.5rem;
       }
     }
+
+    /* ── No scroll animations on this page ── */
+    /* Override global .reveal — show elements immediately */
+    .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+    .reveal.visible {
+      opacity: 1 !important;
+      transform: none !important;
+    }
   </style>
+
 </head>
 <body>
 <div class="particles"></div>
@@ -358,7 +371,7 @@
   </div>
 </div>
 
-<section style="padding:3rem 0 5rem 0;">
+<section style="padding:3rem 0;">
   <div class="container" style="max-width:900px;">
 
     <div class="visionary-grid reveal" style="margin-bottom: 5rem;">
