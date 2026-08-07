@@ -783,23 +783,32 @@ footer {
 .ticker-track:hover {
   animation-play-state: paused;
 }
-/* Each card holds ONE image — fully visible, original aspect ratio */
+/* Each card is a fixed uniform box — all images same size, fully visible */
 .ticker-item {
   flex-shrink: 0;
-  margin: 0 2.5rem;
-  /* Give a fixed width; height is auto so image keeps its aspect ratio */
-  width: 280px;
+  margin: 0 2rem;
+  width: 260px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.03);
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255,255,255,0.06);
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 1rem;
 }
 .ticker-item img {
   display: block;
-  width: 100%;           /* fill the 280px wide card */
-  height: auto;          /* height adapts to image's natural aspect ratio */
-  object-fit: contain;   /* never crop, never stretch */
-  border-radius: 0.5rem;
-  transition: transform 0.4s ease, filter 0.4s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* shows full image, never crops, never stretches */
+  border-radius: 0;
+  transition: transform 0.4s ease;
 }
 .ticker-item:hover img {
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
 
 @keyframes scrollTicker {
@@ -808,6 +817,6 @@ footer {
 }
 
 @media (max-width: 768px) {
-  .ticker-item { width: 180px; margin: 0 1.25rem; }
-  .sponsor-ticker::before, .sponsor-ticker::after { width: 50px; }
+  .ticker-item { width: 150px; height: 110px; margin: 0 1rem; padding: 0.5rem; }
+  .sponsor-ticker::before, .sponsor-ticker::after { width: 40px; }
 }
