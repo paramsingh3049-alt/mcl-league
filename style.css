@@ -743,21 +743,25 @@ footer {
 }
 
 /* ===== SPONSOR TICKER ===== */
+.sponsors-section {
+  padding: 4rem 0;
+  background: #0d0f0c;
+  overflow: hidden;
+}
 .sponsor-ticker {
   width: 100%;
   overflow: hidden;
-  background: rgba(181, 232, 35, 0.03);
-  border-top: 1px solid rgba(181, 232, 35, 0.1);
-  border-bottom: 1px solid rgba(181, 232, 35, 0.1);
-  padding: 3rem 0;
   position: relative;
+  margin-top: 2rem;
+  padding: 2rem 0;
 }
+/* Soft fade edges left and right */
 .sponsor-ticker::before,
 .sponsor-ticker::after {
   content: '';
   position: absolute;
   top: 0;
-  width: 150px;
+  width: 120px;
   height: 100%;
   z-index: 2;
   pointer-events: none;
@@ -772,55 +776,38 @@ footer {
 }
 .ticker-track {
   display: flex;
+  align-items: center;
   width: max-content;
-  animation: scrollTicker 30s linear infinite;
+  animation: scrollTicker 28s linear infinite;
 }
 .ticker-track:hover {
   animation-play-state: paused;
 }
+/* Each card holds ONE image — fully visible, original aspect ratio */
 .ticker-item {
-  width: 320px;
-  height: 160px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem 1.5rem;
-  margin: 0 2rem;
-  box-sizing: border-box;
   flex-shrink: 0;
+  margin: 0 2.5rem;
+  /* Give a fixed width; height is auto so image keeps its aspect ratio */
+  width: 280px;
 }
 .ticker-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
   display: block;
-  filter: grayscale(20%) opacity(0.85);
-  transition: filter 0.4s, transform 0.4s;
+  width: 100%;           /* fill the 280px wide card */
+  height: auto;          /* height adapts to image's natural aspect ratio */
+  object-fit: contain;   /* never crop, never stretch */
+  border-radius: 0.5rem;
+  transition: transform 0.4s ease, filter 0.4s ease;
 }
 .ticker-item:hover img {
-  filter: grayscale(0%) opacity(1);
-  transform: scale(1.1);
-}
-.fallback-logo {
-  font-size: 1.8rem;
-  font-weight: 800;
-  letter-spacing: 1px;
-  font-family: sans-serif;
-  opacity: 0.6;
-  transition: opacity 0.4s, transform 0.4s;
-}
-.ticker-item:hover .fallback-logo {
-  opacity: 1;
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 @keyframes scrollTicker {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); } /* Scrolls by exactly half of the total duplicated track length */
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
 @media (max-width: 768px) {
-  .ticker-item { width: 220px; height: 120px; padding: 0.75rem 1rem; margin: 0 1rem; }
-  .fallback-logo { font-size: 1.2rem; }
+  .ticker-item { width: 180px; margin: 0 1.25rem; }
   .sponsor-ticker::before, .sponsor-ticker::after { width: 50px; }
 }
