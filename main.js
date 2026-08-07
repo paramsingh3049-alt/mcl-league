@@ -203,6 +203,66 @@ function initSmoothScroll() {
       }
     });
   });
+}// ===== CAROUSEL =====
+function initCarousel() {
+  const track = document.querySelector('.carousel-track');
+  const slides = document.querySelectorAll('.carousel-slide');
+  const prevBtn = document.querySelector('.prev-btn');
+  const nextBtn = document.querySelector('.next-btn');
+  const dotsContainer = document.querySelector('.carousel-dots');
+  
+  if (!track || slides.length === 0 || !prevBtn || !nextBtn || !dotsContainer) return;
+
+  let currentIndex = 0;
+  const slideCount = slides.length;
+  let autoPlayInterval;
+
+  // Create dots
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.classList.add('carousel-dot');
+    dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+    if (i === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => goToSlide(i));
+    dotsContainer.appendChild(dot);
+  });
+  
+  const dots = document.querySelectorAll('.carousel-dot');
+
+  function updateDots() {
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === currentIndex);
+    });
+  }
+
+  function goToSlide(index) {
+    if (index < 0) {
+      currentIndex = slideCount - 1;
+    } else if (index >= slideCount) {
+      currentIndex = 0;
+    } else {
+      currentIndex = index;
+    }
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    updateDots();
+    resetAutoPlay();
+  }
+
+  function nextSlide() { goToSlide(currentIndex + 1); }
+  function prevSlide() { goToSlide(currentIndex - 1); }
+
+  prevBtn.addEventListener('click', prevSlide);
+  nextBtn.addEventListener('click', nextSlide);
+
+  function startAutoPlay() {
+    autoPlayInterval = setInterval(nextSlide, 4000);
+  }
+  function resetAutoPlay() {
+    clearInterval(autoPlayInterval);
+    startAutoPlay();
+  }
+
+  startAutoPlay();
 }
 
 // ===== INIT ALL =====
@@ -215,4 +275,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initRegForm();
   initMatchesFilter();
   initSmoothScroll();
+  initCarousel();
 });
