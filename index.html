@@ -301,98 +301,109 @@
 </section>
 
 <!-- ===== PARTNERS CAROUSEL ===== -->
-<section class="sponsors-section" style="position: relative; padding: 6rem 0; background: linear-gradient(145deg, #070b12, #0d141e); overflow: hidden;">
-  <!-- Subtle soft lighting background elements -->
-  <div style="position: absolute; top: -30%; left: -10%; width: 50%; height: 60%; background: radial-gradient(circle, rgba(181, 232, 35, 0.06) 0%, transparent 60%); filter: blur(90px); z-index: 0; pointer-events: none;"></div>
-  <div style="position: absolute; bottom: -30%; right: -10%; width: 50%; height: 60%; background: radial-gradient(circle, rgba(181, 232, 35, 0.04) 0%, transparent 60%); filter: blur(90px); z-index: 0; pointer-events: none;"></div>
+<section class="sponsors-section" style="position: relative; padding: 6rem 0 8rem; background: linear-gradient(to bottom, rgba(7, 11, 18, 0.85) 0%, rgba(5, 12, 8, 0.95) 100%), url('mcl-hero-bg.jpg') center/cover no-repeat; overflow: hidden; display: flex; flex-direction: column; align-items: center;">
 
-  <div class="container reveal" style="text-align:center; position: relative; z-index: 1;">
-    <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:1rem;">
-      <span style="flex:1;max-width:60px;height:2px;background:linear-gradient(to right,transparent,var(--brand,#b5e823));border-radius:2px;display:block;"></span>
-      <div class="section-label" style="justify-content:center;color:var(--brand,#b5e823);font-size:0.9rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0;padding:6px 18px;border:1px solid rgba(181,232,35,0.25);border-radius:30px;background:rgba(181,232,35,0.05);backdrop-filter:blur(4px);">PARTNERS</div>
-      <span style="flex:1;max-width:60px;height:2px;background:linear-gradient(to left,transparent,var(--brand,#b5e823));border-radius:2px;display:block;"></span>
+  <div class="container reveal" style="text-align:center; position: relative; z-index: 1; max-width: 1000px; width: 100%;">
+    <!-- "PARTNERS" Text -->
+    <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:0.75rem;">
+      <span style="width: 40px; height: 1px; background: #00ff66;"></span>
+      <h3 style="color: #00ff66; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; margin: 0;">PARTNERS</h3>
+      <span style="width: 40px; height: 1px; background: #00ff66;"></span>
     </div>
-    <h2 class="section-title" style="text-align:center;font-size:clamp(2.5rem,5vw,4.2rem);margin-bottom:4rem; color: #fff;">OFFICIAL <span class="highlight" style="background:linear-gradient(to right, #ffffff, var(--brand,#b5e823));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">SPONSORS</span></h2>
+    
+    <!-- "OFFICIAL SPONSORS" Title -->
+    <h2 class="section-title" style="text-align:center; font-size: clamp(2.5rem, 5vw, 3.8rem); margin-bottom: 4rem; color: #ffffff; font-weight: 900; letter-spacing: -1px;">
+      OFFICIAL <span style="background: linear-gradient(to right, #00ff66, #00ffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">SPONSORS</span>
+    </h2>
   </div>
   
-  <div class="container sponsor-carousel-wrapper" style="position: relative; z-index: 1; max-width: 1100px; margin: 0 auto;">
+  <div class="sponsor-carousel-wrapper" style="position: relative; z-index: 1; max-width: 1200px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 3rem; padding: 0 1rem;">
     
-    <div class="sponsor-carousel-container" style="overflow: hidden; width: 100%; padding: 1rem 0;">
-      <div class="sponsor-carousel-track" style="display: flex; padding-bottom: 1rem;">
-        <!-- Set 1 -->
-        <div class="sponsor-card"><img src="sponsor-img1.png" alt="BAAMANN"></div>
-        <div class="sponsor-card"><img src="sponsor-img2.png" alt="Homestead ROOTS"></div>
-        <div class="sponsor-card"><img src="sponsor-img3.png" alt="MMIFF"></div>
-        <div class="sponsor-card"><img src="sponsor-img4.png" alt="MCL T20"></div>
-        <div class="sponsor-card"><img src="sponsor-mango-dark.jpg" alt="Mango Digi TV"></div>
-        <div class="sponsor-card"><img src="sponsor-gopal.jpg" alt="Gopal's 56"></div>
-        <!-- Set 2 for seamless loop -->
-        <div class="sponsor-card"><img src="sponsor-img1.png" alt="BAAMANN"></div>
-        <div class="sponsor-card"><img src="sponsor-img2.png" alt="Homestead ROOTS"></div>
-        <div class="sponsor-card"><img src="sponsor-img3.png" alt="MMIFF"></div>
-        <div class="sponsor-card"><img src="sponsor-img4.png" alt="MCL T20"></div>
-        <div class="sponsor-card"><img src="sponsor-mango-dark.jpg" alt="Mango Digi TV"></div>
-        <div class="sponsor-card"><img src="sponsor-gopal.jpg" alt="Gopal's 56"></div>
+    <!-- Left Navigation Arrow -->
+    <button class="carousel-nav-btn" style="flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; background: #050505; border: 1px solid rgba(255,255,255,0.08); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+    
+    <!-- Cards Container -->
+    <div class="sponsor-carousel-container" style="display: flex; gap: 1.5rem; justify-content: center; align-items: center;">
+      <!-- Gopal's 56 -->
+      <div class="sponsor-card">
+        <img src="sponsor-gopal.jpg" alt="Gopal's 56">
+      </div>
+      <!-- Mango Digi TV -->
+      <div class="sponsor-card">
+        <img src="sponsor-mango-dark.jpg" alt="Mango Digi TV">
+      </div>
+      <!-- BAAMANN -->
+      <div class="sponsor-card">
+        <img src="sponsor-img1.png" alt="BAAMANN">
+      </div>
+      <!-- Homestead ROOTS -->
+      <div class="sponsor-card">
+        <img src="sponsor-img2.png" alt="Homestead ROOTS">
       </div>
     </div>
+
+    <!-- Right Navigation Arrow -->
+    <button class="carousel-nav-btn" style="flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; background: #050505; border: 1px solid rgba(255,255,255,0.08); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </button>
+
   </div>
 </section>
 
 <!-- Hide scrollbar for webkit and add custom styles -->
 <style>
-  .sponsor-carousel-track {
-    display: flex;
-    width: max-content;
-    animation: sponsorAutoScroll 20s linear infinite;
-    align-items: center;
-  }
-  .sponsor-carousel-track:hover {
-    animation-play-state: paused;
-  }
-  @keyframes sponsorAutoScroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+  .carousel-nav-btn:hover {
+    background: #151515 !important;
+    border-color: rgba(255, 255, 255, 0.25) !important;
   }
   .sponsor-card {
-    flex-shrink: 0;
-    width: 220px;
-    height: 150px;
-    margin-right: 2rem;
+    width: 210px;
+    height: 190px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(20, 25, 35, 0.4);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
     box-sizing: border-box;
-    padding: 2rem;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2), inset 0 0 15px rgba(255,255,255,0.01);
+    padding: 2.2rem;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.4);
+    transition: all 0.3s ease;
   }
   .sponsor-card:hover {
-    transform: translateY(-8px);
-    background: rgba(25, 32, 45, 0.6);
-    border-color: rgba(181, 232, 35, 0.2);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.3), 0 0 25px rgba(181, 232, 35, 0.1), inset 0 0 20px rgba(255,255,255,0.03);
+    transform: scale(1.03);
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.6);
   }
   .sponsor-card img {
     display: block;
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  }
+  @media (max-width: 1024px) {
+    .sponsor-carousel-container {
+      flex-wrap: wrap;
+    }
+    .sponsor-card {
+      width: 180px;
+      height: 160px;
+      padding: 1.5rem;
+    }
   }
   @media (max-width: 768px) {
     .sponsor-card {
-      width: 180px;
+      width: 140px;
       height: 130px;
-      padding: 1.5rem;
-      margin-right: 1.5rem;
+      padding: 1rem;
     }
     .sponsor-carousel-wrapper {
-      padding: 0 1rem !important;
+      gap: 1rem;
     }
   }
 </style>
