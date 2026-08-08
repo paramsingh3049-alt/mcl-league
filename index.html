@@ -317,50 +317,62 @@
     </h2>
   </div>
   
-  <div class="sponsor-carousel-wrapper" style="position: relative; z-index: 1; max-width: 1200px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 3rem; padding: 0 1rem;">
+  <div class="sponsor-carousel-wrapper" style="position: relative; z-index: 1; max-width: 1200px; width: 100%; overflow: hidden; padding: 1rem 0;">
     
-    <!-- Left Navigation Arrow -->
-    <button class="carousel-nav-btn" style="flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; background: #050505; border: 1px solid rgba(255,255,255,0.08); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease;">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-    </button>
-    
-    <!-- Cards Container -->
-    <div class="sponsor-carousel-container" style="display: flex; gap: 1.5rem; justify-content: center; align-items: center;">
-      <!-- Gopal's 56 -->
+    <!-- Cards Container / Track -->
+    <div class="sponsor-carousel-track">
+      <!-- Set 1 -->
       <div class="sponsor-card">
         <img src="sponsor-gopal.jpg" alt="Gopal's 56">
       </div>
-      <!-- Mango Digi TV -->
       <div class="sponsor-card">
         <img src="sponsor-mango-dark.jpg" alt="Mango Digi TV">
       </div>
-      <!-- BAAMANN -->
       <div class="sponsor-card">
         <img src="sponsor-img1.png" alt="BAAMANN">
       </div>
-      <!-- Homestead ROOTS -->
+      <div class="sponsor-card">
+        <img src="sponsor-img2.png" alt="Homestead ROOTS">
+      </div>
+      <!-- Set 2 for seamless loop -->
+      <div class="sponsor-card">
+        <img src="sponsor-gopal.jpg" alt="Gopal's 56">
+      </div>
+      <div class="sponsor-card">
+        <img src="sponsor-mango-dark.jpg" alt="Mango Digi TV">
+      </div>
+      <div class="sponsor-card">
+        <img src="sponsor-img1.png" alt="BAAMANN">
+      </div>
       <div class="sponsor-card">
         <img src="sponsor-img2.png" alt="Homestead ROOTS">
       </div>
     </div>
-
-    <!-- Right Navigation Arrow -->
-    <button class="carousel-nav-btn" style="flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; background: #050505; border: 1px solid rgba(255,255,255,0.08); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease;">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-    </button>
 
   </div>
 </section>
 
 <!-- Hide scrollbar for webkit and add custom styles -->
 <style>
-  .carousel-nav-btn:hover {
-    background: #151515 !important;
-    border-color: rgba(255, 255, 255, 0.25) !important;
+  .sponsor-carousel-track {
+    display: flex;
+    flex-wrap: nowrap;
+    width: max-content;
+    animation: sponsorAutoScroll 20s linear infinite;
+    align-items: center;
+  }
+  .sponsor-carousel-track:hover {
+    animation-play-state: paused;
+  }
+  @keyframes sponsorAutoScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
   }
   .sponsor-card {
+    flex-shrink: 0;
     width: 210px;
     height: 190px;
+    margin-right: 2.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -386,24 +398,12 @@
     max-height: 100%;
     object-fit: contain;
   }
-  @media (max-width: 1024px) {
-    .sponsor-carousel-container {
-      flex-wrap: wrap;
-    }
-    .sponsor-card {
-      width: 180px;
-      height: 160px;
-      padding: 1.5rem;
-    }
-  }
   @media (max-width: 768px) {
     .sponsor-card {
-      width: 140px;
-      height: 130px;
-      padding: 1rem;
-    }
-    .sponsor-carousel-wrapper {
-      gap: 1rem;
+      width: 160px;
+      height: 140px;
+      padding: 1.5rem;
+      margin-right: 1.5rem;
     }
   }
 </style>
