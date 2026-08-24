@@ -309,7 +309,7 @@ section[id], div[id] { scroll-margin-top: 84px; }
 }
 .team-card:hover .team-name { color: var(--brand); }
 .team-state { font-size: 0.75rem; color: var(--muted-foreground); text-align: center; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.5rem; }
-.team-bar-wrap { height: 4px; width: 100%; background: #232920; border-radius: 9999px; overflow: hidden; }
+.team-bar-wrap { display: none; height: 4px; width: 100%; background: #232920; border-radius: 9999px; overflow: hidden; }
 .team-bar {
   height: 100%; width: 0;
   background: linear-gradient(to right, var(--brand), var(--accent-color));
