@@ -1021,7 +1021,46 @@ footer {
   }
 }
 
-/* ===== FOOTER INITIATIVE BRAND ===== */
+/* ===== FOOTER BRAND & INITIATIVE (BALANCED IDENTICAL SIZES) ===== */
+.footer-brand-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+.footer-brand-wrap:hover {
+  opacity: 0.88;
+}
+.footer-brand-wrap .footer-logo-img {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  border-radius: calc(var(--radius) - 2px);
+  filter: drop-shadow(0 2px 10px rgba(181, 232, 35, 0.25));
+}
+.footer-brand-wrap .footer-brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  text-align: left;
+}
+.footer-brand-wrap .footer-brand-text .brand {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.footer-brand-wrap .footer-brand-text .sub {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--brand);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+}
+
 .footer-initiative {
   display: flex;
   flex-direction: column;
@@ -1029,10 +1068,11 @@ footer {
   gap: 0.35rem;
 }
 .initiative-header {
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.8);
-  letter-spacing: 0.02em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 .initiative-brand {
   display: flex;
@@ -1048,23 +1088,25 @@ footer {
 .initiative-text {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
   text-align: left;
 }
 .initiative-hi {
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: #ffffff;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
   white-space: nowrap;
+  line-height: 1.2;
   font-family: 'Poppins', 'Noto Sans Devanagari', 'Segoe UI', sans-serif;
 }
 .initiative-en {
-  font-size: 0.88rem;
+  font-size: 0.78rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.92);
+  color: rgba(255, 255, 255, 0.9);
   letter-spacing: 0.03em;
   white-space: nowrap;
+  line-height: 1.2;
   font-family: 'Poppins', 'Inter', -apple-system, sans-serif;
 }
 @media (max-width: 768px) {
@@ -1072,11 +1114,12 @@ footer {
     align-items: flex-start;
   }
   .initiative-hi {
-    font-size: 0.95rem;
+    font-size: 1rem;
     white-space: normal;
   }
   .initiative-en {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     white-space: normal;
   }
 }
+
