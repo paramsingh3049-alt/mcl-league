@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap');
 
 /* ===== DESIGN TOKENS — from electric-deer-chase-1oh7.html ===== */
 :root {
@@ -1021,5 +1021,62 @@ footer {
   }
 }
 
-
-
+/* ===== FOOTER INITIATIVE BRAND ===== */
+.footer-initiative {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.35rem;
+}
+.initiative-header {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.02em;
+}
+.initiative-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+.initiative-logo {
+  height: 52px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(255, 136, 0, 0.25));
+}
+.initiative-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+}
+.initiative-hi {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  font-family: 'Poppins', 'Noto Sans Devanagari', 'Segoe UI', sans-serif;
+}
+.initiative-en {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  font-family: 'Poppins', 'Inter', -apple-system, sans-serif;
+}
+@media (max-width: 768px) {
+  .footer-initiative {
+    align-items: flex-start;
+  }
+  .initiative-hi {
+    font-size: 0.95rem;
+    white-space: normal;
+  }
+  .initiative-en {
+    font-size: 0.8rem;
+    white-space: normal;
+  }
+}
