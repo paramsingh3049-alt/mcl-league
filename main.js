@@ -370,8 +370,152 @@ function initCustomCursor() {
   document.documentElement.addEventListener('mouseenter', onMouseEnter, { passive: true });
 }
 
+// ===== CRICKET INTRO SPLASH SCREEN =====
+function initCricketSplash() {
+  const splash = document.getElementById('cricket-splash');
+  if (!splash) return;
+
+  const ball = document.getElementById('splash-ball');
+  const batWrapper = document.getElementById('splash-bat-wrapper');
+  const ring = document.getElementById('splash-impact-ring');
+  const flash = document.getElementById('splash-impact-flash');
+  const title = document.getElementById('splash-brand-title');
+  const canvas = document.getElementById('splash-spark-canvas');
+
+  // Particle Sparks Setup
+  let ctx, sparks = [];
+  if (canvas) {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    ctx = canvas.getContext('2d');
+
+    window.addEventListener('resize', () => {
+      if (!canvas) return;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }, { passive: true });
+  }
+
+  function createSparks(x, y) {
+    if (!ctx) return;
+    for (let i = 0; i < 50; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = 5 + Math.random() * 14;
+      sparks.push({
+        x: x,
+        y: y,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        size: 2.5 + Math.random() * 4.5,
+        color: Math.random() > 0.4 ? '#00ff66' : (Math.random() > 0.5 ? '#ffffff' : '#ffd700'),
+        life: 1,
+        decay: 0.02 + Math.random() * 0.035
+      });
+    }
+    requestAnimationFrame(renderSparks);
+  }
+
+  function renderSparks() {
+    if (!ctx || sparks.length === 0) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let i = sparks.length - 1; i >= 0; i--) {
+      const p = sparks[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vx *= 0.95;
+      p.vy *= 0.95;
+      p.life -= p.decay;
+
+      if (p.life <= 0) {
+        sparks.splice(i, 1);
+        continue;
+      }
+
+      ctx.save();
+      ctx.globalAlpha = p.life;
+      ctx.fillStyle = p.color;
+      ctx.shadowColor = p.color;
+      ctx.shadowBlur = 10;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+    if (sparks.length > 0) {
+      requestAnimationFrame(renderSparks);
+    }
+  }
+
+  // SEQUENCE TIMELINE
+  // 1. Ball appears (0.1s - 0.4s)
+  setTimeout(() => {
+    if (ball) {
+      ball.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+      ball.style.opacity = '1';
+      ball.style.transform = 'scale(1) translateY(0)';
+    }
+    if (title) {
+      title.style.opacity = '1';
+      title.style.transform = 'translateY(0)';
+    }
+  }, 100);
+
+  // 2. Bat swings in (0.45s - 0.8s)
+  setTimeout(() => {
+    if (batWrapper) {
+      batWrapper.style.opacity = '1';
+      batWrapper.style.transition = 'transform 0.35s cubic-bezier(0.5, 0, 0.75, 0)';
+      batWrapper.style.transform = 'translate(-30px, -20px) rotate(15deg)';
+    }
+  }, 450);
+
+  // 3. IMPACT SHOT (0.8s)
+  setTimeout(() => {
+    splash.classList.add('splash-shake');
+
+    if (flash) {
+      flash.style.opacity = '1';
+      flash.style.transition = 'opacity 0.12s ease-out';
+      setTimeout(() => { flash.style.opacity = '0'; }, 90);
+    }
+
+    if (ring) {
+      ring.style.opacity = '1';
+      ring.style.transform = 'scale(14)';
+      ring.style.transition = 'transform 0.4s ease-out, opacity 0.4s ease-out';
+      setTimeout(() => { ring.style.opacity = '0'; }, 300);
+    }
+
+    if (ball) {
+      const stageRect = ball.getBoundingClientRect();
+      createSparks(stageRect.left + stageRect.width / 2, stageRect.top + stageRect.height / 2);
+
+      // Ball launch rocket shot
+      ball.style.transition = 'transform 0.45s cubic-bezier(0.1, 0.9, 0.2, 1), opacity 0.35s ease';
+      ball.style.transform = 'translate(-850px, -650px) scale(5) rotate(-360deg)';
+      ball.style.filter = 'drop-shadow(0 0 30px #00ff66) blur(2px)';
+    }
+
+    if (batWrapper) {
+      batWrapper.style.transition = 'transform 0.32s ease-out';
+      batWrapper.style.transform = 'translate(-170px, -130px) rotate(60deg)';
+    }
+  }, 800);
+
+  // 4. Fade/Zoom into website homepage (1.8s)
+  setTimeout(() => {
+    splash.classList.add('splash-out');
+  }, 1800);
+
+  // 5. Hide completely (2.4s)
+  setTimeout(() => {
+    splash.style.display = 'none';
+  }, 2400);
+}
+
 // ===== INIT ALL =====
 document.addEventListener('DOMContentLoaded', () => {
+  initCricketSplash();
   initNavbar();
   initMobileMenu();
   initReveal();
