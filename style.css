@@ -346,20 +346,68 @@ section[id], div[id] { scroll-margin-top: 84px; }
 .prize-display {
   background: linear-gradient(to right, rgba(181,232,35,0.08), rgba(34,211,238,0.05));
   border: 1px solid rgba(181,232,35,0.25);
-  border-radius: 1rem; padding: 2.5rem;
-  display: grid; grid-template-columns: 1fr 1fr 1fr;
-  gap: 2rem; text-align: center; margin-top: 4rem;
+  border-radius: 1rem;
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+  margin-top: 4rem;
 }
-@media (max-width: 768px) { .prize-display { grid-template-columns: 1fr; } }
-.prize-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted-foreground); margin-bottom: 0.75rem; }
+.prize-card {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.prize-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: var(--muted-foreground);
+  margin-bottom: 0.75rem;
+}
 .prize-amount {
-  font-size: 3.5rem; font-weight: 900; line-height: 1;
+  font-size: clamp(2rem, 3.8vw, 3.25rem);
+  font-weight: 900;
+  line-height: 1.1;
   color: transparent;
   background: linear-gradient(to right, var(--brand), var(--accent-color));
-  -webkit-background-clip: text; background-clip: text;
+  -webkit-background-clip: text;
+  background-clip: text;
+  white-space: nowrap;
 }
-.prize-divider { width: 1px; background: #2f372c; }
-@media (max-width: 768px) { .prize-divider { display: none; } }
+.prize-sub {
+  font-size: 0.78rem;
+  color: var(--muted-foreground);
+  margin-top: 0.5rem;
+  line-height: 1.4;
+}
+.prize-divider {
+  width: 1px;
+  height: 80px;
+  background: #2f372c;
+  flex-shrink: 0;
+}
+@media (max-width: 768px) {
+  .prize-display {
+    flex-direction: column;
+    padding: 2rem 1.25rem;
+    gap: 2rem;
+  }
+  .prize-divider {
+    width: 60%;
+    height: 1px;
+  }
+  .prize-amount {
+    font-size: 2.75rem;
+    white-space: normal;
+  }
+}
 
 /* ===== PAGE HERO (inner pages) ===== */
 .page-hero {
