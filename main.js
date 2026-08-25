@@ -265,40 +265,44 @@ function initCarousel() {
   startAutoPlay();
 }
 
-// ===== CUSTOM BAT CURSOR =====
+// ===== CUSTOM BALL CURSOR =====
 function initCustomCursor() {
   // Only enable on devices with hover and fine pointer (desktop)
   if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
-  let cursor = document.getElementById('customBatCursor');
+  let cursor = document.getElementById('customBallCursor');
   if (!cursor) {
     cursor = document.createElement('div');
-    cursor.id = 'customBatCursor';
-    cursor.className = 'custom-bat-cursor';
+    cursor.id = 'customBallCursor';
+    cursor.className = 'custom-ball-cursor';
     cursor.setAttribute('aria-hidden', 'true');
     cursor.innerHTML = `
-      <svg class="bat-icon" viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Bat Body & Handle Base Outline -->
-        <path d="M9.5 10.5C9.5 12 6.5 13.5 6.5 16V31.5C6.5 33 7.5 34 9 34H15C16.5 34 17.5 33 17.5 31.5V16C17.5 13.5 14.5 12 14.5 10.5V2C14.5 1.2 13.8 0.5 13 0.5H11C10.2 0.5 9.5 1.2 9.5 2V10.5Z" fill="#F3EBDD" stroke="#0D0F0C" stroke-width="1.2" stroke-linejoin="round"/>
-        
-        <!-- Blade Wood Grain / Shadow Details -->
-        <path d="M12 14V33.5" stroke="#DFD3BE" stroke-width="1.1" stroke-linecap="round"/>
-        <path d="M7 16V31.5C7 32.5 7.8 33.2 9 33.2H12V14C9.5 14 7 15 7 16Z" fill="#E5D9C3" opacity="0.45"/>
-        
-        <!-- Blade Brand Accent Sticker -->
-        <rect x="8.5" y="18" width="7" height="8" rx="1.5" fill="#0D0F0C"/>
-        <rect x="9.5" y="19" width="5" height="6" rx="1" fill="#B5E823"/>
-        <path d="M10.5 22L12 20.5L13.5 22L12 23.5Z" fill="#0D0F0C"/>
+      <svg class="ball-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="mclBallGrad" cx="35%" cy="30%" r="70%">
+            <stop offset="0%" stop-color="#FF5C5C"/>
+            <stop offset="40%" stop-color="#D90429"/>
+            <stop offset="85%" stop-color="#8B0014"/>
+            <stop offset="100%" stop-color="#4A000A"/>
+          </radialGradient>
+          <linearGradient id="mclShineGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.65"/>
+            <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
 
-        <!-- Handle Grip (Neon Brand & Grip Texture) -->
-        <path d="M9.5 2C9.5 1.2 10.2 0.5 11 0.5H13C13.8 0.5 14.5 1.2 14.5 2V11.5H9.5V2Z" fill="#B5E823" stroke="#0D0F0C" stroke-width="1.2"/>
-        <line x1="9.5" y1="3.2" x2="14.5" y2="3.2" stroke="#0D0F0C" stroke-width="0.8"/>
-        <line x1="9.5" y1="5.6" x2="14.5" y2="5.6" stroke="#0D0F0C" stroke-width="0.8"/>
-        <line x1="9.5" y1="8" x2="14.5" y2="8" stroke="#0D0F0C" stroke-width="0.8"/>
-        <line x1="9.5" y1="10.4" x2="14.5" y2="10.4" stroke="#0D0F0C" stroke-width="0.8"/>
-        
-        <!-- Handle Top Cap -->
-        <rect x="10" y="0.5" width="4" height="1.4" rx="0.7" fill="#FFFFFF"/>
+        <!-- Dark outer contrast rim -->
+        <circle cx="12" cy="12" r="10" fill="#0D0F0C" stroke="#0D0F0C" stroke-width="0.5"/>
+
+        <!-- Ball Body -->
+        <circle cx="12" cy="12" r="9.5" fill="url(#mclBallGrad)"/>
+
+        <!-- Cricket Ball Curved Seam -->
+        <path d="M4 14.8C7.5 17.5 16.5 17.5 20 9.2" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" opacity="0.95"/>
+        <path d="M4 14.8C7.5 17.5 16.5 17.5 20 9.2" stroke="#0D0F0C" stroke-width="1.4" stroke-dasharray="1.2 2" stroke-linecap="round" opacity="0.65"/>
+
+        <!-- Glossy Specular Highlight -->
+        <ellipse cx="9" cy="7.5" rx="3.5" ry="2" transform="rotate(-30 9 7.5)" fill="url(#mclShineGrad)"/>
       </svg>
     `;
     document.body.appendChild(cursor);
@@ -311,7 +315,7 @@ function initCustomCursor() {
   let rafId = null;
 
   function updateCursorPos() {
-    cursor.style.transform = `translate3d(${mouseX - 12}px, ${mouseY - 1}px, 0)`;
+    cursor.style.transform = `translate3d(${mouseX - 9}px, ${mouseY - 9}px, 0)`;
     rafId = null;
   }
 
