@@ -15,34 +15,43 @@
 </head>
 <body>
 
-<!-- ===== CRICKET LEAGUE INTRO SPLASH SCREEN ===== -->
+<!-- ===== CRICKET LEAGUE 5D INTRO SPLASH SCREEN ===== -->
 <div id="cricket-splash">
-  <div class="splash-stadium-bg"></div>
+  <div class="splash-stadium-bg">
+    <div class="stadium-lights"></div>
+    <div class="anamorphic-flare"></div>
+  </div>
   <canvas id="splash-spark-canvas"></canvas>
-  <div class="splash-stage">
-    <div class="impact-ring" id="splash-impact-ring"></div>
-    <div class="impact-flash" id="splash-impact-flash"></div>
-    
-    <!-- Cricket Ball -->
-    <div class="cricket-ball" id="splash-ball">
-      <div class="ball-seam"></div>
-      <div class="ball-shine"></div>
-    </div>
-    
-    <!-- Cricket Bat -->
-    <div class="cricket-bat-wrapper" id="splash-bat-wrapper">
-      <div class="cricket-bat">
-        <div class="bat-handle"></div>
-        <div class="bat-blade">
-          <div class="bat-sticker">MCL T20</div>
-          <div class="bat-grain"></div>
+  
+  <div class="splash-viewport">
+    <div class="splash-stage" id="splash-stage">
+      <div class="impact-ring" id="splash-impact-ring"></div>
+      <div class="impact-flash" id="splash-impact-flash"></div>
+      <div class="tunnel-zoom" id="splash-tunnel"></div>
+      
+      <!-- 3D Macro Cricket Ball -->
+      <div class="cricket-ball-3d" id="splash-ball">
+        <div class="ball-seam-3d"></div>
+        <div class="ball-specular"></div>
+        <div class="ball-shadow-3d"></div>
+      </div>
+      
+      <!-- 3D Cinematic Cricket Bat -->
+      <div class="cricket-bat-3d-wrapper" id="splash-bat-wrapper">
+        <div class="cricket-bat-3d">
+          <div class="bat-handle-3d"></div>
+          <div class="bat-blade-3d">
+            <div class="bat-sticker-3d">MCL T20</div>
+            <div class="bat-grain-3d"></div>
+            <div class="bat-edge-highlight"></div>
+          </div>
         </div>
       </div>
-    </div>
-    
-    <div class="splash-brand-title" id="splash-brand-title">
-      <span class="mcl">MCL T20</span>
-      <span class="sub">MMIFF CHAMPIONS LEAGUE</span>
+      
+      <div class="splash-brand-title" id="splash-brand-title">
+        <span class="mcl">MCL T20</span>
+        <span class="sub">MMIFF CHAMPIONS LEAGUE</span>
+      </div>
     </div>
   </div>
 </div>

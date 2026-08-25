@@ -370,7 +370,7 @@ function initCustomCursor() {
   document.documentElement.addEventListener('mouseenter', onMouseEnter, { passive: true });
 }
 
-// ===== CRICKET INTRO SPLASH SCREEN =====
+// ===== CRICKET 5D INTRO SPLASH SCREEN =====
 function initCricketSplash() {
   const splash = document.getElementById('cricket-splash');
   if (!splash) return;
@@ -379,6 +379,7 @@ function initCricketSplash() {
   const batWrapper = document.getElementById('splash-bat-wrapper');
   const ring = document.getElementById('splash-impact-ring');
   const flash = document.getElementById('splash-impact-flash');
+  const tunnel = document.getElementById('splash-tunnel');
   const title = document.getElementById('splash-brand-title');
   const canvas = document.getElementById('splash-spark-canvas');
 
@@ -396,20 +397,20 @@ function initCricketSplash() {
     }, { passive: true });
   }
 
-  function createSparks(x, y) {
+  function create5DSparks(x, y) {
     if (!ctx) return;
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 75; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const speed = 5 + Math.random() * 14;
+      const speed = 6 + Math.random() * 18;
       sparks.push({
         x: x,
         y: y,
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
-        size: 2.5 + Math.random() * 4.5,
-        color: Math.random() > 0.4 ? '#00ff66' : (Math.random() > 0.5 ? '#ffffff' : '#ffd700'),
+        size: 3 + Math.random() * 6,
+        color: Math.random() > 0.35 ? '#00ff66' : (Math.random() > 0.4 ? '#ffffff' : '#00ffff'),
         life: 1,
-        decay: 0.02 + Math.random() * 0.035
+        decay: 0.018 + Math.random() * 0.03
       });
     }
     requestAnimationFrame(renderSparks);
@@ -422,8 +423,9 @@ function initCricketSplash() {
       const p = sparks[i];
       p.x += p.vx;
       p.y += p.vy;
-      p.vx *= 0.95;
-      p.vy *= 0.95;
+      p.vx *= 0.94;
+      p.vy *= 0.94;
+      p.size *= 0.98;
       p.life -= p.decay;
 
       if (p.life <= 0) {
@@ -435,9 +437,9 @@ function initCricketSplash() {
       ctx.globalAlpha = p.life;
       ctx.fillStyle = p.color;
       ctx.shadowColor = p.color;
-      ctx.shadowBlur = 10;
+      ctx.shadowBlur = 12;
       ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.arc(p.x, p.y, Math.max(0.5, p.size), 0, Math.PI * 2);
       ctx.fill();
       ctx.restore();
     }
@@ -446,71 +448,83 @@ function initCricketSplash() {
     }
   }
 
-  // SEQUENCE TIMELINE
-  // 1. Ball appears (0.1s - 0.4s)
+  // 5D TIMELINE SEQUENCE
+  // STEP 1: Macro Ball Focus (0.05s - 0.4s)
   setTimeout(() => {
     if (ball) {
-      ball.style.transition = 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+      ball.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease';
       ball.style.opacity = '1';
-      ball.style.transform = 'scale(1) translateY(0)';
+      ball.style.transform = 'translate3d(0, 0, 50px) scale(1.4)';
     }
     if (title) {
       title.style.opacity = '1';
       title.style.transform = 'translateY(0)';
     }
-  }, 100);
+  }, 50);
 
-  // 2. Bat swings in (0.45s - 0.8s)
+  // STEP 2: Cinematic 3D Bat Swing (0.4s - 0.75s)
   setTimeout(() => {
     if (batWrapper) {
       batWrapper.style.opacity = '1';
-      batWrapper.style.transition = 'transform 0.35s cubic-bezier(0.5, 0, 0.75, 0)';
-      batWrapper.style.transform = 'translate(-30px, -20px) rotate(15deg)';
+      batWrapper.style.transition = 'transform 0.32s cubic-bezier(0.4, 0, 0.8, 0.15)';
+      batWrapper.style.transform = 'translate3d(-35px, -20px, 80px) rotateX(10deg) rotateY(10deg) rotateZ(20deg)';
     }
-  }, 450);
+  }, 400);
 
-  // 3. IMPACT SHOT (0.8s)
+  // STEP 3: HIGH IMPACT SHOT (0.75s)
   setTimeout(() => {
-    splash.classList.add('splash-shake');
+    splash.classList.add('splash-shake-5d');
 
     if (flash) {
       flash.style.opacity = '1';
       flash.style.transition = 'opacity 0.12s ease-out';
-      setTimeout(() => { flash.style.opacity = '0'; }, 90);
+      setTimeout(() => { flash.style.opacity = '0'; }, 100);
     }
 
     if (ring) {
       ring.style.opacity = '1';
-      ring.style.transform = 'scale(14)';
-      ring.style.transition = 'transform 0.4s ease-out, opacity 0.4s ease-out';
-      setTimeout(() => { ring.style.opacity = '0'; }, 300);
+      ring.style.transform = 'scale(18)';
+      ring.style.transition = 'transform 0.45s ease-out, opacity 0.45s ease-out';
+      setTimeout(() => { ring.style.opacity = '0'; }, 350);
     }
 
+    // 3D Sparks explosion
     if (ball) {
       const stageRect = ball.getBoundingClientRect();
-      createSparks(stageRect.left + stageRect.width / 2, stageRect.top + stageRect.height / 2);
+      create5DSparks(stageRect.left + stageRect.width / 2, stageRect.top + stageRect.height / 2);
 
-      // Ball launch rocket shot
-      ball.style.transition = 'transform 0.45s cubic-bezier(0.1, 0.9, 0.2, 1), opacity 0.35s ease';
-      ball.style.transform = 'translate(-850px, -650px) scale(5) rotate(-360deg)';
-      ball.style.filter = 'drop-shadow(0 0 30px #00ff66) blur(2px)';
+      // STEP 4: 5D FLY-TO-CAMERA (Ball launches DIRECTLY into viewer's eyes!)
+      ball.style.transition = 'transform 0.55s cubic-bezier(0.05, 0.85, 0.1, 1), opacity 0.45s ease, filter 0.4s ease';
+      // Scale up massive to fill screen and pass camera lens
+      ball.style.transform = 'translate3d(0, 0, 1600px) scale(35)';
+      ball.style.filter = 'drop-shadow(0 0 50px #00ff66) blur(4px)';
     }
 
     if (batWrapper) {
-      batWrapper.style.transition = 'transform 0.32s ease-out';
-      batWrapper.style.transform = 'translate(-170px, -130px) rotate(60deg)';
+      batWrapper.style.transition = 'transform 0.35s ease-out';
+      batWrapper.style.transform = 'translate3d(-200px, -150px, -100px) rotateX(-20deg) rotateY(30deg) rotateZ(70deg)';
     }
-  }, 800);
 
-  // 4. Fade/Zoom into website homepage (1.8s)
+    // STEP 5: Tunnel Speed Lines Zoom Transition (1.1s)
+    setTimeout(() => {
+      if (tunnel) {
+        tunnel.style.opacity = '1';
+        tunnel.style.transform = 'scale(2.5)';
+        tunnel.style.transition = 'transform 0.5s ease-out, opacity 0.5s ease-out';
+      }
+    }, 350);
+
+  }, 750);
+
+  // STEP 6: Smoothly reveal homepage (1.7s)
   setTimeout(() => {
     splash.classList.add('splash-out');
-  }, 1800);
+  }, 1700);
 
-  // 5. Hide completely (2.4s)
+  // STEP 7: Completely destroy/hide preloader (2.3s)
   setTimeout(() => {
     splash.style.display = 'none';
-  }, 2400);
+  }, 2300);
 }
 
 // ===== INIT ALL =====
