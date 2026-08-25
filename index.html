@@ -15,18 +15,34 @@
 </head>
 <body>
 
-<!-- ===== CINEMATIC 5D CRICKET STADIUM INTRO SPLASH SCREEN ===== -->
+<!-- ===== CINEMATIC 5D PHOTOREALISTIC CRICKET INTRO ===== -->
 <div id="cricket-splash" class="cinematic-5d-splash">
-  <!-- Stadium Atmospheric Background Layers -->
-  <div class="stadium-backdrop">
-    <div class="stadium-sky-glow"></div>
-    <div class="stadium-floodlights left-lights"></div>
-    <div class="stadium-floodlights right-lights"></div>
-    <div class="volumetric-light-beams"></div>
+  <!-- Dynamic Cinematic Scene Layers -->
+  <div class="cinema-scene scene-bowler active" id="scene-bowler">
+    <img src="cinematic-bowler.jpg" alt="Fast Bowler Delivery" class="cinema-img bowler-img"/>
+    <div class="cinema-overlay"></div>
   </div>
 
-  <!-- Primary 60 FPS 5D Canvas Simulation -->
-  <canvas id="stadium-cinema-canvas"></canvas>
+  <div class="cinema-scene scene-batter" id="scene-batter">
+    <img src="cinematic-batter.jpg" alt="Batter Power Shot" class="cinema-img batter-img"/>
+    <div class="cinema-overlay"></div>
+  </div>
+
+  <div class="cinema-scene scene-ball" id="scene-ball">
+    <img src="cinematic-ball.jpg" alt="5D Cricket Ball" class="cinema-img ball-img" id="cinema-ball-img"/>
+    <div class="cinema-overlay"></div>
+  </div>
+
+  <!-- Realtime FX Canvas for Sparks, Beams & Shards -->
+  <canvas id="cinema-fx-canvas"></canvas>
+
+  <!-- Photorealistic Glass Shatter Overlay -->
+  <div class="scene-glass" id="scene-glass">
+    <img src="cinematic-glass.jpg" alt="Shattered Glass" class="glass-img" id="glass-img"/>
+    <canvas id="glass-shatter-canvas"></canvas>
+    <div class="impact-chromatic-flash" id="impact-chromatic-flash"></div>
+    <div class="impact-shockwave-circle" id="impact-shockwave-circle"></div>
+  </div>
 
   <!-- Broadcast TV HUD Graphics Overlay -->
   <div class="broadcast-hud" id="broadcast-hud">
@@ -37,20 +53,13 @@
     <div class="hud-top-right">
       <div class="hud-radar-box">
         <div class="hud-radar-title">SPEED RADAR</div>
-        <div class="hud-radar-val" id="hud-speed-val">---.- KM/H</div>
+        <div class="hud-radar-val" id="hud-speed-val">154.2 KM/H</div>
       </div>
     </div>
     <div class="hud-center-alert" id="hud-center-alert">
       <div class="alert-tag" id="hud-alert-tag">DELIVERY INCOMING</div>
       <div class="alert-title" id="hud-alert-title">FAST BOWLER SPELL</div>
     </div>
-  </div>
-
-  <!-- 5D Glass Impact & Screen Shatter Layer -->
-  <div class="glass-shatter-layer" id="glass-shatter-layer">
-    <canvas id="glass-shatter-canvas"></canvas>
-    <div class="impact-chromatic-flash" id="impact-chromatic-flash"></div>
-    <div class="impact-shockwave-circle" id="impact-shockwave-circle"></div>
   </div>
 
   <!-- Skip Intro Button -->
