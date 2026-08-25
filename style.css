@@ -504,7 +504,7 @@ footer {
   border-top: 1px solid var(--border);
   padding: 3rem 0 2rem;
 }
-.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+.footer-grid { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; margin-bottom: 2.5rem; }
 @media (max-width: 1024px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 640px) { .footer-grid { grid-template-columns: 1fr; gap: 2rem; } }
 .footer-brand p { color: var(--muted-foreground); font-size: 0.875rem; margin-top: 1rem; line-height: 1.8; max-width: 260px; }
@@ -629,7 +629,7 @@ footer {
   border-top: 1px solid var(--border);
   padding: 3rem 0 2rem;
 }
-.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+.footer-grid { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; margin-bottom: 2.5rem; }
 @media (max-width: 1024px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 640px) { .footer-grid { grid-template-columns: 1fr; gap: 2rem; } }
 .footer-brand p { color: var(--muted-foreground); font-size: 0.875rem; margin-top: 1rem; line-height: 1.8; max-width: 260px; }
@@ -824,9 +824,9 @@ footer {
   border-top: 1px solid var(--border);
   padding: 3rem 0 2rem;
 }
-.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
-@media (max-width: 1024px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 640px) { .footer-grid { grid-template-columns: 1fr; gap: 2rem; } }
+.footer-grid { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; margin-bottom: 2.5rem; }
+.footer-initiative img { max-height: 65px; max-width: 100%; height: auto; object-fit: contain; }
+@media (max-width: 640px) { .footer-grid { flex-direction: column; align-items: flex-start; gap: 1.5rem; } }
 .footer-brand p { color: var(--muted-foreground); font-size: 0.875rem; margin-top: 1rem; line-height: 1.8; max-width: 260px; }
 .footer-col h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; color: #fff; margin-bottom: 1.25rem; }
 .footer-col ul li { margin-bottom: 0.75rem; }
