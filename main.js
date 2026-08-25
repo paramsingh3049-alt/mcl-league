@@ -370,62 +370,583 @@ function initCustomCursor() {
   document.documentElement.addEventListener('mouseenter', onMouseEnter, { passive: true });
 }
 
-// ===== CRICKET 5D INTRO SPLASH SCREEN =====
+// ===== CINEMATIC 5D CRICKET STADIUM & GLASS SHATTER INTRO =====
 function initCricketSplash() {
   const splash = document.getElementById('cricket-splash');
   if (!splash) return;
 
-  const ball = document.getElementById('splash-ball');
-  const batWrapper = document.getElementById('splash-bat-wrapper');
-  const ring = document.getElementById('splash-impact-ring');
-  const flash = document.getElementById('splash-impact-flash');
-  const tunnel = document.getElementById('splash-tunnel');
-  const title = document.getElementById('splash-brand-title');
-  const canvas = document.getElementById('splash-spark-canvas');
+  const cinemaCanvas = document.getElementById('stadium-cinema-canvas');
+  const glassCanvas = document.getElementById('glass-shatter-canvas');
+  const flash = document.getElementById('impact-chromatic-flash');
+  const shockwave = document.getElementById('impact-shockwave-circle');
+  const speedVal = document.getElementById('hud-speed-val');
+  const alertBox = document.getElementById('hud-center-alert');
+  const alertTag = document.getElementById('hud-alert-tag');
+  const alertTitle = document.getElementById('hud-alert-title');
+  const skipBtn = document.getElementById('splash-skip-btn');
 
-  // Particle Sparks Setup
-  let ctx, sparks = [];
-  if (canvas) {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    ctx = canvas.getContext('2d');
+  if (!cinemaCanvas || !glassCanvas) return;
 
-    window.addEventListener('resize', () => {
-      if (!canvas) return;
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }, { passive: true });
+  const cCtx = cinemaCanvas.getContext('2d');
+  const gCtx = glassCanvas.getContext('2d');
+
+  let width = (cinemaCanvas.width = glassCanvas.width = window.innerWidth);
+  let height = (cinemaCanvas.height = glassCanvas.height = window.innerHeight);
+
+  const onResize = () => {
+    width = cinemaCanvas.width = glassCanvas.width = window.innerWidth;
+    height = cinemaCanvas.height = glassCanvas.height = window.innerHeight;
+  };
+  window.addEventListener('resize', onResize, { passive: true });
+
+  // Load Stadium Background Image
+  const stadiumImg = new Image();
+  stadiumImg.src = 'cricket-stadium-bg.jpg';
+  let stadiumLoaded = false;
+  stadiumImg.onload = () => { stadiumLoaded = true; };
+
+  // Particle systems
+  const crowdFlashes = [];
+  for (let i = 0; i < 40; i++) {
+    crowdFlashes.push({
+      x: Math.random(),
+      y: Math.random() * 0.45,
+      alpha: 0,
+      active: false,
+      timer: Math.random() * 200
+    });
   }
 
-  function create5DSparks(x, y) {
-    if (!ctx) return;
-    for (let i = 0; i < 75; i++) {
+  const sparks = [];
+  const glassShards = [];
+  const crackLines = [];
+  let isCracked = false;
+  let isEnded = false;
+
+  function endSplash() {
+    if (isEnded) return;
+    isEnded = true;
+    splash.classList.add('splash-out');
+    setTimeout(() => {
+      splash.style.display = 'none';
+      window.removeEventListener('resize', onResize);
+    }, 800);
+  }
+
+  if (skipBtn) {
+    skipBtn.addEventListener('click', endSplash);
+  }
+
+  // Animation timeline clock
+  let startTime = performance.now();
+
+  function spawnGlassShatter(centerX, centerY) {
+    isCracked = true;
+    splash.classList.add('shake-extreme');
+
+    // Impact chromatic flare
+    if (flash) {
+      flash.style.opacity = '1';
+      setTimeout(() => { flash.style.opacity = '0'; }, 180);
+    }
+
+    if (shockwave) {
+      shockwave.style.opacity = '1';
+      shockwave.style.transition = 'transform 0.6s cubic-bezier(0.1, 0.9, 0.2, 1), opacity 0.6s ease-out';
+      shockwave.style.transform = 'translate(-50%, -50%) scale(25)';
+      setTimeout(() => { shockwave.style.opacity = '0'; }, 400);
+    }
+
+    // Generate procedural crack lines branching outward
+    const numPrimaryCracks = 16;
+    for (let i = 0; i < numPrimaryCracks; i++) {
+      const angle = (i / numPrimaryCracks) * Math.PI * 2 + (Math.random() - 0.5) * 0.35;
+      const maxLength = Math.max(width, height) * (0.6 + Math.random() * 0.5);
+      const points = [{ x: centerX, y: centerY }];
+      let currentDist = 0;
+      let currX = centerX;
+      let currY = centerY;
+      let currAngle = angle;
+
+      while (currentDist < maxLength) {
+        const step = 20 + Math.random() * 45;
+        currentDist += step;
+        currAngle += (Math.random() - 0.5) * 0.45;
+        currX += Math.cos(currAngle) * step;
+        currY += Math.sin(currAngle) * step;
+        points.push({ x: currX, y: currY });
+
+        // Branching sub-cracks
+        if (Math.random() > 0.6 && points.length > 2) {
+          const subAngle = currAngle + (Math.random() > 0.5 ? 0.7 : -0.7);
+          const subPoints = [{ x: currX, y: currY }];
+          let subX = currX;
+          let subY = currY;
+          for (let s = 0; s < 3 + Math.floor(Math.random() * 4); s++) {
+            subX += Math.cos(subAngle) * (15 + Math.random() * 25);
+            subY += Math.sin(subAngle) * (15 + Math.random() * 25);
+            subPoints.push({ x: subX, y: subY });
+          }
+          crackLines.push({ points: subPoints, width: 1.2 + Math.random() * 1.5, alpha: 0.85 });
+        }
+      }
+      crackLines.push({ points, width: 2 + Math.random() * 2.5, alpha: 0.95 });
+    }
+
+    // Generate concentric spiderweb crack loops
+    for (let r = 40; r < Math.min(width, height) * 0.45; r += 35 + Math.random() * 25) {
+      const ringPoints = [];
+      const steps = 14;
+      for (let s = 0; s <= steps; s++) {
+        const a = (s / steps) * Math.PI * 2;
+        const dist = r + (Math.random() - 0.5) * 15;
+        ringPoints.push({ x: centerX + Math.cos(a) * dist, y: centerY + Math.sin(a) * dist });
+      }
+      crackLines.push({ points: ringPoints, width: 1.5, alpha: 0.8 });
+    }
+
+    // Spawn 3D flying glass shards
+    for (let i = 0; i < 90; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const speed = 6 + Math.random() * 18;
-      sparks.push({
-        x: x,
-        y: y,
+      const speed = 4 + Math.random() * 18;
+      glassShards.push({
+        x: centerX + (Math.random() - 0.5) * 40,
+        y: centerY + (Math.random() - 0.5) * 40,
         vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed,
-        size: 3 + Math.random() * 6,
-        color: Math.random() > 0.35 ? '#00ff66' : (Math.random() > 0.4 ? '#ffffff' : '#00ffff'),
-        life: 1,
-        decay: 0.018 + Math.random() * 0.03
+        vy: Math.sin(angle) * speed - (2 + Math.random() * 6),
+        rot: Math.random() * Math.PI * 2,
+        vrot: (Math.random() - 0.5) * 0.25,
+        size: 8 + Math.random() * 26,
+        shape: [
+          { x: 0, y: -(8 + Math.random() * 15) },
+          { x: 6 + Math.random() * 12, y: 4 + Math.random() * 8 },
+          { x: -(6 + Math.random() * 12), y: 6 + Math.random() * 10 }
+        ],
+        alpha: 0.95,
+        gravity: 0.28
       });
     }
-    requestAnimationFrame(renderSparks);
+
+    // Spawn high-energy spark particles
+    for (let i = 0; i < 110; i++) {
+      const a = Math.random() * Math.PI * 2;
+      const s = 6 + Math.random() * 22;
+      sparks.push({
+        x: centerX,
+        y: centerY,
+        vx: Math.cos(a) * s,
+        vy: Math.sin(a) * s,
+        size: 2.5 + Math.random() * 5,
+        color: Math.random() > 0.4 ? '#00ff66' : (Math.random() > 0.5 ? '#ffffff' : '#00e5ff'),
+        life: 1,
+        decay: 0.015 + Math.random() * 0.025
+      });
+    }
   }
 
-  function renderSparks() {
-    if (!ctx || sparks.length === 0) return;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  function render(time) {
+    if (isEnded) return;
+
+    const elapsed = (time - startTime) / 1000; // in seconds
+
+    // Clear canvases
+    cCtx.clearRect(0, 0, width, height);
+    gCtx.clearRect(0, 0, width, height);
+
+    // ==========================================
+    // LAYER 1: STADIUM & PITCH ENVIRONMENT
+    // ==========================================
+    if (stadiumLoaded) {
+      // Dynamic camera zoom/pan
+      const zoom = 1.05 + Math.sin(elapsed * 0.6) * 0.03;
+      const panX = Math.sin(elapsed * 0.4) * 15;
+      const panY = Math.cos(elapsed * 0.3) * 10;
+      cCtx.save();
+      cCtx.translate(width / 2 + panX, height / 2 + panY);
+      cCtx.scale(zoom, zoom);
+      cCtx.drawImage(stadiumImg, -width / 2, -height / 2, width, height);
+      cCtx.restore();
+    } else {
+      // Dark fallback stadium gradient
+      const bgGrad = cCtx.createRadialGradient(width / 2, height * 0.4, 50, width / 2, height * 0.4, width * 0.8);
+      bgGrad.addColorStop(0, '#0a1a12');
+      bgGrad.addColorStop(0.5, '#040d08');
+      bgGrad.addColorStop(1, '#020305');
+      cCtx.fillStyle = bgGrad;
+      cCtx.fillRect(0, 0, width, height);
+    }
+
+    // Crowd flashbulbs
+    crowdFlashes.forEach(f => {
+      f.timer--;
+      if (f.timer <= 0) {
+        f.active = true;
+        f.alpha = 1;
+        f.timer = 120 + Math.random() * 240;
+      }
+      if (f.active) {
+        cCtx.fillStyle = `rgba(255, 255, 255, ${f.alpha * 0.8})`;
+        cCtx.beginPath();
+        cCtx.arc(f.x * width, f.y * height, 2.5 + Math.random() * 3, 0, Math.PI * 2);
+        cCtx.fill();
+        f.alpha -= 0.08;
+        if (f.alpha <= 0) f.active = false;
+      }
+    });
+
+    // 3D Perspective Pitch Geometry
+    const pitchTopW = width * 0.08;
+    const pitchBottomW = width * 0.38;
+    const pitchTopY = height * 0.42;
+    const pitchBottomY = height * 0.95;
+    const pitchCenterX = width * 0.5;
+
+    cCtx.save();
+    // Pitch turf gradient
+    const turfGrad = cCtx.createLinearGradient(pitchCenterX, pitchTopY, pitchCenterX, pitchBottomY);
+    turfGrad.addColorStop(0, 'rgba(120, 150, 75, 0.4)');
+    turfGrad.addColorStop(0.6, 'rgba(145, 175, 85, 0.65)');
+    turfGrad.addColorStop(1, 'rgba(110, 140, 65, 0.8)');
+
+    cCtx.fillStyle = turfGrad;
+    cCtx.beginPath();
+    cCtx.moveTo(pitchCenterX - pitchTopW / 2, pitchTopY);
+    cCtx.lineTo(pitchCenterX + pitchTopW / 2, pitchTopY);
+    cCtx.lineTo(pitchCenterX + pitchBottomW / 2, pitchBottomY);
+    cCtx.lineTo(pitchCenterX - pitchBottomW / 2, pitchBottomY);
+    cCtx.closePath();
+    cCtx.fill();
+
+    // Crease Lines
+    cCtx.strokeStyle = 'rgba(255, 255, 255, 0.7)';
+    cCtx.lineWidth = 2.5;
+
+    // Bowling crease (top)
+    cCtx.beginPath();
+    cCtx.moveTo(pitchCenterX - pitchTopW * 0.8, pitchTopY + 15);
+    cCtx.lineTo(pitchCenterX + pitchTopW * 0.8, pitchTopY + 15);
+    cCtx.stroke();
+
+    // Popping crease (striker bottom)
+    cCtx.beginPath();
+    cCtx.moveTo(pitchCenterX - pitchBottomW * 0.45, pitchBottomY - 40);
+    cCtx.lineTo(pitchCenterX + pitchBottomW * 0.45, pitchBottomY - 40);
+    cCtx.stroke();
+
+    // Stumps / Wickets at bowler end
+    cCtx.fillStyle = '#f0c070';
+    for (let st = -6; st <= 6; st += 6) {
+      cCtx.fillRect(pitchCenterX + st - 1, pitchTopY + 2, 2, 16);
+    }
+    // Stumps at batter end
+    for (let st = -14; st <= 14; st += 14) {
+      cCtx.fillRect(pitchCenterX + st - 2, pitchBottomY - 32, 4, 32);
+    }
+    cCtx.restore();
+
+    // ==========================================
+    // LAYER 2: CINEMATIC BOWLER & BATTER ACTION
+    // ==========================================
+
+    // TIMELINE PHASES:
+    // 0.0s - 3.5s: Bowler Run-Up
+    // 3.5s - 5.5s: Bowling Delivery & Ball Release (Speed Radar updates)
+    // 5.5s - 7.5s: Batter Front-Foot Power Drive
+    // 7.5s: Sweet Spot Impact Flash
+    // 7.5s - 9.5s: 5D Ball Flights to Screen
+    // 9.5s: Glass Shatter Impact!
+    // 14.0s: Reveal Website
+
+    // Bowler Coordinates
+    let bowlerProgress = Math.min(1, Math.max(0, elapsed / 4.8));
+    let bowlerX = pitchCenterX - (35 * (1 - bowlerProgress));
+    let bowlerY = pitchTopY - 40 + (bowlerProgress * 55);
+    let bowlerScale = 0.5 + bowlerProgress * 0.45;
+
+    // Draw Bowler
+    if (elapsed < 6.0) {
+      cCtx.save();
+      cCtx.translate(bowlerX, bowlerY);
+      cCtx.scale(bowlerScale, bowlerScale);
+
+      // Running stride legs
+      const runCycle = Math.sin(elapsed * 16);
+      cCtx.strokeStyle = '#ffffff';
+      cCtx.lineWidth = 4.5;
+      cCtx.lineCap = 'round';
+
+      // Left leg
+      cCtx.beginPath();
+      cCtx.moveTo(0, 0);
+      cCtx.lineTo(-10 + runCycle * 12, 28);
+      cCtx.lineTo(-12 + runCycle * 16, 52);
+      cCtx.stroke();
+
+      // Right leg
+      cCtx.beginPath();
+      cCtx.moveTo(0, 0);
+      cCtx.lineTo(10 - runCycle * 12, 26);
+      cCtx.lineTo(12 - runCycle * 16, 50);
+      cCtx.stroke();
+
+      // Jersey Torso
+      cCtx.fillStyle = '#00ff66';
+      cCtx.beginPath();
+      cCtx.roundRect(-12, -28, 24, 30, 4);
+      cCtx.fill();
+
+      // Head / Cap
+      cCtx.fillStyle = '#111';
+      cCtx.beginPath();
+      cCtx.arc(0, -38, 9, 0, Math.PI * 2);
+      cCtx.fill();
+
+      // Bowling Arm windup
+      const armAngle = elapsed > 4.2 ? (elapsed - 4.2) * 14 : elapsed * 6;
+      cCtx.strokeStyle = '#fff';
+      cCtx.lineWidth = 4;
+      cCtx.beginPath();
+      cCtx.moveTo(8, -22);
+      cCtx.lineTo(8 + Math.cos(armAngle) * 24, -22 - Math.sin(armAngle) * 24);
+      cCtx.stroke();
+
+      // Ball in bowler hand before release
+      if (elapsed < 4.8) {
+        cCtx.fillStyle = '#d70015';
+        cCtx.beginPath();
+        cCtx.arc(8 + Math.cos(armAngle) * 24, -22 - Math.sin(armAngle) * 24, 4.5, 0, Math.PI * 2);
+        cCtx.fill();
+      }
+
+      cCtx.restore();
+    }
+
+    // Update Speed HUD
+    if (elapsed >= 4.8 && elapsed < 7.5) {
+      if (speedVal) speedVal.textContent = '153.8 KM/H';
+      if (alertBox && !alertBox.classList.contains('show') && elapsed < 6.8) {
+        if (alertTag) alertTag.textContent = 'EXPRESS PACE';
+        if (alertTitle) alertTitle.textContent = '153.8 KM/H INCOMING';
+        alertBox.classList.add('show');
+      }
+    }
+
+    // Batter Coordinates
+    const batterX = pitchCenterX + 25;
+    const batterY = pitchBottomY - 80;
+    const batterScale = 1.15;
+
+    // Draw Batter
+    cCtx.save();
+    cCtx.translate(batterX, batterY);
+    cCtx.scale(batterScale, batterScale);
+
+    // Stance legs with protective batting pads
+    cCtx.fillStyle = '#e8edf2'; // White pads
+    cCtx.fillRect(-18, 10, 14, 52);
+    cCtx.fillRect(2, 10, 14, 52);
+
+    // Jersey & Helmet
+    cCtx.fillStyle = '#0055ff'; // Team Blue Jersey
+    cCtx.beginPath();
+    cCtx.roundRect(-16, -34, 32, 46, 5);
+    cCtx.fill();
+
+    // Helmet with grill
+    cCtx.fillStyle = '#0a2040';
+    cCtx.beginPath();
+    cCtx.arc(0, -48, 12, 0, Math.PI * 2);
+    cCtx.fill();
+
+    // Batting swing angle
+    let batAngle = -0.6; // Stance backlift
+    if (elapsed >= 6.2 && elapsed < 7.6) {
+      // Downswing
+      const swingT = (elapsed - 6.2) / 1.4;
+      batAngle = -0.6 + swingT * 2.8;
+    } else if (elapsed >= 7.6) {
+      // Follow through
+      batAngle = 2.2;
+    }
+
+    // Bat Blade
+    cCtx.save();
+    cCtx.translate(6, -10);
+    cCtx.rotate(batAngle);
+
+    // Bat Handle
+    cCtx.fillStyle = '#1a1a1a';
+    cCtx.fillRect(-3, -38, 6, 22);
+
+    // Willow Blade
+    cCtx.fillStyle = '#d4a359';
+    cCtx.beginPath();
+    cCtx.roundRect(-7, -16, 14, 60, [2, 8, 8, 2]);
+    cCtx.fill();
+
+    // MCL sticker
+    cCtx.fillStyle = '#00ff66';
+    cCtx.fillRect(-5, -6, 10, 18);
+
+    cCtx.restore();
+    cCtx.restore();
+
+    // ==========================================
+    // LAYER 3: 5D FLYING BALL TRAJECTORY
+    // ==========================================
+
+    if (elapsed >= 4.8 && elapsed < 7.4) {
+      // Ball pitching from bowler to batter
+      const t = (elapsed - 4.8) / 2.6;
+      const bX = pitchCenterX + (t * 20);
+      const bY = pitchTopY + 20 + (t * (pitchBottomY - pitchTopY - 90));
+      const bR = 4.5 + t * 9;
+
+      cCtx.fillStyle = '#d70015';
+      cCtx.beginPath();
+      cCtx.arc(bX, bY, bR, 0, Math.PI * 2);
+      cCtx.fill();
+    } else if (elapsed >= 7.4 && elapsed < 9.6) {
+      // BAT IMPACT & 5D BALL FLYING DIRECTLY AT CAMERA!
+      if (elapsed >= 7.4 && elapsed < 7.7) {
+        // Contact spark burst at bat
+        cCtx.save();
+        cCtx.fillStyle = '#ffffff';
+        cCtx.shadowColor = '#00ff66';
+        cCtx.shadowBlur = 30;
+        cCtx.beginPath();
+        cCtx.arc(batterX - 10, batterY - 15, 32, 0, Math.PI * 2);
+        cCtx.fill();
+        cCtx.restore();
+
+        if (alertBox) {
+          if (alertTag) alertTag.textContent = '💥 MAXIMUM 6';
+          if (alertTitle) alertTitle.textContent = '126 METERS POWER SHOT';
+        }
+      }
+
+      // 5D Projectile towards center screen
+      const flyProgress = (elapsed - 7.4) / 2.2; // 0 to 1
+      const startX = batterX - 10;
+      const startY = batterY - 15;
+      const targetX = width * 0.5;
+      const targetY = height * 0.5;
+
+      const currBallX = startX + (targetX - startX) * flyProgress;
+      const currBallY = startY + (targetY - startY) * flyProgress;
+      // Exponential 5D scale up
+      const currRadius = 12 + Math.pow(flyProgress, 2.8) * Math.min(width, height) * 0.55;
+
+      // Realistic 3D Shaded Cricket Ball with Seam
+      cCtx.save();
+      cCtx.translate(currBallX, currBallY);
+
+      // Motion blur trail
+      cCtx.shadowColor = 'rgba(0, 255, 102, 0.8)';
+      cCtx.shadowBlur = 25 * flyProgress;
+
+      const ballGrad = cCtx.createRadialGradient(-currRadius * 0.35, -currRadius * 0.35, currRadius * 0.1, 0, 0, currRadius);
+      ballGrad.addColorStop(0, '#ff4d4d');
+      ballGrad.addColorStop(0.4, '#cc001b');
+      ballGrad.addColorStop(0.8, '#7a0010');
+      ballGrad.addColorStop(1, '#2c0005');
+
+      cCtx.fillStyle = ballGrad;
+      cCtx.beginPath();
+      cCtx.arc(0, 0, currRadius, 0, Math.PI * 2);
+      cCtx.fill();
+
+      // Spinning 3D Seam Stitching
+      cCtx.strokeStyle = 'rgba(255, 255, 255, 0.9)';
+      cCtx.lineWidth = Math.max(1.5, currRadius * 0.06);
+      cCtx.setLineDash([currRadius * 0.08, currRadius * 0.06]);
+      cCtx.beginPath();
+      cCtx.ellipse(0, 0, currRadius * 0.95, currRadius * 0.25, elapsed * 12, 0, Math.PI * 2);
+      cCtx.stroke();
+
+      // Specular highlight
+      cCtx.fillStyle = 'rgba(255, 255, 255, 0.65)';
+      cCtx.beginPath();
+      cCtx.ellipse(-currRadius * 0.3, -currRadius * 0.3, currRadius * 0.25, currRadius * 0.14, -0.4, 0, Math.PI * 2);
+      cCtx.fill();
+
+      cCtx.restore();
+    }
+
+    // ==========================================
+    // LAYER 4: GLASS CRACK & SCREEN SHATTER FX
+    // ==========================================
+
+    if (elapsed >= 9.6 && !isCracked) {
+      spawnGlassShatter(width * 0.5, height * 0.5);
+    }
+
+    if (isCracked) {
+      // Draw procedural branching glass crack veins
+      gCtx.save();
+      crackLines.forEach(line => {
+        gCtx.strokeStyle = `rgba(220, 245, 255, ${line.alpha})`;
+        gCtx.lineWidth = line.width;
+        gCtx.shadowColor = 'rgba(0, 255, 180, 0.8)';
+        gCtx.shadowBlur = 6;
+        gCtx.beginPath();
+        line.points.forEach((pt, idx) => {
+          if (idx === 0) gCtx.moveTo(pt.x, pt.y);
+          else gCtx.lineTo(pt.x, pt.y);
+        });
+        gCtx.stroke();
+      });
+
+      // Impact center frosted shatter zone
+      const frostedGrad = gCtx.createRadialGradient(width * 0.5, height * 0.5, 10, width * 0.5, height * 0.5, 160);
+      frostedGrad.addColorStop(0, 'rgba(255, 255, 255, 0.95)');
+      frostedGrad.addColorStop(0.3, 'rgba(200, 250, 255, 0.5)');
+      frostedGrad.addColorStop(0.7, 'rgba(0, 255, 102, 0.2)');
+      frostedGrad.addColorStop(1, 'transparent');
+      gCtx.fillStyle = frostedGrad;
+      gCtx.beginPath();
+      gCtx.arc(width * 0.5, height * 0.5, 160, 0, Math.PI * 2);
+      gCtx.fill();
+
+      // Render 3D Flying Glass Shards
+      glassShards.forEach((shard, idx) => {
+        shard.x += shard.vx;
+        shard.y += shard.vy;
+        shard.vy += shard.gravity;
+        shard.rot += shard.vrot;
+        shard.alpha -= 0.005;
+
+        if (shard.alpha > 0) {
+          gCtx.save();
+          gCtx.translate(shard.x, shard.y);
+          gCtx.rotate(shard.rot);
+          gCtx.fillStyle = `rgba(220, 245, 255, ${shard.alpha * 0.75})`;
+          gCtx.strokeStyle = `rgba(255, 255, 255, ${shard.alpha})`;
+          gCtx.lineWidth = 1.5;
+          gCtx.shadowColor = '#00ff66';
+          gCtx.shadowBlur = 8;
+          gCtx.beginPath();
+          shard.shape.forEach((pt, sIdx) => {
+            if (sIdx === 0) gCtx.moveTo(pt.x, pt.y);
+            else gCtx.lineTo(pt.x, pt.y);
+          });
+          gCtx.closePath();
+          gCtx.fill();
+          gCtx.stroke();
+          gCtx.restore();
+        }
+      });
+
+      gCtx.restore();
+    }
+
+    // Render Sparks
     for (let i = sparks.length - 1; i >= 0; i--) {
       const p = sparks[i];
       p.x += p.vx;
       p.y += p.vy;
       p.vx *= 0.94;
       p.vy *= 0.94;
-      p.size *= 0.98;
       p.life -= p.decay;
 
       if (p.life <= 0) {
@@ -433,98 +954,26 @@ function initCricketSplash() {
         continue;
       }
 
-      ctx.save();
-      ctx.globalAlpha = p.life;
-      ctx.fillStyle = p.color;
-      ctx.shadowColor = p.color;
-      ctx.shadowBlur = 12;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, Math.max(0.5, p.size), 0, Math.PI * 2);
-      ctx.fill();
-      ctx.restore();
+      gCtx.save();
+      gCtx.globalAlpha = p.life;
+      gCtx.fillStyle = p.color;
+      gCtx.shadowColor = p.color;
+      gCtx.shadowBlur = 10;
+      gCtx.beginPath();
+      gCtx.arc(p.x, p.y, Math.max(0.5, p.size), 0, Math.PI * 2);
+      gCtx.fill();
+      gCtx.restore();
     }
-    if (sparks.length > 0) {
-      requestAnimationFrame(renderSparks);
+
+    // Auto finish after cinematic sequence
+    if (elapsed >= 14.5 && !isEnded) {
+      endSplash();
     }
+
+    requestAnimationFrame(render);
   }
 
-  // 5D TIMELINE SEQUENCE
-  // STEP 1: Macro Ball Focus (0.05s - 0.4s)
-  setTimeout(() => {
-    if (ball) {
-      ball.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease';
-      ball.style.opacity = '1';
-      ball.style.transform = 'translate3d(0, 0, 50px) scale(1.4)';
-    }
-    if (title) {
-      title.style.opacity = '1';
-      title.style.transform = 'translateY(0)';
-    }
-  }, 50);
-
-  // STEP 2: Cinematic 3D Bat Swing (0.4s - 0.75s)
-  setTimeout(() => {
-    if (batWrapper) {
-      batWrapper.style.opacity = '1';
-      batWrapper.style.transition = 'transform 0.32s cubic-bezier(0.4, 0, 0.8, 0.15)';
-      batWrapper.style.transform = 'translate3d(-35px, -20px, 80px) rotateX(10deg) rotateY(10deg) rotateZ(20deg)';
-    }
-  }, 400);
-
-  // STEP 3: HIGH IMPACT SHOT (0.75s)
-  setTimeout(() => {
-    splash.classList.add('splash-shake-5d');
-
-    if (flash) {
-      flash.style.opacity = '1';
-      flash.style.transition = 'opacity 0.12s ease-out';
-      setTimeout(() => { flash.style.opacity = '0'; }, 100);
-    }
-
-    if (ring) {
-      ring.style.opacity = '1';
-      ring.style.transform = 'scale(18)';
-      ring.style.transition = 'transform 0.45s ease-out, opacity 0.45s ease-out';
-      setTimeout(() => { ring.style.opacity = '0'; }, 350);
-    }
-
-    // 3D Sparks explosion
-    if (ball) {
-      const stageRect = ball.getBoundingClientRect();
-      create5DSparks(stageRect.left + stageRect.width / 2, stageRect.top + stageRect.height / 2);
-
-      // STEP 4: 5D FLY-TO-CAMERA (Ball launches DIRECTLY into viewer's eyes!)
-      ball.style.transition = 'transform 0.55s cubic-bezier(0.05, 0.85, 0.1, 1), opacity 0.45s ease, filter 0.4s ease';
-      // Scale up massive to fill screen and pass camera lens
-      ball.style.transform = 'translate3d(0, 0, 1600px) scale(35)';
-      ball.style.filter = 'drop-shadow(0 0 50px #00ff66) blur(4px)';
-    }
-
-    if (batWrapper) {
-      batWrapper.style.transition = 'transform 0.35s ease-out';
-      batWrapper.style.transform = 'translate3d(-200px, -150px, -100px) rotateX(-20deg) rotateY(30deg) rotateZ(70deg)';
-    }
-
-    // STEP 5: Tunnel Speed Lines Zoom Transition (1.1s)
-    setTimeout(() => {
-      if (tunnel) {
-        tunnel.style.opacity = '1';
-        tunnel.style.transform = 'scale(2.5)';
-        tunnel.style.transition = 'transform 0.5s ease-out, opacity 0.5s ease-out';
-      }
-    }, 350);
-
-  }, 750);
-
-  // STEP 6: Smoothly reveal homepage (1.7s)
-  setTimeout(() => {
-    splash.classList.add('splash-out');
-  }, 1700);
-
-  // STEP 7: Completely destroy/hide preloader (2.3s)
-  setTimeout(() => {
-    splash.style.display = 'none';
-  }, 2300);
+  requestAnimationFrame(render);
 }
 
 // ===== INIT ALL =====

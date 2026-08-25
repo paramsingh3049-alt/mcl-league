@@ -15,45 +15,49 @@
 </head>
 <body>
 
-<!-- ===== CRICKET LEAGUE 5D INTRO SPLASH SCREEN ===== -->
-<div id="cricket-splash">
-  <div class="splash-stadium-bg">
-    <div class="stadium-lights"></div>
-    <div class="anamorphic-flare"></div>
+<!-- ===== CINEMATIC 5D CRICKET STADIUM INTRO SPLASH SCREEN ===== -->
+<div id="cricket-splash" class="cinematic-5d-splash">
+  <!-- Stadium Atmospheric Background Layers -->
+  <div class="stadium-backdrop">
+    <div class="stadium-sky-glow"></div>
+    <div class="stadium-floodlights left-lights"></div>
+    <div class="stadium-floodlights right-lights"></div>
+    <div class="volumetric-light-beams"></div>
   </div>
-  <canvas id="splash-spark-canvas"></canvas>
-  
-  <div class="splash-viewport">
-    <div class="splash-stage" id="splash-stage">
-      <div class="impact-ring" id="splash-impact-ring"></div>
-      <div class="impact-flash" id="splash-impact-flash"></div>
-      <div class="tunnel-zoom" id="splash-tunnel"></div>
-      
-      <!-- 3D Macro Cricket Ball -->
-      <div class="cricket-ball-3d" id="splash-ball">
-        <div class="ball-seam-3d"></div>
-        <div class="ball-specular"></div>
-        <div class="ball-shadow-3d"></div>
-      </div>
-      
-      <!-- 3D Cinematic Cricket Bat -->
-      <div class="cricket-bat-3d-wrapper" id="splash-bat-wrapper">
-        <div class="cricket-bat-3d">
-          <div class="bat-handle-3d"></div>
-          <div class="bat-blade-3d">
-            <div class="bat-sticker-3d">MCL T20</div>
-            <div class="bat-grain-3d"></div>
-            <div class="bat-edge-highlight"></div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="splash-brand-title" id="splash-brand-title">
-        <span class="mcl">MCL T20</span>
-        <span class="sub">MMIFF CHAMPIONS LEAGUE</span>
+
+  <!-- Primary 60 FPS 5D Canvas Simulation -->
+  <canvas id="stadium-cinema-canvas"></canvas>
+
+  <!-- Broadcast TV HUD Graphics Overlay -->
+  <div class="broadcast-hud" id="broadcast-hud">
+    <div class="hud-top-left">
+      <div class="hud-live-pill"><span class="live-dot"></span> LIVE BROADCAST</div>
+      <div class="hud-tournament-name">MCL T20 &bull; CHAMPIONSHIP</div>
+    </div>
+    <div class="hud-top-right">
+      <div class="hud-radar-box">
+        <div class="hud-radar-title">SPEED RADAR</div>
+        <div class="hud-radar-val" id="hud-speed-val">---.- KM/H</div>
       </div>
     </div>
+    <div class="hud-center-alert" id="hud-center-alert">
+      <div class="alert-tag" id="hud-alert-tag">DELIVERY INCOMING</div>
+      <div class="alert-title" id="hud-alert-title">FAST BOWLER SPELL</div>
+    </div>
   </div>
+
+  <!-- 5D Glass Impact & Screen Shatter Layer -->
+  <div class="glass-shatter-layer" id="glass-shatter-layer">
+    <canvas id="glass-shatter-canvas"></canvas>
+    <div class="impact-chromatic-flash" id="impact-chromatic-flash"></div>
+    <div class="impact-shockwave-circle" id="impact-shockwave-circle"></div>
+  </div>
+
+  <!-- Skip Intro Button -->
+  <button id="splash-skip-btn" class="splash-skip-btn" aria-label="Skip Intro">
+    <span>SKIP INTRO</span>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>
+  </button>
 </div>
 
 <div class="particles"></div>
