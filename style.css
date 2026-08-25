@@ -1066,22 +1066,31 @@ footer {
   will-change: transform, opacity;
 }
 
-.bowler-img {
-  animation: cinemaBowlerPan 4s ease-out forwards;
+.bowler-run-img {
+  animation: cinemaBowlerRunPan 3s ease-out forwards;
 }
 
-@keyframes cinemaBowlerPan {
-  0% { transform: scale(1.02) translate(0, 0); }
-  100% { transform: scale(1.14) translate(-15px, -8px); }
+@keyframes cinemaBowlerRunPan {
+  0% { transform: scale(1.04) translate(20px, 0); }
+  100% { transform: scale(1.18) translate(-25px, -8px); }
+}
+
+.bowler-leap-img {
+  animation: cinemaBowlerLeapPan 3s ease-out forwards;
+}
+
+@keyframes cinemaBowlerLeapPan {
+  0% { transform: scale(1.05) translate(0, 15px); }
+  100% { transform: scale(1.2) translate(-10px, -15px); }
 }
 
 .batter-img {
-  animation: cinemaBatterPan 4s ease-out forwards;
+  animation: cinemaBatterPan 3.5s ease-out forwards;
 }
 
 @keyframes cinemaBatterPan {
   0% { transform: scale(1.04) translate(0, 0); }
-  100% { transform: scale(1.18) translate(12px, -6px); }
+  100% { transform: scale(1.2) translate(15px, -8px); }
 }
 
 .ball-img {

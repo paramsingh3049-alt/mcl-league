@@ -375,7 +375,8 @@ function initCricketSplash() {
   const splash = document.getElementById('cricket-splash');
   if (!splash) return;
 
-  const sceneBowler = document.getElementById('scene-bowler');
+  const sceneBowlerRun = document.getElementById('scene-bowler-run');
+  const sceneBowlerLeap = document.getElementById('scene-bowler-leap');
   const sceneBatter = document.getElementById('scene-batter');
   const sceneBall = document.getElementById('scene-ball');
   const sceneGlass = document.getElementById('scene-glass');
@@ -528,33 +529,44 @@ function initCricketSplash() {
     gCtx.clearRect(0, 0, width, height);
 
     // TIMELINE PHASES:
-    // 0.0s - 3.2s: Scene 1 - Bowler Delivery
-    // 3.2s - 6.6s: Scene 2 - Batter Power Shot
-    // 6.6s - 9.0s: Scene 3 - 5D Ball Fly-To-Screen
-    // 9.0s: Glass Shatter Impact!
+    // 0.0s - 2.5s: Scene 1 - Bowler Sprint Run-Up
+    // 2.5s - 5.0s: Scene 2 - Bowler Leap & 154 KM/H Delivery
+    // 5.0s - 7.5s: Scene 3 - Batter Power Shot
+    // 7.5s - 9.5s: Scene 4 - 5D Ball Fly-To-Screen
+    // 9.5s: Glass Shatter Impact!
     // 13.5s: Reveal Website
 
-    if (elapsed < 3.2) {
-      if (!sceneBowler.classList.contains('active')) {
-        sceneBowler.classList.add('active');
+    if (elapsed < 2.5) {
+      if (sceneBowlerRun && !sceneBowlerRun.classList.contains('active')) {
+        sceneBowlerRun.classList.add('active');
         if (alertBox) {
           if (alertTag) alertTag.textContent = 'EXPRESS PACE';
-          if (alertTitle) alertTitle.textContent = 'FAST BOWLER SPELL';
+          if (alertTitle) alertTitle.textContent = 'FAST BOWLER RUN-UP';
           alertBox.classList.add('show');
         }
       }
-    } else if (elapsed >= 3.2 && elapsed < 6.6) {
-      if (sceneBowler.classList.contains('active')) sceneBowler.classList.remove('active');
-      if (!sceneBatter.classList.contains('active')) {
+    } else if (elapsed >= 2.5 && elapsed < 5.0) {
+      if (sceneBowlerRun && sceneBowlerRun.classList.contains('active')) sceneBowlerRun.classList.remove('active');
+      if (sceneBowlerLeap && !sceneBowlerLeap.classList.contains('active')) {
+        sceneBowlerLeap.classList.add('active');
+        if (speedVal) speedVal.textContent = '154.2 KM/H';
+        if (alertBox) {
+          if (alertTag) alertTag.textContent = '⚡ 154.2 KM/H';
+          if (alertTitle) alertTitle.textContent = 'EXPRESS DELIVERY';
+        }
+      }
+    } else if (elapsed >= 5.0 && elapsed < 7.5) {
+      if (sceneBowlerLeap && sceneBowlerLeap.classList.contains('active')) sceneBowlerLeap.classList.remove('active');
+      if (sceneBatter && !sceneBatter.classList.contains('active')) {
         sceneBatter.classList.add('active');
         if (alertBox) {
           if (alertTag) alertTag.textContent = '💥 POWER SHOT';
           if (alertTitle) alertTitle.textContent = '126 METERS MAXIMUM 6';
         }
       }
-    } else if (elapsed >= 6.6 && elapsed < 9.0) {
-      if (sceneBatter.classList.contains('active')) sceneBatter.classList.remove('active');
-      if (!sceneBall.classList.contains('active')) {
+    } else if (elapsed >= 7.5 && elapsed < 9.5) {
+      if (sceneBatter && sceneBatter.classList.contains('active')) sceneBatter.classList.remove('active');
+      if (sceneBall && !sceneBall.classList.contains('active')) {
         sceneBall.classList.add('active');
         if (alertBox) {
           if (alertTag) alertTag.textContent = '⚠️ IMPACT ALERT';
@@ -563,8 +575,8 @@ function initCricketSplash() {
       }
 
       // 5D Ball scaling towards screen
-      const ballProgress = Math.min(1, (elapsed - 6.6) / 2.4);
-      const scale = 1.0 + Math.pow(ballProgress, 3) * 4.5;
+      const ballProgress = Math.min(1, (elapsed - 7.5) / 2.0);
+      const scale = 1.0 + Math.pow(ballProgress, 3) * 4.8;
       if (cinemaBallImg) {
         cinemaBallImg.style.transform = `scale(${scale})`;
       }
