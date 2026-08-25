@@ -15,55 +15,33 @@
 </head>
 <body>
 
-<!-- ===== CINEMATIC 5D PHOTOREALISTIC CRICKET INTRO ===== -->
-<div id="cricket-splash" class="cinematic-5d-splash">
-  <!-- Dynamic Cinematic Scene Layers -->
-  <div class="cinema-scene scene-bowler-run active" id="scene-bowler-run">
-    <img src="cinematic-bowler-run.jpg" alt="Bowler Run Up" class="cinema-img bowler-run-img"/>
-    <div class="cinema-overlay"></div>
-  </div>
+<!-- ===== CINEMATIC 5D 3D CARTOON CRICKET INTRO ===== -->
+<div id="cricket-splash" class="cartoon-5d-splash">
+  <!-- 60 FPS Cartoon 3D Canvas Engine -->
+  <canvas id="cartoon-cricket-canvas"></canvas>
 
-  <div class="cinema-scene scene-bowler-leap" id="scene-bowler-leap">
-    <img src="cinematic-bowler-leap.jpg" alt="Bowler Leap Delivery" class="cinema-img bowler-leap-img"/>
-    <div class="cinema-overlay"></div>
-  </div>
-
-  <div class="cinema-scene scene-batter" id="scene-batter">
-    <img src="cinematic-batter.jpg" alt="Batter Power Shot" class="cinema-img batter-img"/>
-    <div class="cinema-overlay"></div>
-  </div>
-
-  <div class="cinema-scene scene-ball" id="scene-ball">
-    <img src="cinematic-ball.jpg" alt="5D Cricket Ball" class="cinema-img ball-img" id="cinema-ball-img"/>
-    <div class="cinema-overlay"></div>
-  </div>
-
-  <!-- Realtime FX Canvas for Sparks, Beams & Shards -->
-  <canvas id="cinema-fx-canvas"></canvas>
-
-  <!-- Photorealistic Glass Shatter Overlay -->
-  <div class="scene-glass" id="scene-glass">
-    <img src="cinematic-glass.jpg" alt="Shattered Glass" class="glass-img" id="glass-img"/>
-    <canvas id="glass-shatter-canvas"></canvas>
+  <!-- Impact Glass Shatter Overlay -->
+  <div class="cartoon-glass-layer" id="cartoon-glass-layer">
+    <canvas id="cartoon-glass-canvas"></canvas>
     <div class="impact-chromatic-flash" id="impact-chromatic-flash"></div>
     <div class="impact-shockwave-circle" id="impact-shockwave-circle"></div>
   </div>
 
-  <!-- Broadcast TV HUD Graphics Overlay -->
+  <!-- Broadcast Cartoon HUD -->
   <div class="broadcast-hud" id="broadcast-hud">
     <div class="hud-top-left">
-      <div class="hud-live-pill"><span class="live-dot"></span> LIVE BROADCAST</div>
-      <div class="hud-tournament-name">MCL T20 &bull; CHAMPIONSHIP</div>
+      <div class="hud-live-pill"><span class="live-dot"></span> LIVE 3D MATCH</div>
+      <div class="hud-tournament-name">MCL T20 &bull; CARTOON CUP</div>
     </div>
     <div class="hud-top-right">
       <div class="hud-radar-box">
         <div class="hud-radar-title">SPEED RADAR</div>
-        <div class="hud-radar-val" id="hud-speed-val">154.2 KM/H</div>
+        <div class="hud-radar-val" id="hud-speed-val">---.- KM/H</div>
       </div>
     </div>
     <div class="hud-center-alert" id="hud-center-alert">
-      <div class="alert-tag" id="hud-alert-tag">DELIVERY INCOMING</div>
-      <div class="alert-title" id="hud-alert-title">FAST BOWLER SPELL</div>
+      <div class="alert-tag" id="hud-alert-tag">SUPER BOWLER READY</div>
+      <div class="alert-title" id="hud-alert-title">POWER INNINGS START</div>
     </div>
   </div>
 

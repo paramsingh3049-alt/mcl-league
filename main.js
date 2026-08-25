@@ -370,19 +370,13 @@ function initCustomCursor() {
   document.documentElement.addEventListener('mouseenter', onMouseEnter, { passive: true });
 }
 
-// ===== CINEMATIC 5D PHOTOREALISTIC CRICKET INTRO =====
+// ===== CINEMATIC 5D 3D CARTOON CRICKET ANIMATION ENGINE =====
 function initCricketSplash() {
   const splash = document.getElementById('cricket-splash');
   if (!splash) return;
 
-  const sceneBowlerRun = document.getElementById('scene-bowler-run');
-  const sceneBowlerLeap = document.getElementById('scene-bowler-leap');
-  const sceneBatter = document.getElementById('scene-batter');
-  const sceneBall = document.getElementById('scene-ball');
-  const sceneGlass = document.getElementById('scene-glass');
-  const cinemaBallImg = document.getElementById('cinema-ball-img');
-  const fxCanvas = document.getElementById('cinema-fx-canvas');
-  const glassCanvas = document.getElementById('glass-shatter-canvas');
+  const cricketCanvas = document.getElementById('cartoon-cricket-canvas');
+  const glassCanvas = document.getElementById('cartoon-glass-canvas');
   const flash = document.getElementById('impact-chromatic-flash');
   const shockwave = document.getElementById('impact-shockwave-circle');
   const speedVal = document.getElementById('hud-speed-val');
@@ -391,23 +385,24 @@ function initCricketSplash() {
   const alertTitle = document.getElementById('hud-alert-title');
   const skipBtn = document.getElementById('splash-skip-btn');
 
-  if (!fxCanvas || !glassCanvas) return;
+  if (!cricketCanvas || !glassCanvas) return;
 
-  const fxCtx = fxCanvas.getContext('2d');
+  const ctx = cricketCanvas.getContext('2d');
   const gCtx = glassCanvas.getContext('2d');
 
-  let width = (fxCanvas.width = glassCanvas.width = window.innerWidth);
-  let height = (fxCanvas.height = glassCanvas.height = window.innerHeight);
+  let width = (cricketCanvas.width = glassCanvas.width = window.innerWidth);
+  let height = (cricketCanvas.height = glassCanvas.height = window.innerHeight);
 
   const onResize = () => {
-    width = fxCanvas.width = glassCanvas.width = window.innerWidth;
-    height = fxCanvas.height = glassCanvas.height = window.innerHeight;
+    width = cricketCanvas.width = glassCanvas.width = window.innerWidth;
+    height = cricketCanvas.height = glassCanvas.height = window.innerHeight;
   };
   window.addEventListener('resize', onResize, { passive: true });
 
   const sparks = [];
   const glassShards = [];
   const crackLines = [];
+  const comicStars = [];
   let isCracked = false;
   let isEnded = false;
 
@@ -425,29 +420,39 @@ function initCricketSplash() {
     skipBtn.addEventListener('click', endSplash);
   }
 
+  // Crowd particle shapes
+  const crowd = [];
+  for (let i = 0; i < 60; i++) {
+    crowd.push({
+      x: Math.random(),
+      y: 0.12 + Math.random() * 0.28,
+      color: ['#ff0055', '#00ff66', '#00e5ff', '#ffd700', '#ff9900'][Math.floor(Math.random() * 5)],
+      size: 6 + Math.random() * 8,
+      offset: Math.random() * Math.PI * 2
+    });
+  }
+
   function spawnGlassShatter(centerX, centerY) {
     isCracked = true;
     splash.classList.add('shake-extreme');
-    if (sceneGlass) sceneGlass.classList.add('active');
 
-    // Impact chromatic flare
     if (flash) {
       flash.style.opacity = '1';
-      setTimeout(() => { flash.style.opacity = '0'; }, 160);
+      setTimeout(() => { flash.style.opacity = '0'; }, 180);
     }
 
     if (shockwave) {
       shockwave.style.opacity = '1';
       shockwave.style.transition = 'transform 0.6s cubic-bezier(0.1, 0.9, 0.2, 1), opacity 0.6s ease-out';
-      shockwave.style.transform = 'translate(-50%, -50%) scale(28)';
-      setTimeout(() => { shockwave.style.opacity = '0'; }, 420);
+      shockwave.style.transform = 'translate(-50%, -50%) scale(30)';
+      setTimeout(() => { shockwave.style.opacity = '0'; }, 450);
     }
 
-    // Generate procedural crack lines branching outward
-    const numPrimaryCracks = 18;
-    for (let i = 0; i < numPrimaryCracks; i++) {
-      const angle = (i / numPrimaryCracks) * Math.PI * 2 + (Math.random() - 0.5) * 0.35;
-      const maxLength = Math.max(width, height) * (0.65 + Math.random() * 0.5);
+    // Procedural Spiderweb Glass Cracks
+    const numCracks = 20;
+    for (let i = 0; i < numCracks; i++) {
+      const angle = (i / numCracks) * Math.PI * 2 + (Math.random() - 0.5) * 0.3;
+      const maxLength = Math.max(width, height) * (0.7 + Math.random() * 0.5);
       const points = [{ x: centerX, y: centerY }];
       let currentDist = 0;
       let currX = centerX;
@@ -455,69 +460,92 @@ function initCricketSplash() {
       let currAngle = angle;
 
       while (currentDist < maxLength) {
-        const step = 20 + Math.random() * 45;
+        const step = 20 + Math.random() * 40;
         currentDist += step;
-        currAngle += (Math.random() - 0.5) * 0.45;
+        currAngle += (Math.random() - 0.5) * 0.5;
         currX += Math.cos(currAngle) * step;
         currY += Math.sin(currAngle) * step;
         points.push({ x: currX, y: currY });
 
-        if (Math.random() > 0.55 && points.length > 2) {
+        if (Math.random() > 0.5 && points.length > 2) {
           const subAngle = currAngle + (Math.random() > 0.5 ? 0.75 : -0.75);
           const subPoints = [{ x: currX, y: currY }];
           let subX = currX;
           let subY = currY;
-          for (let s = 0; s < 4 + Math.floor(Math.random() * 4); s++) {
+          for (let s = 0; s < 4; s++) {
             subX += Math.cos(subAngle) * (15 + Math.random() * 25);
             subY += Math.sin(subAngle) * (15 + Math.random() * 25);
             subPoints.push({ x: subX, y: subY });
           }
-          crackLines.push({ points: subPoints, width: 1.5 + Math.random() * 1.5, alpha: 0.9 });
+          crackLines.push({ points: subPoints, width: 1.5, alpha: 0.9 });
         }
       }
-      crackLines.push({ points, width: 2.2 + Math.random() * 2.5, alpha: 0.95 });
+      crackLines.push({ points, width: 2.8, alpha: 0.98 });
     }
 
-    // Spawn 3D flying glass shards
-    for (let i = 0; i < 95; i++) {
+    // Concentric spiderweb rings
+    for (let r = 40; r < Math.min(width, height) * 0.45; r += 45 + Math.random() * 25) {
+      const ringPoints = [];
+      const steps = 16;
+      for (let s = 0; s <= steps; s++) {
+        const a = (s / steps) * Math.PI * 2;
+        const dist = r + (Math.random() - 0.5) * 16;
+        ringPoints.push({ x: centerX + Math.cos(a) * dist, y: centerY + Math.sin(a) * dist });
+      }
+      crackLines.push({ points: ringPoints, width: 1.8, alpha: 0.85 });
+    }
+
+    // 3D Glass Shards
+    for (let i = 0; i < 110; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const speed = 5 + Math.random() * 20;
+      const speed = 6 + Math.random() * 22;
       glassShards.push({
-        x: centerX + (Math.random() - 0.5) * 50,
-        y: centerY + (Math.random() - 0.5) * 50,
+        x: centerX + (Math.random() - 0.5) * 60,
+        y: centerY + (Math.random() - 0.5) * 60,
         vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed - (3 + Math.random() * 6),
+        vy: Math.sin(angle) * speed - (3 + Math.random() * 8),
         rot: Math.random() * Math.PI * 2,
-        vrot: (Math.random() - 0.5) * 0.3,
-        size: 10 + Math.random() * 28,
+        vrot: (Math.random() - 0.5) * 0.35,
+        size: 12 + Math.random() * 32,
         shape: [
-          { x: 0, y: -(10 + Math.random() * 16) },
-          { x: 8 + Math.random() * 14, y: 5 + Math.random() * 10 },
-          { x: -(8 + Math.random() * 14), y: 7 + Math.random() * 12 }
+          { x: 0, y: -(12 + Math.random() * 18) },
+          { x: 10 + Math.random() * 16, y: 6 + Math.random() * 12 },
+          { x: -(10 + Math.random() * 16), y: 8 + Math.random() * 14 }
         ],
         alpha: 0.95,
-        gravity: 0.3
+        gravity: 0.32
       });
     }
 
-    // Spawn high-energy spark particles
-    for (let i = 0; i < 120; i++) {
+    // Glowing Cartoon Sparks
+    for (let i = 0; i < 130; i++) {
       const a = Math.random() * Math.PI * 2;
-      const s = 6 + Math.random() * 24;
+      const s = 6 + Math.random() * 26;
       sparks.push({
         x: centerX,
         y: centerY,
         vx: Math.cos(a) * s,
         vy: Math.sin(a) * s,
-        size: 3 + Math.random() * 6,
-        color: Math.random() > 0.4 ? '#00ff66' : (Math.random() > 0.5 ? '#ffffff' : '#00e5ff'),
+        size: 4 + Math.random() * 7,
+        color: ['#ffd700', '#00ff66', '#ff0055', '#00e5ff', '#ffffff'][Math.floor(Math.random() * 5)],
         life: 1,
-        decay: 0.015 + Math.random() * 0.025
+        decay: 0.014 + Math.random() * 0.025
       });
     }
   }
 
-  // Multi-scene cinematic progression
+  // 3D Drawing Utilities
+  function draw3DSphere(c, x, y, radius, colorMain, colorLight, colorDark) {
+    const grad = c.createRadialGradient(x - radius * 0.35, y - radius * 0.35, radius * 0.08, x, y, radius);
+    grad.addColorStop(0, colorLight || '#ffffff');
+    grad.addColorStop(0.35, colorMain);
+    grad.addColorStop(1, colorDark || '#000000');
+    c.fillStyle = grad;
+    c.beginPath();
+    c.arc(x, y, radius, 0, Math.PI * 2);
+    c.fill();
+  }
+
   const startTime = performance.now();
 
   function render(time) {
@@ -525,75 +553,400 @@ function initCricketSplash() {
 
     const elapsed = (time - startTime) / 1000;
 
-    fxCtx.clearRect(0, 0, width, height);
+    ctx.clearRect(0, 0, width, height);
     gCtx.clearRect(0, 0, width, height);
 
+    // ==========================================
+    // LAYER 1: CARTOON 3D STADIUM & PITCH
+    // ==========================================
+
+    // Night Sky Gradient
+    const skyGrad = ctx.createLinearGradient(0, 0, 0, height);
+    skyGrad.addColorStop(0, '#040b17');
+    skyGrad.addColorStop(0.4, '#091e38');
+    skyGrad.addColorStop(1, '#051224');
+    ctx.fillStyle = skyGrad;
+    ctx.fillRect(0, 0, width, height);
+
+    // Volumetric Stadium Floodlights
+    ctx.save();
+    const lightGlow1 = ctx.createRadialGradient(width * 0.15, height * 0.15, 20, width * 0.15, height * 0.15, width * 0.35);
+    lightGlow1.addColorStop(0, 'rgba(255, 255, 255, 0.9)');
+    lightGlow1.addColorStop(0.2, 'rgba(0, 255, 102, 0.4)');
+    lightGlow1.addColorStop(1, 'transparent');
+    ctx.fillStyle = lightGlow1;
+    ctx.beginPath();
+    ctx.arc(width * 0.15, height * 0.15, width * 0.35, 0, Math.PI * 2);
+    ctx.fill();
+
+    const lightGlow2 = ctx.createRadialGradient(width * 0.85, height * 0.15, 20, width * 0.85, height * 0.15, width * 0.35);
+    lightGlow2.addColorStop(0, 'rgba(255, 255, 255, 0.9)');
+    lightGlow2.addColorStop(0.2, 'rgba(0, 229, 255, 0.4)');
+    lightGlow2.addColorStop(1, 'transparent');
+    ctx.fillStyle = lightGlow2;
+    ctx.beginPath();
+    ctx.arc(width * 0.85, height * 0.15, width * 0.35, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+
+    // Stadium Tiers & Animated Cheering Cartoon Crowd
+    ctx.fillStyle = 'rgba(8, 25, 45, 0.85)';
+    ctx.beginPath();
+    ctx.ellipse(width * 0.5, height * 0.48, width * 0.65, height * 0.28, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    crowd.forEach(c => {
+      const bob = Math.sin(elapsed * 8 + c.offset) * 4;
+      draw3DSphere(ctx, c.x * width, c.y * height + bob, c.size, c.color, '#ffffff', '#000000');
+    });
+
+    // 3D Cartoon Turf & Pitch
+    const pitchTopW = width * 0.14;
+    const pitchBottomW = width * 0.48;
+    const pitchTopY = height * 0.45;
+    const pitchBottomY = height * 0.96;
+    const pitchCenterX = width * 0.5;
+
+    // Outer Grass
+    const grassGrad = ctx.createRadialGradient(pitchCenterX, height * 0.7, 50, pitchCenterX, height * 0.7, width * 0.6);
+    grassGrad.addColorStop(0, '#109b3a');
+    grassGrad.addColorStop(0.7, '#086323');
+    grassGrad.addColorStop(1, '#043813');
+    ctx.fillStyle = grassGrad;
+    ctx.beginPath();
+    ctx.ellipse(pitchCenterX, height * 0.72, width * 0.58, height * 0.32, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Clay Turf Pitch
+    const turfGrad = ctx.createLinearGradient(pitchCenterX, pitchTopY, pitchCenterX, pitchBottomY);
+    turfGrad.addColorStop(0, '#dcb46e');
+    turfGrad.addColorStop(0.5, '#c99e54');
+    turfGrad.addColorStop(1, '#a87e38');
+    ctx.fillStyle = turfGrad;
+    ctx.beginPath();
+    ctx.moveTo(pitchCenterX - pitchTopW * 0.5, pitchTopY);
+    ctx.lineTo(pitchCenterX + pitchTopW * 0.5, pitchTopY);
+    ctx.lineTo(pitchCenterX + pitchBottomW * 0.5, pitchBottomY);
+    ctx.lineTo(pitchCenterX - pitchBottomW * 0.5, pitchBottomY);
+    ctx.closePath();
+    ctx.fill();
+
+    // Crease Markings
+    ctx.strokeStyle = '#ffffff';
+    ctx.lineWidth = 4;
+    ctx.lineCap = 'round';
+    // Bowling crease
+    ctx.beginPath();
+    ctx.moveTo(pitchCenterX - pitchTopW * 0.7, pitchTopY + 20);
+    ctx.lineTo(pitchCenterX + pitchTopW * 0.7, pitchTopY + 20);
+    ctx.stroke();
+    // Popping crease
+    ctx.beginPath();
+    ctx.moveTo(pitchCenterX - pitchBottomW * 0.45, pitchBottomY - 45);
+    ctx.lineTo(pitchCenterX + pitchBottomW * 0.45, pitchBottomY - 45);
+    ctx.stroke();
+
+    // 3D Cartoon Stumps & Bails
+    ctx.fillStyle = '#ffcc00';
+    for (let st = -10; st <= 10; st += 10) {
+      draw3DSphere(ctx, pitchCenterX + st, pitchTopY + 8, 3, '#ffcc00', '#fff', '#8a6500');
+      ctx.fillRect(pitchCenterX + st - 2, pitchTopY + 8, 4, 20);
+    }
+    // Batter end stumps
+    for (let st = -18; st <= 18; st += 18) {
+      draw3DSphere(ctx, pitchCenterX + st, pitchBottomY - 38, 5, '#ffcc00', '#fff', '#8a6500');
+      ctx.fillRect(pitchCenterX + st - 3, pitchBottomY - 38, 6, 38);
+    }
+
+    // ==========================================
+    // LAYER 2: 3D CARTOON CHARACTERS ANIMATION
+    // ==========================================
+
     // TIMELINE PHASES:
-    // 0.0s - 2.5s: Scene 1 - Bowler Sprint Run-Up
-    // 2.5s - 5.0s: Scene 2 - Bowler Leap & 154 KM/H Delivery
-    // 5.0s - 7.5s: Scene 3 - Batter Power Shot
-    // 7.5s - 9.5s: Scene 4 - 5D Ball Fly-To-Screen
-    // 9.5s: Glass Shatter Impact!
-    // 13.5s: Reveal Website
+    // 0.0s - 3.2s: 3D Cartoon Bowler Run-Up
+    // 3.2s - 4.8s: Bowler Windup, Leap & Express Ball Release (Speed Radar updates)
+    // 4.8s - 6.6s: 3D Cartoon Batter Backlift & Load
+    // 6.6s - 7.5s: Batter Monster Power Shot! (Starburst & Comic Text)
+    // 7.5s - 9.4s: 5D Cartoon Ball Fly-To-Screen
+    // 9.4s: Screen Glass Shatter Impact!
+    // 13.5s: Smoothly Reveal Website
 
-    if (elapsed < 2.5) {
-      if (sceneBowlerRun && !sceneBowlerRun.classList.contains('active')) {
-        sceneBowlerRun.classList.add('active');
-        if (alertBox) {
-          if (alertTag) alertTag.textContent = 'EXPRESS PACE';
-          if (alertTitle) alertTitle.textContent = 'FAST BOWLER RUN-UP';
-          alertBox.classList.add('show');
-        }
-      }
-    } else if (elapsed >= 2.5 && elapsed < 5.0) {
-      if (sceneBowlerRun && sceneBowlerRun.classList.contains('active')) sceneBowlerRun.classList.remove('active');
-      if (sceneBowlerLeap && !sceneBowlerLeap.classList.contains('active')) {
-        sceneBowlerLeap.classList.add('active');
-        if (speedVal) speedVal.textContent = '154.2 KM/H';
-        if (alertBox) {
-          if (alertTag) alertTag.textContent = '⚡ 154.2 KM/H';
-          if (alertTitle) alertTitle.textContent = 'EXPRESS DELIVERY';
-        }
-      }
-    } else if (elapsed >= 5.0 && elapsed < 7.5) {
-      if (sceneBowlerLeap && sceneBowlerLeap.classList.contains('active')) sceneBowlerLeap.classList.remove('active');
-      if (sceneBatter && !sceneBatter.classList.contains('active')) {
-        sceneBatter.classList.add('active');
-        if (alertBox) {
-          if (alertTag) alertTag.textContent = '💥 POWER SHOT';
-          if (alertTitle) alertTitle.textContent = '126 METERS MAXIMUM 6';
-        }
-      }
-    } else if (elapsed >= 7.5 && elapsed < 9.5) {
-      if (sceneBatter && sceneBatter.classList.contains('active')) sceneBatter.classList.remove('active');
-      if (sceneBall && !sceneBall.classList.contains('active')) {
-        sceneBall.classList.add('active');
-        if (alertBox) {
-          if (alertTag) alertTag.textContent = '⚠️ IMPACT ALERT';
-          if (alertTitle) alertTitle.textContent = 'DIRECT HIT INCOMING';
-        }
+    // 1. CARTOON BOWLER
+    if (elapsed < 5.8) {
+      let bProgress = Math.min(1, Math.max(0, elapsed / 3.4));
+      let bX = pitchCenterX - 45 + bProgress * 25;
+      let bY = pitchTopY - 60 + bProgress * 80;
+      let bScale = 0.55 + bProgress * 0.55;
+
+      const runCycle = Math.sin(elapsed * 14);
+      const bobY = Math.abs(Math.cos(elapsed * 14)) * 8;
+
+      ctx.save();
+      ctx.translate(bX, bY - (elapsed < 3.4 ? bobY : 0));
+      ctx.scale(bScale, bScale);
+
+      // Shadow
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.35)';
+      ctx.beginPath();
+      ctx.ellipse(0, 50, 24, 8, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Bouncy Cartoon Legs & Sneakers
+      const legL = elapsed < 3.4 ? runCycle * 25 : 0;
+      const legR = elapsed < 3.4 ? -runCycle * 25 : 15;
+
+      // Left Leg
+      ctx.fillStyle = '#052316';
+      ctx.beginPath();
+      ctx.roundRect(-14, 15, 10, 32 + legL, 5);
+      ctx.fill();
+      draw3DSphere(ctx, -9, 48 + legL, 8, '#ffffff', '#ffffff', '#aaaaaa');
+
+      // Right Leg
+      ctx.beginPath();
+      ctx.roundRect(4, 15, 10, 32 + legR, 5);
+      ctx.fill();
+      draw3DSphere(ctx, 9, 48 + legR, 8, '#ffffff', '#ffffff', '#aaaaaa');
+
+      // 3D Cartoon Torso (Neon Green Jersey #10)
+      draw3DSphere(ctx, 0, 0, 22, '#00ff66', '#80ffb3', '#00993d');
+
+      // Jersey Number
+      ctx.fillStyle = '#000000';
+      ctx.font = 'bold 12px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('10', 0, 4);
+
+      // 3D Cartoon Head
+      draw3DSphere(ctx, 0, -32, 18, '#ffd2a6', '#fff5eb', '#c98a53');
+
+      // 3D Sports Visor / Cap
+      ctx.fillStyle = '#0055ff';
+      ctx.beginPath();
+      ctx.arc(0, -42, 14, Math.PI, 0, false);
+      ctx.fill();
+      // Cap Brim
+      ctx.fillStyle = '#0033aa';
+      ctx.beginPath();
+      ctx.ellipse(4, -38, 16, 5, 0.2, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Big Expressive Cartoon Eyes
+      draw3DSphere(ctx, -6, -34, 5, '#ffffff', '#ffffff', '#dddddd');
+      draw3DSphere(ctx, 6, -34, 5, '#ffffff', '#ffffff', '#dddddd');
+      // Pupils tracking pitch
+      draw3DSphere(ctx, -4, -34, 2.5, '#000000', '#333333', '#000000');
+      draw3DSphere(ctx, 8, -34, 2.5, '#000000', '#333333', '#000000');
+
+      // Energetic Cartoon Smile
+      ctx.strokeStyle = '#8a4b18';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.arc(0, -26, 6, 0.2, Math.PI - 0.2);
+      ctx.stroke();
+
+      // Bowling Arm Whirlwind & Release
+      let armAngle = elapsed < 3.2 ? elapsed * 6 : (elapsed - 3.2) * 16;
+      const armX = 14 + Math.cos(armAngle) * 26;
+      const armY = -24 - Math.sin(armAngle) * 26;
+
+      ctx.strokeStyle = '#ffd2a6';
+      ctx.lineWidth = 7;
+      ctx.beginPath();
+      ctx.moveTo(10, -20);
+      ctx.lineTo(armX, armY);
+      ctx.stroke();
+
+      // Ball in bowler hand
+      if (elapsed < 3.8) {
+        draw3DSphere(ctx, armX, armY, 7, '#ff0033', '#ff8099', '#880015');
       }
 
-      // 5D Ball scaling towards screen
-      const ballProgress = Math.min(1, (elapsed - 7.5) / 2.0);
-      const scale = 1.0 + Math.pow(ballProgress, 3) * 4.8;
-      if (cinemaBallImg) {
-        cinemaBallImg.style.transform = `scale(${scale})`;
+      ctx.restore();
+    }
+
+    // Update Speed HUD
+    if (elapsed >= 3.8 && elapsed < 6.8) {
+      if (speedVal) speedVal.textContent = '156.4 KM/H';
+      if (alertBox && !alertBox.classList.contains('show') && elapsed < 5.8) {
+        if (alertTag) alertTag.textContent = '⚡ FAST BALL';
+        if (alertTitle) alertTitle.textContent = 'SUPER CARTOON BOWL!';
+        alertBox.classList.add('show');
       }
     }
 
-    if (elapsed >= 9.0 && !isCracked) {
+    // 2. CARTOON BATTER ("Master Blaster")
+    const batterX = pitchCenterX + 35;
+    const batterY = pitchBottomY - 70;
+    const batterScale = 1.25;
+
+    ctx.save();
+    ctx.translate(batterX, batterY);
+    ctx.scale(batterScale, batterScale);
+
+    // Batter Shadow
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
+    ctx.beginPath();
+    ctx.ellipse(0, 48, 32, 10, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // 3D Cartoon Batting Pads
+    draw3DSphere(ctx, -14, 30, 11, '#ffffff', '#ffffff', '#cccccc');
+    draw3DSphere(ctx, 10, 30, 11, '#ffffff', '#ffffff', '#cccccc');
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(-22, 10, 16, 32);
+    ctx.fillRect(2, 10, 16, 32);
+
+    // 3D Cartoon Torso (Blue Team Jersey)
+    draw3DSphere(ctx, 0, -4, 26, '#0066ff', '#80b3ff', '#003399');
+
+    // 3D Oversized Cartoon Helmet
+    draw3DSphere(ctx, 0, -42, 22, '#0044cc', '#66a3ff', '#002266');
+    // Helmet Grill
+    ctx.strokeStyle = '#cccccc';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.arc(0, -38, 16, 0.1, Math.PI - 0.1);
+    ctx.stroke();
+
+    // Expressive Cartoon Eyes
+    draw3DSphere(ctx, -7, -42, 6, '#ffffff', '#ffffff', '#dddddd');
+    draw3DSphere(ctx, 7, -42, 6, '#ffffff', '#ffffff', '#dddddd');
+    // Pupils
+    draw3DSphere(ctx, -5, -42, 3, '#000000', '#333333', '#000000');
+    draw3DSphere(ctx, 9, -42, 3, '#000000', '#333333', '#000000');
+
+    // 3D Cartoon Bat Swing Physics
+    let batRot = -0.7; // Ready stance
+    if (elapsed >= 5.2 && elapsed < 6.8) {
+      // Windup Backlift
+      const t = (elapsed - 5.2) / 1.6;
+      batRot = -0.7 - Math.sin(t * Math.PI) * 0.9;
+    } else if (elapsed >= 6.8 && elapsed < 7.4) {
+      // Powerful Smash
+      const t = (elapsed - 6.8) / 0.6;
+      batRot = -1.6 + t * 3.8;
+    } else if (elapsed >= 7.4) {
+      // Follow through
+      batRot = 2.2;
+    }
+
+    ctx.save();
+    ctx.translate(6, -8);
+    ctx.rotate(batRot);
+
+    // Bat Handle
+    ctx.fillStyle = '#222222';
+    ctx.fillRect(-4, -42, 8, 26);
+
+    // Stylized Willow Blade
+    const batGrad = ctx.createLinearGradient(-10, 0, 10, 0);
+    batGrad.addColorStop(0, '#ffd999');
+    batGrad.addColorStop(0.5, '#e6b866');
+    batGrad.addColorStop(1, '#b38633');
+    ctx.fillStyle = batGrad;
+    ctx.beginPath();
+    ctx.roundRect(-9, -16, 18, 68, [4, 12, 12, 4]);
+    ctx.fill();
+
+    // MCL 3D Badge on Bat
+    ctx.fillStyle = '#00ff66';
+    ctx.fillRect(-7, -4, 14, 20);
+
+    // Padded Cartoon Gloves
+    draw3DSphere(ctx, -2, -22, 9, '#ff0055', '#ff80aa', '#990033');
+    ctx.restore();
+
+    ctx.restore();
+
+    // ==========================================
+    // LAYER 3: 5D CARTOON BALL & POWER SHOT
+    // ==========================================
+
+    if (elapsed >= 3.8 && elapsed < 6.8) {
+      // Ball pitches from bowler to batter
+      const t = (elapsed - 3.8) / 3.0;
+      const bX = pitchCenterX + (t * 22);
+      const bY = pitchTopY + 20 + (t * (pitchBottomY - pitchTopY - 90));
+      const bR = 6 + t * 10;
+
+      draw3DSphere(ctx, bX, bY, bR, '#ff0033', '#ff8099', '#880015');
+    } else if (elapsed >= 6.8 && elapsed < 9.4) {
+      // Contact Spark Blast!
+      if (elapsed >= 6.8 && elapsed < 7.2) {
+        ctx.save();
+        // Starburst shape
+        ctx.fillStyle = '#ffd700';
+        ctx.shadowColor = '#ff0055';
+        ctx.shadowBlur = 40;
+        ctx.beginPath();
+        for (let s = 0; s < 12; s++) {
+          const a = (s / 12) * Math.PI * 2;
+          const r = s % 2 === 0 ? 55 : 22;
+          const sx = batterX - 10 + Math.cos(a) * r;
+          const sy = batterY - 20 + Math.sin(a) * r;
+          if (s === 0) ctx.moveTo(sx, sy);
+          else ctx.lineTo(sx, sy);
+        }
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+
+        if (alertBox) {
+          if (alertTag) alertTag.textContent = '💥 SUPER SMASH!';
+          if (alertTitle) alertTitle.textContent = '130M MAXIMUM 6!';
+        }
+      }
+
+      // 5D Flying Ball to Camera
+      const flyT = (elapsed - 6.8) / 2.6;
+      const startX = batterX - 10;
+      const startY = batterY - 20;
+      const targetX = width * 0.5;
+      const targetY = height * 0.5;
+
+      const currX = startX + (targetX - startX) * flyT;
+      const currY = startY + (targetY - startY) * flyT;
+      const currR = 14 + Math.pow(flyT, 2.9) * Math.min(width, height) * 0.6;
+
+      ctx.save();
+      // Comic Speed Lines
+      ctx.strokeStyle = 'rgba(255, 215, 0, 0.7)';
+      ctx.lineWidth = 6 * flyT;
+      ctx.beginPath();
+      ctx.moveTo(startX, startY);
+      ctx.lineTo(currX, currY);
+      ctx.stroke();
+
+      // 3D Cartoon Ball with Highlights
+      draw3DSphere(ctx, currX, currY, currR, '#ff1a40', '#ff99aa', '#7a0015');
+
+      // Cartoon White Seam Stitching
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = Math.max(2, currR * 0.08);
+      ctx.setLineDash([currR * 0.09, currR * 0.06]);
+      ctx.beginPath();
+      ctx.ellipse(currX, currY, currR * 0.95, currR * 0.3, elapsed * 14, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    // ==========================================
+    // LAYER 4: GLASS CRACK & SCREEN SHATTER FX
+    // ==========================================
+
+    if (elapsed >= 9.4 && !isCracked) {
       spawnGlassShatter(width * 0.5, height * 0.5);
     }
 
     if (isCracked) {
-      // Draw procedural glass crack lines
       gCtx.save();
+      // Draw procedural cartoon glass crack veins
       crackLines.forEach(line => {
-        gCtx.strokeStyle = `rgba(220, 245, 255, ${line.alpha})`;
+        gCtx.strokeStyle = `rgba(255, 255, 255, ${line.alpha})`;
         gCtx.lineWidth = line.width;
-        gCtx.shadowColor = 'rgba(0, 255, 180, 0.9)';
-        gCtx.shadowBlur = 8;
+        gCtx.shadowColor = '#00ff66';
+        gCtx.shadowBlur = 10;
         gCtx.beginPath();
         line.points.forEach((pt, idx) => {
           if (idx === 0) gCtx.moveTo(pt.x, pt.y);
@@ -614,11 +967,11 @@ function initCricketSplash() {
           gCtx.save();
           gCtx.translate(shard.x, shard.y);
           gCtx.rotate(shard.rot);
-          gCtx.fillStyle = `rgba(220, 245, 255, ${shard.alpha * 0.75})`;
+          gCtx.fillStyle = `rgba(230, 250, 255, ${shard.alpha * 0.8})`;
           gCtx.strokeStyle = `rgba(255, 255, 255, ${shard.alpha})`;
-          gCtx.lineWidth = 1.5;
-          gCtx.shadowColor = '#00ff66';
-          gCtx.shadowBlur = 10;
+          gCtx.lineWidth = 2;
+          gCtx.shadowColor = '#ffd700';
+          gCtx.shadowBlur = 12;
           gCtx.beginPath();
           shard.shape.forEach((pt, sIdx) => {
             if (sIdx === 0) gCtx.moveTo(pt.x, pt.y);
@@ -630,7 +983,6 @@ function initCricketSplash() {
           gCtx.restore();
         }
       });
-
       gCtx.restore();
     }
 
@@ -650,12 +1002,7 @@ function initCricketSplash() {
 
       gCtx.save();
       gCtx.globalAlpha = p.life;
-      gCtx.fillStyle = p.color;
-      gCtx.shadowColor = p.color;
-      gCtx.shadowBlur = 10;
-      gCtx.beginPath();
-      gCtx.arc(p.x, p.y, Math.max(0.5, p.size), 0, Math.PI * 2);
-      gCtx.fill();
+      draw3DSphere(gCtx, p.x, p.y, Math.max(1, p.size), p.color, '#ffffff', '#000000');
       gCtx.restore();
     }
 
@@ -669,6 +1016,7 @@ function initCricketSplash() {
 
   requestAnimationFrame(render);
 }
+
 
 // ===== INIT ALL =====
 document.addEventListener('DOMContentLoaded', () => {
