@@ -1,14 +1,14 @@
 // MCL T20 - Global JavaScript
 
 const teams = [
-  { name: "Team A", state: "", emoji: "🏏", color: "#FF6B00" },
-  { name: "Team B", state: "", emoji: "⚡", color: "#FFD700" },
-  { name: "Team C", state: "", emoji: "🎯", color: "#E63946" },
-  { name: "Team D", state: "", emoji: "🎯", color: "#06D6A0" },
-  { name: "Team E", state: "", emoji: "👑", color: "#F72585" },
-  { name: "Team F", state: "", emoji: "🌟", color: "#4361EE" },
-  { name: "Team G", state: "", emoji: "💥", color: "#FB8500" },
-  { name: "Team H", state: "", emoji: "🏆", color: "#7B2D8B" },
+  { name: "Team A", state: "", emoji: "", color: "#FF6B00" },
+  { name: "Team B", state: "", emoji: "", color: "#FFD700" },
+  { name: "Team C", state: "", emoji: "", color: "#E63946" },
+  { name: "Team D", state: "", emoji: "", color: "#06D6A0" },
+  { name: "Team E", state: "", emoji: "", color: "#F72585" },
+  { name: "Team F", state: "", emoji: "", color: "#4361EE" },
+  { name: "Team G", state: "", emoji: "", color: "#FB8500" },
+  { name: "Team H", state: "", emoji: "", color: "#7B2D8B" },
 ];
 
 const matches = [
@@ -112,14 +112,14 @@ function initParticles() {
 }
 
 // ===== TOAST =====
-function showToast(title, message, icon = '✅') {
+function showToast(title, message, icon = '') {
   let toast = document.querySelector('.toast');
   if (!toast) {
     toast = document.createElement('div');
     toast.className = 'toast';
     document.body.appendChild(toast);
   }
-  toast.innerHTML = `<div class="toast-icon">${icon}</div><div class="toast-text"><strong>${title}</strong><span>${message}</span></div>`;
+  toast.innerHTML = (icon ? `<div class="toast-icon">${icon}</div>` : '') + `<div class="toast-text"><strong>${title}</strong><span>${message}</span></div>`;
   toast.classList.add('show');
   setTimeout(() => toast.classList.remove('show'), 4000);
 }
@@ -173,7 +173,7 @@ function initRegForm() {
       form.style.display = 'none';
       const success = document.querySelector('.form-success');
       if (success) success.style.display = 'block';
-      showToast('Registration Submitted!', 'We will contact you shortly.', '🏏');
+      showToast('Registration Submitted!', 'We will contact you shortly.');
     }, 1500);
   });
 }

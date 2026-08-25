@@ -295,10 +295,10 @@
     <div class="reg-tabs-wrap">
       <div class="reg-tabs" role="tablist">
         <button class="reg-tab active" id="tab-player" role="tab" aria-selected="true" aria-controls="panel-player" onclick="switchTab('player')">
-          🏏 Player Registration
+          Player Registration
         </button>
         <button class="reg-tab" id="tab-franchise" role="tab" aria-selected="false" aria-controls="panel-franchise" onclick="switchTab('franchise')">
-          🏢 Franchise Registration
+          Franchise Registration
         </button>
       </div>
     </div>
@@ -440,7 +440,6 @@
               <label>Upload Your Photo <span class="req">*</span></label>
               <div class="file-upload-area" onclick="document.getElementById('photoUpload').click()">
                 <input type="file" id="photoUpload" name="photo" accept="image/*" onchange="showFileName(this,'photoName')"/>
-                <div class="file-upload-icon">📸</div>
                 <div class="file-upload-text">
                   <strong>Click to upload Photo</strong>
                   <span>JPG, PNG — Max 10 MB</span>
@@ -452,7 +451,6 @@
               <label>Upload Date of Birth Proof <span class="req">*</span></label>
               <div class="file-upload-area" onclick="document.getElementById('dobProof').click()">
                 <input type="file" id="dobProof" name="dobProof" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" onchange="showFileName(this,'dobProofName')"/>
-                <div class="file-upload-icon">🪪</div>
                 <div class="file-upload-text">
                   <strong>Click to upload DOB Proof</strong>
                   <span>PDF, JPG, PNG, DOC — Max 10 MB</span>
@@ -466,7 +464,6 @@
             <label>Upload ID &amp; Address Proof <span class="req">*</span></label>
             <div class="file-upload-area" onclick="document.getElementById('idProof').click()">
               <input type="file" id="idProof" name="idProof" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" onchange="showFileName(this,'idProofName')"/>
-              <div class="file-upload-icon">📄</div>
               <div class="file-upload-text">
                 <strong>Click to upload ID &amp; Address Proof</strong>
                 <span>Aadhaar / PAN / Voter ID / Passport — PDF, JPG, PNG — Max 10 MB</span>
@@ -491,19 +488,19 @@
             <div class="radio-group" id="playingRole">
               <label class="radio-opt" onclick="selectRadio(this,'playingRole')">
                 <input type="radio" name="playingRole" value="Batsman"/>
-                <div class="dot"></div><span>🏏 Batsman</span>
+                <div class="dot"></div><span>Batsman</span>
               </label>
               <label class="radio-opt" onclick="selectRadio(this,'playingRole')">
                 <input type="radio" name="playingRole" value="Bowler"/>
-                <div class="dot"></div><span>⚡ Bowler</span>
+                <div class="dot"></div><span>Bowler</span>
               </label>
               <label class="radio-opt" onclick="selectRadio(this,'playingRole')">
                 <input type="radio" name="playingRole" value="All-Rounder"/>
-                <div class="dot"></div><span>🌟 All-Rounder</span>
+                <div class="dot"></div><span>All-Rounder</span>
               </label>
               <label class="radio-opt" onclick="selectRadio(this,'playingRole')">
                 <input type="radio" name="playingRole" value="Wicket Keeper"/>
-                <div class="dot"></div><span>🧤 Wicket Keeper</span>
+                <div class="dot"></div><span>Wicket Keeper</span>
               </label>
             </div>
           </div>
@@ -729,7 +726,7 @@
             <p style="color:#c8d8c0;font-size:0.875rem;margin-bottom:0.75rem;">Scan the QR code below using any UPI app (GPay, PhonePe, Paytm, BHIM) to pay the registration fee, then upload the screenshot.</p>
             <div class="qr-card">
               <img src="payment-qr.jpg" alt="Payment QR Code" id="playerPaymentQR" />
-              <div class="qr-card-label"><span>📲</span> SCAN &amp; PAY</div>
+              <div class="qr-card-label">SCAN &amp; PAY</div>
             </div>
             <p style="color:#6b7b65;font-size:0.75rem;">Please keep a screenshot of your successful transaction receipt for reference.</p>
           </div>
@@ -738,7 +735,6 @@
             <label>Payment Screenshot <span class="req">*</span></label>
             <div class="file-upload-area" onclick="document.getElementById('paymentProof').click()">
               <input type="file" id="paymentProof" name="paymentProof" accept=".pdf,.jpg,.jpeg,.png" onchange="showFileName(this,'paymentProofName')"/>
-              <div class="file-upload-icon">💳</div>
               <div class="file-upload-text">
                 <strong>Upload Payment Screenshot</strong>
                 <span>JPG, PNG, PDF — Max 10 MB</span>
@@ -762,7 +758,7 @@
               <p>4. The applicant voluntarily participates in trials, practice sessions, matches, promotional activities, media interactions, and other league-related events at their own risk.</p>
               <p>5. MCL T20, Mentor &amp; Mascot Indian Film Federation (MMIFF), its affiliates, sponsors, franchise owners, partners, officials, employees, volunteers, and representatives shall not be held liable for any injury, accident, illness, disability, loss, theft, damage, or unforeseen incident occurring before, during, or after participation in any league activity.</p>
               <p>6. The applicant grants MCL T20 and MMIFF unrestricted rights to use, publish, broadcast, reproduce, distribute, edit, archive, and promote their name, image, photograph, voice, video footage, performance statistics, interviews, and related content across all media platforms worldwide without additional compensation unless otherwise agreed in writing.</p>
-              <p>7. The applicant agrees to comply with all league rules, code of conduct, anti-corruption regulations, disciplinary guidelines, safety protocols, and decisions issued by the Organizing Committee from time to time.</p>
+              <p>7. The applicant agrees to comply with all league rules, code of conduct, anti-corruption regulations, disciplinary guidelines, safety protocols, and decisions issued by the Organizing Committee from time time.</p>
               <p>8. MCL T20 reserves the right to modify tournament formats, schedules, venues, rules, player categories, auction procedures, and operational policies whenever deemed necessary.</p>
               <p>9. Any misconduct, indiscipline, violence, abuse, match-fixing, betting, substance abuse, or actions detrimental to the reputation of MCL T20 may lead to suspension, expulsion, legal action, and permanent blacklisting.</p>
               <p>10. Participation in MCL T20 is subject to eligibility verification, age verification, fitness assessment, and document authentication.</p>
@@ -786,7 +782,7 @@
             <div class="signature-pad-wrapper">
               <canvas id="signaturePad" width="760" height="150"></canvas>
               <div class="sig-controls">
-                <button type="button" class="sig-btn" onclick="clearSignature()">🗑 Clear</button>
+                <button type="button" class="sig-btn" onclick="clearSignature()">Clear</button>
                 <span style="flex:1;"></span>
                 <span class="sig-label">Draw your signature above</span>
               </div>
@@ -797,13 +793,13 @@
           <div class="form-nav">
             <button class="btn-back" onclick="goToStep(5)">← Back</button>
             <span class="step-counter">Step 6 of 6</span>
-            <button class="btn-submit" id="submitBtn" onclick="submitForm()">🏏 Submit Registration</button>
+            <button class="btn-submit" id="submitBtn" onclick="submitForm()">Submit Registration</button>
           </div>
         </div>
 
         <!-- SUCCESS STATE -->
         <div class="form-success" id="formSuccess">
-          <div class="tick">🎉</div>
+          <div class="tick"></div>
           <h3>Registration Submitted!</h3>
           <p style="color:#c8d8c0;margin-bottom:2rem;">Thank you! Our team will review your application and contact you within 48 hours at the email provided. Welcome to the MCL T20 family!</p>
           <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
@@ -838,7 +834,7 @@
 
         <!-- ===== FRANCHISE STEP 1: Apply Now ===== -->
         <div class="form-step active" id="fstep-1">
-          <div class="info-badge">🏢 Franchise Registration</div>
+          <div class="info-badge">Franchise Registration</div>
           <h2 class="form-section-title">Franchise Information</h2>
           <p class="form-section-sub">Fill in your details below to express interest in owning an MCL T20 franchise.</p>
 
@@ -941,7 +937,7 @@
 
         <!-- ===== FRANCHISE STEP 2: Owner Details ===== -->
         <div class="form-step" id="fstep-2">
-          <div class="info-badge">🏢 Franchise Registration</div>
+          <div class="info-badge">Franchise Registration</div>
           <h2 class="form-section-title">Owner / Authorized Contact</h2>
           <p class="form-section-sub">Details of the owner or authorized representative of the franchise.</p>
 
@@ -1028,13 +1024,13 @@
 
           <div class="form-nav">
             <button class="btn-back" onclick="goToFStep(1)">&larr; Back</button>
-            <button class="btn-submit" id="fSubmitBtn" onclick="submitFranchiseForm()">🏢 Submit Application</button>
+            <button class="btn-submit" id="fSubmitBtn" onclick="submitFranchiseForm()">Submit Application</button>
           </div>
         </div><!-- end fstep-2 -->
 
         <!-- FRANCHISE SUCCESS STATE -->
         <div class="form-success" id="franchiseFormSuccess" style="display:none;padding:3rem 1.5rem;text-align:center;">
-          <div class="tick" style="font-size:4.5rem;margin-bottom:1rem;">🎉</div>
+          <div class="tick" style="font-size:4.5rem;margin-bottom:1rem;"></div>
           <div style="display:inline-block;padding:6px 18px;background:rgba(181,232,35,0.1);border:1px solid rgba(181,232,35,0.3);border-radius:9999px;color:var(--brand,#b5e823);font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1rem;">
             Application Received
           </div>
@@ -1184,7 +1180,7 @@
           
           const fieldName = labelText || field.placeholder || field.name || 'Required Field';
           if (typeof showToast === 'function') {
-            showToast('Required Field Missing', `Please fill in: ${fieldName}`, '⚠️');
+            showToast('Required Field Missing', `Please fill in: ${fieldName}`, '');
           }
 
           const clearError = () => {
@@ -1205,7 +1201,7 @@
         field.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
         if (typeof showToast === 'function') {
-          showToast('Invalid Format', `Please check: ${field.placeholder || field.name}`, '⚠️');
+          showToast('Invalid Format', `Please check: ${field.placeholder || field.name}`, '');
         }
 
         const clearError = () => {
@@ -1378,7 +1374,7 @@
   ══════════════════════════════ */
   async function submitForm() {
     if (!document.getElementById('agreeDisclaimer').checked) {
-      showToast && showToast('Disclaimer Required', 'Please read and accept the disclaimer to continue.', '⚠️');
+      showToast && showToast('Disclaimer Required', 'Please read and accept the disclaimer to continue.', '');
       return;
     }
 
@@ -1466,12 +1462,12 @@
       document.getElementById('step-6').classList.remove('active');
       document.getElementById('stepProgress').style.display = 'none';
       document.getElementById('formSuccess').style.display = 'block';
-      showToast && showToast('Registration Submitted! 🏏', 'We will contact you within 48 hours.', '✅');
+      showToast && showToast('Registration Submitted!', 'We will contact you within 48 hours.', '');
 
     } catch (err) {
       console.error('Player registration error:', err);
-      showToast && showToast('Submission Failed', err.message || 'Please check your connection and try again.', '❌');
-      btn.innerHTML = '🏏 Submit Registration';
+      showToast && showToast('Submission Failed', err.message || 'Please check your connection and try again.', '');
+      btn.innerHTML = 'Submit Registration';
       btn.disabled = false;
     }
   }
@@ -1578,12 +1574,12 @@
         }, 50);
       }
 
-      showToast && showToast('Franchise Application Submitted! 🏢', 'We will contact you within 48 hours.', '✅');
+      showToast && showToast('Franchise Application Submitted!', 'We will contact you within 48 hours.', '');
 
     } catch (err) {
       console.error('Franchise registration error:', err);
-      showToast && showToast('Submission Failed', err.message || 'Please check your connection and try again.', '❌');
-      btn.innerHTML = '🏢 Submit Application';
+      showToast && showToast('Submission Failed', err.message || 'Please check your connection and try again.', '');
+      btn.innerHTML = 'Submit Application';
       btn.disabled = false;
     }
   }
