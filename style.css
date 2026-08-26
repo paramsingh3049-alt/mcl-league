@@ -1080,7 +1080,7 @@ footer {
   opacity: 0.88;
 }
 .footer-brand-wrap .footer-logo-img {
-  height: 60px;
+  height: clamp(100px, 11vw, 140px);
   width: auto;
   object-fit: contain;
   border-radius: calc(var(--radius) - 2px);
@@ -1170,3 +1170,16 @@ footer {
   }
 }
 
+
+/* ===== FOOTER LEFT LOGO ALIGNMENT ===== */
+.footer-brand {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+@media (max-width: 640px) {
+  .footer-brand {
+    justify-content: center;
+    width: 100%;
+  }
+}
