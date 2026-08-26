@@ -65,7 +65,7 @@ input, textarea, select { font-family: inherit; outline: none; }
   background: rgba(13,15,12,0.95);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--brand);
-  height: 72px;
+  height: 90px;
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 1.5rem;
   transition: var(--transition);
@@ -74,10 +74,10 @@ input, textarea, select { font-family: inherit; outline: none; }
 
 .nav-logo { display: flex; align-items: center; gap: 1rem; opacity: 1; transition: opacity 0.2s; }
 .nav-logo:hover { opacity: 0.8; }
-.nav-logo img { height: 64px; width: auto; border-radius: calc(var(--radius) - 2px); object-fit: contain; }
+.nav-logo img { height: 80px; width: auto; border-radius: calc(var(--radius) - 2px); object-fit: contain; }
 .nav-logo-text { display: flex; flex-direction: column; line-height: 1; }
-.nav-logo-text .brand { font-size: 1.25rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; }
-.nav-logo-text .sub { font-size: 0.6rem; color: var(--brand); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2px; }
+.nav-logo-text .brand { font-size: 1.9rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; }
+.nav-logo-text .sub { font-size: 0.85rem; color: var(--brand); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
 
 .nav-links { display: flex; align-items: center; gap: 2rem; }
 .nav-links a { font-size: 0.9375rem; font-weight: 500; color: #fff; transition: color 0.15s; }
@@ -99,7 +99,7 @@ input, textarea, select { font-family: inherit; outline: none; }
 
 /* ===== MOBILE NAV ===== */
 .mobile-nav {
-  position: fixed; top: 72px; left: 0; right: 0; bottom: 0; z-index: 999;
+  position: fixed; top: 90px; left: 0; right: 0; bottom: 0; z-index: 999;
   background: rgba(13,15,12,0.98); backdrop-filter: blur(16px);
   padding: 2rem; display: flex; flex-direction: column; gap: 0.5rem;
   transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
@@ -118,7 +118,7 @@ input, textarea, select { font-family: inherit; outline: none; }
 .hero {
   position: relative; min-height: 90vh;
   display: flex; align-items: center; justify-content: center;
-  overflow: hidden; padding-top: 72px;
+  overflow: hidden; padding-top: 90px;
   background: #000;
 }
 .hero-bg-img {
