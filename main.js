@@ -410,7 +410,7 @@ function initOfficialSponsors() {
       <div class="sponsors-bg-img"></div>
       <div class="sponsors-bg-overlay"></div>
 
-      <div class="sponsors-header-container reveal">
+      <div class="sponsors-header-container">
         <div class="sponsors-pill">
           <span class="sponsors-pill-line"></span>
           <h3 class="sponsors-pill-text">PARTNERS</h3>
@@ -499,6 +499,7 @@ function initOfficialSponsors() {
 document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
   initMobileMenu();
+  initOfficialSponsors();
   initReveal();
   initParticles();
   initCounters();
@@ -507,7 +508,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initCarousel();
   initCustomCursor();
-  initOfficialSponsors();
 });
 
 

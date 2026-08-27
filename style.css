@@ -1214,6 +1214,10 @@ footer {
   max-width: 1000px;
   width: 100%;
   padding: 0 1.5rem;
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+  display: block !important;
 }
 
 .sponsors-pill {
