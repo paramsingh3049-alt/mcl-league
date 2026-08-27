@@ -1174,3 +1174,244 @@ footer {
     width: 100%;
   }
 }
+
+/* ===== GLOBAL REUSABLE OFFICIAL SPONSORS SECTION ===== */
+.sponsors-section {
+  position: relative;
+  padding: 5.5rem 0 6.5rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #080a07;
+  border-top: 1px solid rgba(47, 55, 44, 0.6);
+  width: 100%;
+}
+
+.sponsors-section .sponsors-bg-img {
+  position: absolute;
+  inset: 0;
+  background: url('cricket-stadium-bg.jpg') center/cover no-repeat;
+  filter: blur(8px) brightness(0.12) saturate(0.5);
+  z-index: 0;
+  transform: scale(1.08);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.sponsors-section .sponsors-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(13, 15, 12, 0.7) 0%, rgba(8, 10, 7, 0.96) 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.sponsors-header-container {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+  width: 100%;
+  padding: 0 1.5rem;
+}
+
+.sponsors-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 0.75rem;
+}
+
+.sponsors-pill-line {
+  width: 36px;
+  height: 1px;
+  background: var(--brand, #b5e823);
+  opacity: 0.8;
+}
+
+.sponsors-pill-text {
+  color: var(--brand, #b5e823);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.sponsors-heading {
+  text-align: center;
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  margin-bottom: 3.5rem;
+  color: #ffffff;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.sponsors-heading .text-gradient-sponsor {
+  background: linear-gradient(110deg, var(--brand, #b5e823) 0%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sponsors-carousel-outer {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+.sponsor-nav-btn {
+  position: relative;
+  z-index: 5;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(13, 15, 12, 0.85);
+  border: 1px solid rgba(181, 232, 35, 0.3);
+  color: var(--brand, #b5e823);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.sponsor-nav-btn:hover {
+  background: var(--brand, #b5e823);
+  color: #000;
+  border-color: var(--brand, #b5e823);
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(181, 232, 35, 0.45);
+}
+
+.sponsor-nav-btn:active {
+  transform: scale(0.95);
+}
+
+.sponsor-nav-btn.sponsor-prev {
+  margin-right: 14px;
+}
+
+.sponsor-nav-btn.sponsor-next {
+  margin-left: 14px;
+}
+
+.sponsor-carousel-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 1.25rem 0;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+}
+
+.sponsor-carousel-track {
+  display: flex;
+  flex-wrap: nowrap;
+  width: max-content;
+  align-items: center;
+  animation: sponsorAutoScroll 28s linear infinite;
+  will-change: transform;
+}
+
+.sponsor-carousel-track:hover,
+.sponsor-carousel-track.is-paused {
+  animation-play-state: paused;
+}
+
+@keyframes sponsorAutoScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.sponsor-card {
+  flex-shrink: 0;
+  width: 220px;
+  height: 170px;
+  margin-right: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(18, 22, 16, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(181, 232, 35, 0.16);
+  border-radius: 18px;
+  box-sizing: border-box;
+  padding: 1.8rem;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.sponsor-card:hover {
+  transform: translateY(-4px) scale(1.04);
+  border-color: rgba(181, 232, 35, 0.5);
+  background: rgba(28, 36, 24, 0.85);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7), 0 0 25px rgba(181, 232, 35, 0.2);
+}
+
+.sponsor-card img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: brightness(0.95) contrast(1.05);
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.sponsor-card:hover img {
+  filter: brightness(1.05) contrast(1.1);
+}
+
+@media (max-width: 992px) {
+  .sponsors-section {
+    padding: 4.5rem 0 5.5rem;
+  }
+  .sponsor-card {
+    width: 190px;
+    height: 150px;
+    padding: 1.5rem;
+    margin-right: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .sponsors-section {
+    padding: 3.5rem 0 4.5rem;
+  }
+  .sponsor-nav-btn {
+    display: none;
+  }
+  .sponsor-carousel-wrapper {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+    padding: 0.75rem 0;
+  }
+  .sponsor-card {
+    width: 155px;
+    height: 125px;
+    padding: 1.15rem;
+    margin-right: 1.25rem;
+    border-radius: 14px;
+  }
+  .sponsors-heading {
+    margin-bottom: 2.5rem;
+  }
+}
+

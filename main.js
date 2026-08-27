@@ -370,6 +370,131 @@ function initCustomCursor() {
   document.documentElement.addEventListener('mouseenter', onMouseEnter, { passive: true });
 }
 
+// ===== GLOBAL OFFICIAL SPONSORS COMPONENT =====
+const GLOBAL_SPONSORS = [
+  { name: "Gopal's 56", logo: "sponsor-gopal.jpg" },
+  { name: "Mango Digi TV", logo: "sponsor-mango-dark.jpg" },
+  { name: "BAAMANN", logo: "sponsor-img1.png" },
+  { name: "Homestead ROOTS", logo: "sponsor-img2.png" },
+  { name: "Mid Day", logo: "sponsor-midday.png" }
+];
+
+function initOfficialSponsors() {
+  let sponsorContainers = document.querySelectorAll('.sponsors-section, #official-sponsors');
+  
+  if (sponsorContainers.length === 0) {
+    const footer = document.querySelector('footer');
+    if (footer) {
+      const newSec = document.createElement('section');
+      newSec.className = 'sponsors-section';
+      newSec.id = 'official-sponsors';
+      footer.parentNode.insertBefore(newSec, footer);
+      sponsorContainers = [newSec];
+    }
+  }
+
+  sponsorContainers.forEach((container) => {
+    // Generate cards HTML: 4 cycles of the sponsors array for infinite seamless looping
+    let cardsHtml = '';
+    for (let cycle = 0; cycle < 4; cycle++) {
+      GLOBAL_SPONSORS.forEach(sponsor => {
+        cardsHtml += `
+          <div class="sponsor-card" title="${sponsor.name}">
+            <img src="${sponsor.logo}" alt="${sponsor.name}" loading="lazy" />
+          </div>
+        `;
+      });
+    }
+
+    container.innerHTML = `
+      <div class="sponsors-bg-img"></div>
+      <div class="sponsors-bg-overlay"></div>
+
+      <div class="sponsors-header-container reveal">
+        <div class="sponsors-pill">
+          <span class="sponsors-pill-line"></span>
+          <h3 class="sponsors-pill-text">PARTNERS</h3>
+          <span class="sponsors-pill-line"></span>
+        </div>
+        
+        <h2 class="section-title sponsors-heading">
+          OFFICIAL <span class="text-gradient-sponsor">SPONSORS</span>
+        </h2>
+      </div>
+      
+      <div class="sponsors-carousel-outer">
+        <button class="sponsor-nav-btn sponsor-prev" aria-label="Previous Sponsor" type="button">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+
+        <div class="sponsor-carousel-wrapper">
+          <div class="sponsor-carousel-track">
+            ${cardsHtml}
+          </div>
+        </div>
+
+        <button class="sponsor-nav-btn sponsor-next" aria-label="Next Sponsor" type="button">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    `;
+
+    const track = container.querySelector('.sponsor-carousel-track');
+    const prevBtn = container.querySelector('.sponsor-prev');
+    const nextBtn = container.querySelector('.sponsor-next');
+
+    // Arrow button interactions: smoothly scroll/shift
+    if (track && prevBtn && nextBtn) {
+      let resumeTimeout = null;
+
+      function nudge(direction) {
+        const cardEl = track.querySelector('.sponsor-card');
+        const shiftAmount = (cardEl ? cardEl.offsetWidth + 32 : 240) * direction;
+        
+        const computedStyle = window.getComputedStyle(track);
+        const matrix = new WebKitCSSMatrix(computedStyle.transform);
+        const currentX = matrix.m41 || 0;
+        
+        track.style.animation = 'none';
+        track.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
+        
+        let newX = currentX + shiftAmount;
+        const halfWidth = track.scrollWidth / 2;
+        if (newX > 0) newX = -halfWidth + shiftAmount;
+        if (Math.abs(newX) > halfWidth) newX = shiftAmount;
+        
+        track.style.transform = `translateX(${newX}px)`;
+
+        clearTimeout(resumeTimeout);
+        resumeTimeout = setTimeout(() => {
+          track.style.transition = 'none';
+          track.style.animation = '';
+          track.style.transform = '';
+        }, 3500);
+      }
+
+      prevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        nudge(1);
+      });
+
+      nextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        nudge(-1);
+      });
+
+      // Pause on touch for mobile devices
+      track.addEventListener('touchstart', () => {
+        track.classList.add('is-paused');
+      }, { passive: true });
+
+      track.addEventListener('touchend', () => {
+        track.classList.remove('is-paused');
+      }, { passive: true });
+    }
+  });
+}
+
 // ===== INIT ALL =====
 document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
@@ -382,6 +507,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initCarousel();
   initCustomCursor();
+  initOfficialSponsors();
 });
+
 
 
