@@ -137,6 +137,55 @@
       color: var(--brand, #b5e823);
       font-weight: 700;
     }
+
+    /* 3D Ball Continuous 360° Rotation & Lighting Effect */
+    .mcl-ball-rotator {
+      transform-origin: 68px 36px;
+      animation: mclBallSpin360 4s linear infinite;
+      will-change: transform;
+    }
+
+    @keyframes mclBallSpin360 {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .mcl-ball-light-layer {
+      animation: mclBallGlowPulse 4s ease-in-out infinite;
+    }
+
+    @keyframes mclBallGlowPulse {
+      0%, 100% {
+        opacity: 0.85;
+      }
+      50% {
+        opacity: 1;
+      }
+    }
+
+    .mcl-ball-specular-layer {
+      transform-origin: 68px 36px;
+      animation: mclSpecularShift 4s ease-in-out infinite;
+    }
+
+    @keyframes mclSpecularShift {
+      0%, 100% {
+        opacity: 0.4;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.75;
+        transform: scale(1.04);
+      }
+    }
+
+    .mcl-ball-rim {
+      filter: drop-shadow(0 0 6px rgba(181, 232, 35, 0.4));
+    }
     @media (max-width: 768px) {
       .au-format-highlight-box {
         flex-direction: column;
@@ -374,30 +423,69 @@
     <!-- Highlighted Information Box: 100 Balls Format & 5th Ball Free Hit -->
     <div class="au-format-highlight-box reveal">
       <svg width="95" height="90" viewBox="0 0 100 90" fill="none" xmlns="http://www.w3.org/2000/svg" class="mcl-ball-icon">
-        <!-- Speed lines (trailing to bottom-left) -->
-        <line x1="26" y1="48" x2="8" y2="68" stroke="#b5e823" stroke-width="3" stroke-linecap="round"/>
-        <line x1="36" y1="58" x2="14" y2="82" stroke="#b5e823" stroke-width="3" stroke-linecap="round"/>
-        <line x1="46" y1="68" x2="26" y2="90" stroke="#b5e823" stroke-width="3" stroke-linecap="round"/>
-        <line x1="38" y1="42" x2="16" y2="66" stroke="#b5e823" stroke-width="3" stroke-linecap="round"/>
-        <line x1="50" y1="54" x2="30" y2="76" stroke="#b5e823" stroke-width="3" stroke-linecap="round"/>
-        <line x1="62" y1="64" x2="44" y2="84" stroke="#b5e823" stroke-width="3" stroke-linecap="round"/>
-        
-        <!-- Cricket Ball Circle -->
-        <circle cx="68" cy="36" r="26" stroke="#b5e823" stroke-width="3" fill="none"/>
-        
-        <!-- Cricket Seam Outer Curves -->
-        <path d="M46 22 C 58 34, 76 44, 88 56" stroke="#b5e823" stroke-width="2.2" fill="none"/>
-        <path d="M52 17 C 64 29, 82 39, 94 51" stroke="#b5e823" stroke-width="2.2" fill="none"/>
-        
-        <!-- Cricket Seam Cross Stitches -->
-        <line x1="47" y1="21" x2="52" y2="17" stroke="#b5e823" stroke-width="1.8"/>
-        <line x1="53" y1="26" x2="58" y2="22" stroke="#b5e823" stroke-width="1.8"/>
-        <line x1="59" y1="31" x2="64" y2="27" stroke="#b5e823" stroke-width="1.8"/>
-        <line x1="65" y1="36" x2="70" y2="32" stroke="#b5e823" stroke-width="1.8"/>
-        <line x1="71" y1="41" x2="76" y2="37" stroke="#b5e823" stroke-width="1.8"/>
-        <line x1="77" y1="46" x2="82" y2="42" stroke="#b5e823" stroke-width="1.8"/>
-        <line x1="83" y1="51" x2="88" y2="47" stroke="#b5e823" stroke-width="1.8"/>
-        <line x1="88" y1="56" x2="93" y2="52" stroke="#b5e823" stroke-width="1.8"/>
+        <defs>
+          <!-- Clip to ball circle -->
+          <clipPath id="ball-inner-clip">
+            <circle cx="68" cy="36" r="26"/>
+          </clipPath>
+
+          <!-- 3D spherical shading: top-left highlight to bottom-right deep shadow -->
+          <radialGradient id="ball-sphere-lighting" cx="42%" cy="32%" r="68%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.35"/>
+            <stop offset="35%" stop-color="#b5e823" stop-opacity="0.12"/>
+            <stop offset="70%" stop-color="#000000" stop-opacity="0.45"/>
+            <stop offset="100%" stop-color="#000000" stop-opacity="0.85"/>
+          </radialGradient>
+
+          <!-- Dynamic specular sheen for rotational 3D sweep -->
+          <linearGradient id="ball-specular-sweep" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.4"/>
+            <stop offset="50%" stop-color="#b5e823" stop-opacity="0.05"/>
+            <stop offset="100%" stop-color="#000000" stop-opacity="0.6"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Static speed lines (trailing to bottom-left) -->
+        <g class="mcl-ball-trails">
+          <line x1="26" y1="48" x2="8" y2="68" stroke="#b5e823" stroke-width="3" stroke-linecap="round"/>
+          <line x1="36" y1="58" x2="14" y2="82" stroke="#b5e823" stroke-width="3" stroke-linecap="round"/>
+          <line x1="46" y1="68" x2="26" y2="90" stroke="#b5e823" stroke-width="3" stroke-linecap="round"/>
+          <line x1="38" y1="42" x2="16" y2="66" stroke="#b5e823" stroke-width="3" stroke-linecap="round"/>
+          <line x1="50" y1="54" x2="30" y2="76" stroke="#b5e823" stroke-width="3" stroke-linecap="round"/>
+          <line x1="62" y1="64" x2="44" y2="84" stroke="#b5e823" stroke-width="3" stroke-linecap="round"/>
+        </g>
+
+        <!-- Cricket Ball Container with 3D clipping & continuous 360° rotation -->
+        <g clip-path="url(#ball-inner-clip)">
+          <!-- Ball sphere dark base -->
+          <circle cx="68" cy="36" r="26" fill="#0b0e0a"/>
+
+          <!-- Continuously rotating seam & stitches -->
+          <g class="mcl-ball-rotator">
+            <!-- Cricket Seam Curves -->
+            <path d="M46 22 C 58 34, 76 44, 88 56" stroke="#b5e823" stroke-width="2.2" fill="none"/>
+            <path d="M52 17 C 64 29, 82 39, 94 51" stroke="#b5e823" stroke-width="2.2" fill="none"/>
+            
+            <!-- Cricket Seam Cross Stitches -->
+            <line x1="47" y1="21" x2="52" y2="17" stroke="#b5e823" stroke-width="1.8"/>
+            <line x1="53" y1="26" x2="58" y2="22" stroke="#b5e823" stroke-width="1.8"/>
+            <line x1="59" y1="31" x2="64" y2="27" stroke="#b5e823" stroke-width="1.8"/>
+            <line x1="65" y1="36" x2="70" y2="32" stroke="#b5e823" stroke-width="1.8"/>
+            <line x1="71" y1="41" x2="76" y2="37" stroke="#b5e823" stroke-width="1.8"/>
+            <line x1="77" y1="46" x2="82" y2="42" stroke="#b5e823" stroke-width="1.8"/>
+            <line x1="83" y1="51" x2="88" y2="47" stroke="#b5e823" stroke-width="1.8"/>
+            <line x1="88" y1="56" x2="93" y2="52" stroke="#b5e823" stroke-width="1.8"/>
+          </g>
+
+          <!-- Fixed 3D Spherical Lighting Overlay (maintains realistic directional light) -->
+          <circle cx="68" cy="36" r="26" fill="url(#ball-sphere-lighting)" style="mix-blend-mode: hard-light; pointer-events: none;" class="mcl-ball-light-layer"/>
+
+          <!-- Dynamic 3D lighting shadow reflection -->
+          <circle cx="68" cy="36" r="26" fill="url(#ball-specular-sweep)" style="mix-blend-mode: overlay; pointer-events: none;" class="mcl-ball-specular-layer"/>
+        </g>
+
+        <!-- Outer Ball Glowing Rim -->
+        <circle cx="68" cy="36" r="26" stroke="#b5e823" stroke-width="3" fill="none" class="mcl-ball-rim"/>
       </svg>
 
       <div class="au-format-content">
