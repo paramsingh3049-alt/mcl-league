@@ -376,7 +376,8 @@ const GLOBAL_SPONSORS = [
   { name: "Mango Digi TV", logo: "sponsor-mango-dark.jpg" },
   { name: "BAAMANN", logo: "sponsor-img1.png" },
   { name: "Homestead ROOTS", logo: "sponsor-img2.png" },
-  { name: "Mid Day", logo: "sponsor-midday.png" }
+  { name: "Mid Day", logo: "sponsor-midday.png" },
+  { name: "Tarang Foundation", logo: "sponsor-tarang.png" }
 ];
 
 function initOfficialSponsors() {
