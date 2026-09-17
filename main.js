@@ -373,10 +373,10 @@ function initCustomCursor() {
 // ===== GLOBAL OFFICIAL SPONSORS COMPONENT =====
 const GLOBAL_SPONSORS = [
   { name: "Gopal's 56", logo: "sponsor-gopal.jpg" },
-  { name: "Mango Digi TV", logo: "sponsor-mango-dark.jpg" },
+  { name: "OXO", logo: "sponsor-oxo.png" },
   { name: "BAAMANN", logo: "sponsor-img1.png" },
   { name: "Homestead ROOTS", logo: "sponsor-img2.png" },
-  { name: "Mid Day", logo: "sponsor-midday.png" },
+  { name: "MIDCAV Digital Technologies", logo: "sponsor-midcav.png" },
   { name: "Tarang Foundation", logo: "sponsor-tarang.png" }
 ];
 
